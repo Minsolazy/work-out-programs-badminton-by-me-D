@@ -1,0 +1,18 @@
+{
+  "name": "Explosive Athlete Pro",
+  "short_name": "Explosive",
+  "description": "โปรแกรมเวทเทรนนิ่งเพื่อสร้างแรงระเบิดสำหรับนักแบดมินตัน",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#d32f2f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

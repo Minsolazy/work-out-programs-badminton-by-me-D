@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Explosive Athlete Pro</title>
+    <!-- เชื่อมต่อไฟล์ Manifest สำหรับทำเป็นแอป PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0a0a0a;
+            --bg-card: #141414;
+            --primary-red: #d32f2f;
+            --primary-red-glow: rgba(211, 47, 47, 0.4);
+            --accent-gold: #ffc107;
+            --text-main: #ffffff;
+            --text-sub: #a0a0a0;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: 'Prompt', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            padding-bottom: 80px; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        .app-container { 
+            max-width: 480px; 
+            margin: 0 auto; 
+            min-height: 100vh; 
+            position: relative; 
+            background: radial-gradient(circle at top right, #1a0505 0%, var(--bg-main) 60%);
+        }
+
+        /* Premium Header */
+        .header { 
+            padding: 30px 20px 20px; 
+            text-align: center; 
+            position: relative;
+        }
+        
+        .logo-container {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4), inset 0 2px 2px rgba(255, 193, 7, 0.2);
+            border: 2px solid #d32f2f;
+        }
+
+        /* ทำให้โลโก้เอียงและสลับด้าน (Flip) */
+        .logo-container svg {
+            transform: scaleX(-1) rotate(-25deg);
+            transition: transform 0.3s ease;
+        }
+        .logo-container:hover svg {
+            transform: scaleX(-1) rotate(-15deg) scale(1.05);
+        }
+
+        .app-title { 
+            font-weight: 800; 
+            font-size: 1.5rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ffffff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .app-subtitle {
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--primary-red);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .content { 
+            padding: 0 20px 20px; 
+            display: none; 
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
+        .content.active { display: block; }
+
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        h2 { 
+            color: var(--text-main); 
+            font-size: 1.2rem; 
+            font-weight: 600;
+            margin: 25px 0 15px; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        h2 span {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            font-weight: 400;
+            margin-left: auto;
+        }
+
+        /* Modern Card Design */
+        .card { 
+            background-color: var(--bg-card); 
+            padding: 18px; 
+            margin-bottom: 15px; 
+            border-radius: 16px; 
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--primary-red);
+            border-radius: 4px 0 0 4px;
+            transition: 0.3s;
+        }
+
+        .card:active, .card.completed {
+            background-color: #1a1a1a;
+            border-color: var(--primary-red);
+            box-shadow: 0 4px 15px var(--primary-red-glow);
+        }
+
+        .card.completed::before {
+            background: var(--accent-gold);
+            width: 6px;
+        }
+
+        .card.info-card::before {
+            background: var(--accent-gold);
+        }
+
+        .card h3 { 
+            margin: 0 0 8px 0; 
+            color: #fff; 
+            font-size: 1.1rem; 
+            font-weight: 600;
+            padding-right: 30px;
+        }
+
+        .card.completed h3 {
+            color: var(--accent-gold);
+        }
+
+        .card p { 
+            margin: 0; 
+            color: var(--text-sub); 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+            font-weight: 300;
+        }
+
+        .tag { 
+            display: inline-block; 
+            background-color: rgba(255, 193, 7, 0.1); 
+            color: var(--accent-gold); 
+            font-size: 0.75rem; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-weight: 600; 
+            margin-bottom: 12px; 
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        /* Animated Checkbox */
+        .check-box { 
+            width: 24px; 
+            height: 24px; 
+            border: 2px solid #444; 
+            border-radius: 50%; 
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+        }
+
+        .card.completed .check-box { 
+            background-color: var(--accent-gold); 
+            border-color: var(--accent-gold); 
+            transform: scale(1.1);
+        }
+
+        .card.completed .check-box::after { 
+            content: '';
+            width: 6px;
+            height: 10px;
+            border: solid #000;
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        /* Glassmorphism Tab Bar */
+        .tab-bar { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: rgba(10, 10, 10, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex; 
+            justify-content: space-around; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            max-width: 480px; 
+            margin: 0 auto; 
+            z-index: 100;
+            padding: 10px 0 20px;
+        }
+
+        .tab { 
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666; 
+            font-size: 0.7rem; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-weight: 600; 
+            gap: 4px;
+        }
+
+        .tab svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: all 0.3s;
+        }
+
+        .tab.active { 
+            color: var(--accent-gold); 
+        }
+        
+        .tab.active svg {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.4));
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header & Logo -->
+        <div class="header">
+            <div class="logo-container">
+                <!-- App Logo SVG -->
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 13L2 2L7.5 5.5L12 1L16.5 5.5L22 2L19 13" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="8" y1="13" x2="8" y2="5.5" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="13" x2="16" y2="5.5" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M12 23C15.5 23 18 20 18 16.5C18 13.5 15.5 12 12 12C8.5 12 6 13.5 6 16.5C6 20 8.5 23 12 23Z" fill="#ffc107"/>
+                    <path d="M6.2 15C8.5 16.5 15.5 16.5 17.8 15" stroke="#d32f2f" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M13.5 2L8 10H12.5L11 17L18 8H13L14.5 2Z" fill="#ffc107" stroke="#1a1a1a" stroke-width="1" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h1 class="app-title">Explosive</h1>
+            <div class="app-subtitle">Athlete Blueprint</div>
+        </div>
+        
+        <!-- Agility Tab -->
+        <div id="tab-agility" class="content">
+            <h2>Agility <span>ทำก่อนเวท 10 นาที</span></h2>
+            
+            <div class="card info-card" style="border-color: #ffc107;">
+                <span class="tag" style="background-color: rgba(255,193,7,0.2); border: none;">💡 กฎเหล็ก Agility</span>
+                <p style="color: #fff; font-size: 0.95rem;">ทำท่าละ <b>3-4 เซต</b> <br><b>พักระหว่างเซต 1 นาทีเต็ม</b><br><span style="color: #aaa; font-size: 0.8rem;">(ห้ามฝืนทำต่อตอนที่ยังหอบ เพราะเราต้องการความเร็ว ไม่ใช่ความอึด)</span></p>
+            </div>
+
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3-4 เซต x 30 วิ</span>
+                <h3>1. Shadow Badminton</h3>
+                <p>กระโดด Split Step ก่อนออกตัวทุกครั้ง พุ่ง 6 ทิศทางไป-กลับให้ไวที่สุด</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3-4 เซต x 8-10 ครั้ง</span>
+                <h3>2. Reaction Ball Drop</h3>
+                <p>ทิ้งน้ำหนักลงปลายเท้า พุ่งไปจับลูกที่สะท้อนกำแพงก่อนตกพื้น</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3-4 เซต x 15-20 วิ</span>
+                <h3>3. Lateral Line Hops</h3>
+                <p>โดดข้ามเส้นซ้าย-ขวา ส้นเท้าไม่แตะพื้น (เหมือนติดสปริง)</p>
+            </div>
+        </div>
+
+        <!-- Program A Tab -->
+        <div id="tab-proga" class="content active">
+            <h2>Program A <span>Vertical & Back</span></h2>
+            <div class="card info-card" style="border-color: #d32f2f;">
+                <span class="tag" style="background-color: rgba(211,47,47,0.2); color: #ffc107; border: none;">🔥 กฎเหล็กเวทเทรนนิ่ง</span>
+                <p style="color: #fff; font-size: 0.95rem;">พักระหว่างเซต <b>1.5 - 2 นาที</b> <br>จังหวะยก (ออกแรง): <b>"เร็วและแรง"</b> (Explosive)<br>จังหวะลง (ผ่อน): <b>"ช้าๆ คุมน้ำหนัก"</b> (2-3 วินาที)</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">4 เซต x 6-8 ครั้ง</span>
+                <h3>1. Pull-Ups (ดึงข้อ)</h3>
+                <p>น้ำหนักตัว (ดึงให้สุด ปล่อยสุด ใช้ยางยืดช่วยได้)</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 8-10 ครั้ง</span>
+                <h3>2. Barbell RDLs</h3>
+                <p>15-20 กก. ดึงตัวขึ้นเร็วปรู๊ด โฟกัสแรงจากก้นและหลังขา</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 8-10 ครั้ง</span>
+                <h3>3. DB Bench Press</h3>
+                <p>6-8 กก./ข้าง ดันขึ้นให้ทะยาน ลงช้าๆ ควบคุมกล้ามเนื้อ</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 8 ครั้ง/ข้าง</span>
+                <h3>4. Bulgarian Split Squats</h3>
+                <p>4-6 กก./ข้าง ดันตัวขึ้นเหมือนจังหวะกำลังจะเทคตัวกระโดด</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 12 ครั้ง</span>
+                <h3>5. Overhead Tricep Ext.</h3>
+                <p>ดัมเบล 1 ลูก (4-6 กก.) ล็อกข้อศอกให้นิ่ง โฟกัสหลังแขน</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 12-15 ครั้ง</span>
+                <h3>6. Hanging Knee Raises</h3>
+                <p>น้ำหนักตัว ดึงเข่าขึ้นเร็ว เกร็งหน้าท้อง ห้ามแกว่งตัวช่วย</p>
+            </div>
+        </div>
+
+        <!-- Program B Tab -->
+        <div id="tab-progb" class="content">
+            <h2>Program B <span>Unilateral & Core</span></h2>
+            <div class="card info-card" style="border-color: #d32f2f;">
+                <span class="tag" style="background-color: rgba(211,47,47,0.2); color: #ffc107; border: none;">🔥 กฎเหล็กเวทเทรนนิ่ง</span>
+                <p style="color: #fff; font-size: 0.95rem;">พักระหว่างเซต <b>1.5 - 2 นาที</b> <br>จังหวะยก (ออกแรง): <b>"เร็วและแรง"</b> (Explosive)<br>จังหวะลง (ผ่อน): <b>"ช้าๆ คุมน้ำหนัก"</b> (2-3 วินาที)</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">4 เซต x 6-8 ครั้ง</span>
+                <h3>1. Goblet Squats</h3>
+                <p>ดัมเบล 1 ลูก (10-14 กก.) จังหวะยืนขึ้นต้องรวดเร็วและทรงพลัง</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 8-10 ครั้ง/ข้าง</span>
+                <h3>2. Single-Arm DB Rows</h3>
+                <p>8-10 กก./ข้าง กระชากเข้าหาเอวให้ไว (เหมือนง้างไม้ตบ)</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 10 ครั้ง/ข้าง</span>
+                <h3>3. DB Walking Lunges</h3>
+                <p>4-6 กก./ข้าง ก้าวแล้วดันตัวไปข้างหน้าให้สมูท ไม่เซ</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 8-10 ครั้ง</span>
+                <h3>4. Seated DB Press</h3>
+                <p>5-7 กก./ข้าง ดันสุดแขนไว ลงช้า โฟกัสหัวไหล่</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 12-15 ครั้ง</span>
+                <h3>5. DB Lateral Raises</h3>
+                <p>2-4 กก./ข้าง ใช้ของเบาเพื่อเซฟข้อไหล่ ห้ามเหวี่ยงตัว</p>
+            </div>
+            <div class="card" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <span class="tag">3 เซต x 10-12 ครั้ง</span>
+                <h3>6. Lying Leg Lifts</h3>
+                <p>น้ำหนักตัว กดหลังล่างติดพื้นตลอดเวลา เกร็งหน้าท้อง</p>
+            </div>
+        </div>
+
+        <!-- Info Tab -->
+        <div id="tab-info" class="content">
+            <h2>Nutrition & Info <span>เคล็ดลับหุ่นลีน</span></h2>
+            <div class="card">
+                <span class="tag">The 2-Rep Rule</span>
+                <h3>หลักการเลือกน้ำหนัก</h3>
+                <p>ยกครบเซตต้องรู้สึกว่า <b>"ทำต่อได้อีก 2 ครั้งสบายๆ"</b> อย่าฝืนยกจนล้า (Failure) เพราะต้องเก็บความสดของระบบประสาทไว้ตีแบด</p>
+            </div>
+            <div class="card">
+                <span class="tag">Pre-Workout</span>
+                <h3>เติมพลังงาน (1-2 ชม. ก่อนซ้อม)</h3>
+                <p>เน้นคาร์บย่อยง่าย: กล้วยหอม 1-2 ลูก หรือ ขนมปังปิ้ง 2 แผ่น งดอาหารไขมันสูงและกากใยเยอะ</p>
+            </div>
+            <div class="card">
+                <span class="tag">Post-Workout</span>
+                <h3>ฟื้นฟู (ภายใน 45 นาที)</h3>
+                <p>ข้าว 1 ทัพพี + อกไก่ หรือ นมช็อกโกแลตไขมันต่ำ 1 ขวด + ไข่ต้ม 2 ฟอง</p>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="tab-bar">
+            <div class="tab" onclick="openTab('tab-agility', this)">
+                <svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                AGILITY
+            </div>
+            <div class="tab active" onclick="openTab('tab-proga', this)">
+                <svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43 1.43-1.43z"/></svg>
+                PROG A
+            </div>
+            <div class="tab" onclick="openTab('tab-progb', this)">
+                <svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43 1.43-1.43z"/></svg>
+                PROG B
+            </div>
+            <div class="tab" onclick="openTab('tab-info', this)">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                INFO
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(tabId, element) {
+            document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleCheck(card) {
+            card.classList.toggle('completed');
+        }
+    </script>
+</body>
+</html>
