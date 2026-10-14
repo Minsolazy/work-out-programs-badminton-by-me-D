@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Explosive Athlete</title>
+    <title>Explosive Athlete Pro</title>
     
     <link rel="icon" href="icon.svg">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#08080a">
     
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0a0a0a;
-            --bg-card: #141414;
-            --primary-red: #d32f2f;
-            --primary-red-glow: rgba(211, 47, 47, 0.4);
-            --accent-gold: #ffc107;
+            --bg-main: #08080a;
+            --bg-card: rgba(22, 18, 20, 0.92);
+            --bg-glass: rgba(28, 22, 24, 0.85);
+            --primary-red: #ff1e38;
+            --primary-red-glow: rgba(255, 30, 56, 0.5);
+            --accent-gold: #ffd000;
+            --accent-gold-glow: rgba(255, 208, 0, 0.42);
+            --success-green: #00e676;
+            --success-glow: rgba(0, 230, 118, 0.3);
             --text-main: #ffffff;
-            --text-sub: #a0a0a0;
+            --text-sub: #b8b2b4;
+            --border-subtle: rgba(255, 208, 0, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body { 
@@ -26,8 +36,8 @@
             font-family: 'Prompt', sans-serif; 
             background-color: var(--bg-main); 
             color: var(--text-main); 
-            padding-bottom: 80px; 
-            -webkit-tap-highlight-color: transparent; 
+            padding-bottom: 165px; 
+            overflow-x: hidden;
         }
 
         .app-container { 
@@ -35,104 +45,371 @@
             margin: 0 auto; 
             min-height: 100vh; 
             position: relative; 
-            background: radial-gradient(circle at top right, #1a0505 0%, var(--bg-main) 60%);
+            background: 
+                radial-gradient(circle at 88% 4%, rgba(255, 20, 50, 0.38) 0%, rgba(140, 0, 22, 0.14) 35%, transparent 55%),
+                radial-gradient(circle at 12% 20%, rgba(200, 0, 32, 0.22) 0%, transparent 48%),
+                radial-gradient(circle at 50% 65%, rgba(255, 30, 56, 0.14) 0%, transparent 60%),
+                linear-gradient(180deg, #16070a 0%, #08080a 100%);
         }
 
+        /* Top Utility Bar */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px 0;
+            gap: 8px;
+        }
+
+        .badge-pill {
+            background: linear-gradient(135deg, rgba(255, 30, 56, 0.32), rgba(120, 0, 20, 0.22));
+            border: 1px solid rgba(255, 30, 56, 0.65);
+            color: #ffccd2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(255, 30, 56, 0.25);
+        }
+
+        .user-profile-btn {
+            background: linear-gradient(135deg, rgba(255, 30, 56, 0.26), rgba(90, 0, 15, 0.3));
+            border: 1px solid rgba(255, 208, 0, 0.65);
+            color: var(--accent-gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 30, 56, 0.2);
+        }
+        .user-profile-btn:active { transform: scale(0.95); }
+
+        /* Header */
         .header { 
-            padding: 30px 20px 20px; 
+            padding: 14px 20px 10px; 
             text-align: center; 
-            position: relative;
         }
         
         .logo-container {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
-            border-radius: 20px;
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 10px;
+            background: radial-gradient(circle at 30% 25%, #2b1116 0%, #14090b 70%, #070506 100%);
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4), inset 0 2px 2px rgba(255, 193, 7, 0.2);
-            border: 2px solid #d32f2f;
+            box-shadow: 
+                0 10px 28px var(--primary-red-glow), 
+                0 0 18px var(--accent-gold-glow),
+                inset 0 2px 3px rgba(255, 208, 0, 0.35);
+            border: 2px solid var(--accent-gold);
+            position: relative;
+            animation: logoPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: translateY(0px); box-shadow: 0 10px 28px var(--primary-red-glow), 0 0 15px var(--accent-gold-glow), inset 0 2px 3px rgba(255, 208, 0, 0.35); }
+            50% { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(255, 30, 56, 0.68), 0 0 24px rgba(255, 208, 0, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.45); }
         }
 
         .logo-container svg {
-            transform: scaleX(-1) rotate(-25deg);
+            width: 58px;
+            height: 58px;
+            overflow: visible;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.65));
         }
 
         .app-title { 
             font-weight: 800; 
-            font-size: 1.5rem; 
+            font-size: 1.55rem; 
             text-transform: uppercase; 
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #ffffff, var(--accent-gold));
+            letter-spacing: 2.5px;
+            background: linear-gradient(90deg, #ffffff 0%, #ffe66d 45%, var(--accent-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
+            line-height: 1.1;
+            filter: drop-shadow(0 2px 10px rgba(255, 208, 0, 0.28));
         }
 
         .app-subtitle {
-            font-weight: 300;
-            font-size: 0.85rem;
+            font-weight: 700;
+            font-size: 0.72rem;
             color: var(--primary-red);
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 4px;
+            text-shadow: 0 0 12px rgba(255, 30, 56, 0.55);
         }
 
-        .user-profile-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 193, 7, 0.1);
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 5px 10px;
+        /* Quick Stats Dashboard Strip */
+        .dashboard-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 10px 18px;
+        }
+
+        .stat-box {
+            background: linear-gradient(145deg, rgba(34, 22, 26, 0.9), rgba(16, 12, 14, 0.92));
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 9px 6px;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-val {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ff6b7b;
+        }
+        .stat-val.gold { color: var(--accent-gold); text-shadow: 0 0 10px rgba(255, 208, 0, 0.35); }
+        .stat-val.green { color: var(--success-green); text-shadow: 0 0 10px rgba(0, 230, 118, 0.3); }
+
+        .stat-lbl {
+            font-size: 0.65rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        /* Today's Recommendation Banner */
+        .today-banner {
+            margin: 8px 18px 4px;
+            padding: 10px 14px;
+            background: linear-gradient(90deg, rgba(255, 30, 56, 0.34) 0%, rgba(130, 0, 22, 0.16) 65%, rgba(20, 10, 13, 0.85) 100%);
+            border-left: 4px solid var(--primary-red);
             border-radius: 12px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            font-family: 'Prompt', sans-serif;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .today-banner b { color: var(--accent-gold); }
+
+        /* Sticky Progress Bar */
+        .progress-wrapper {
+            padding: 10px 18px 8px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(8, 8, 10, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 30, 56, 0.18);
         }
 
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+            color: var(--text-sub);
+        }
+
+        .progress-header b { color: var(--accent-gold); }
+
+        .progress-track {
+            width: 100%;
+            height: 7px;
+            background: #1f1215;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #7a0012 0%, var(--primary-red) 65%, #ff5c70 100%);
+            border-radius: 10px;
+            transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 0 12px var(--primary-red-glow);
+        }
+
+        /* Content Area */
         .content { 
-            padding: 0 20px 20px; 
+            padding: 4px 18px 20px; 
             display: none; 
-            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            animation: fadeIn 0.28s ease; 
         }
         
         .content.active { display: block; }
 
-        @keyframes slideUp { 
-            from { opacity: 0; transform: translateY(20px); } 
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(8px); } 
             to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 14px 0 10px;
         }
 
         h2 { 
             color: var(--text-main); 
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
+            font-weight: 700;
+            margin: 0; 
+        }
+
+        .section-sub {
+            font-size: 0.72rem;
+            color: var(--accent-gold);
+            background: rgba(255, 208, 0, 0.12);
+            border: 1px solid rgba(255, 208, 0, 0.35);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* Interactive 6-Corner Shadow Badminton Coach */
+        .court-coach-card {
+            background: linear-gradient(145deg, rgba(32, 18, 22, 0.96), rgba(16, 11, 13, 0.96));
+            border: 1px solid rgba(255, 208, 0, 0.45);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 30, 56, 0.15);
+        }
+
+        .court-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .court-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .court-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 54px);
+            gap: 8px;
+            background: linear-gradient(180deg, #1b1114 0%, #100a0c 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 8px;
+            position: relative;
+            margin-bottom: 12px;
+            box-shadow: inset 0 0 20px rgba(255, 30, 56, 0.18);
+        }
+
+        .court-center-line {
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 1.5px;
+            background: rgba(255, 208, 0, 0.4);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .court-net-label {
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #08080a;
+            color: var(--accent-gold);
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 1px 10px;
+            letter-spacing: 1px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 6px;
+        }
+
+        .court-cell {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 208, 0, 0.22);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
             font-weight: 600;
-            margin: 25px 0 15px; 
-            display: flex; 
-            align-items: center; 
+            color: #f0e6e8;
+            transition: all 0.15s ease;
+            z-index: 2;
         }
 
-        h2 span {
+        .court-cell.active-target {
+            background: linear-gradient(135deg, #ff1e38, #990016);
+            color: #ffffff;
+            font-weight: 800;
+            transform: scale(1.05);
+            box-shadow: 0 0 22px var(--primary-red-glow);
+            border-color: var(--accent-gold);
+        }
+
+        .coach-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .coach-speed-select {
+            background: #140d10;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 208, 0, 0.3);
+            padding: 9px 10px;
+            border-radius: 10px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.76rem;
+            flex: 1;
+        }
+
+        .btn-coach-run {
+            background: linear-gradient(135deg, var(--primary-red), #900014);
+            color: #ffffff;
+            border: 1px solid rgba(255, 208, 0, 0.45);
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
             font-size: 0.8rem;
-            color: var(--text-sub);
-            font-weight: 400;
-            margin-left: auto;
+            cursor: pointer;
+            flex: 1.2;
+            box-shadow: 0 4px 14px var(--primary-red-glow);
+        }
+        .btn-coach-run.active {
+            background: linear-gradient(135deg, #3a0810, #1a0408);
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 14px var(--accent-gold-glow);
         }
 
+        /* Card Design 3.0 - Black, Red & Gold */
         .card { 
-            background-color: var(--bg-card); 
-            padding: 18px; 
-            margin-bottom: 15px; 
-            border-radius: 16px; 
-            border: 1px solid #222;
-            transition: all 0.3s ease;
+            background: linear-gradient(145deg, rgba(28, 20, 23, 0.94), rgba(16, 12, 14, 0.94)); 
+            padding: 15px 16px; 
+            margin-bottom: 13px; 
+            border-radius: 18px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .card::before {
@@ -140,107 +417,373 @@
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 4px;
-            background: var(--primary-red);
-            border-radius: 4px 0 0 4px;
+            background: linear-gradient(180deg, var(--primary-red), #ff6b7b);
             transition: 0.3s;
         }
 
-        .card:active, .card.completed {
-            background-color: #1a1a1a;
-            border-color: var(--primary-red);
-            box-shadow: 0 4px 15px var(--primary-red-glow);
+        .card.completed {
+            background: linear-gradient(145deg, rgba(38, 30, 14, 0.92), rgba(20, 16, 10, 0.94));
+            border-color: rgba(255, 208, 0, 0.55);
+            box-shadow: 0 6px 20px rgba(255, 208, 0, 0.15);
         }
 
         .card.completed::before {
             background: var(--accent-gold);
-            width: 6px;
+            width: 5px;
         }
 
         .card.info-card::before {
             background: var(--accent-gold);
         }
 
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
         .card h3 { 
-            margin: 0 0 8px 0; 
+            margin: 0; 
             color: #fff; 
-            font-size: 1.1rem; 
+            font-size: 1rem; 
             font-weight: 600;
-            padding-right: 30px;
         }
 
         .card.completed h3 { color: var(--accent-gold); }
 
+        .tag { 
+            display: inline-block; 
+            background-color: rgba(255, 208, 0, 0.14); 
+            color: var(--accent-gold); 
+            font-size: 0.7rem; 
+            padding: 3px 9px; 
+            border-radius: 10px; 
+            font-weight: 600; 
+            white-space: nowrap;
+            border: 1px solid rgba(255, 208, 0, 0.32);
+        }
+
         .card p { 
-            margin: 0; 
+            margin: 5px 0 0; 
             color: var(--text-sub); 
-            font-size: 0.9rem; 
-            line-height: 1.5; 
+            font-size: 0.84rem; 
+            line-height: 1.48; 
             font-weight: 300;
+        }
+
+        /* Expandable Form Cue Box */
+        .cue-toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .btn-cue-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-gold);
+            font-size: 0.74rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+            padding: 2px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-work-timer {
+            background: rgba(255, 30, 56, 0.18);
+            border: 1px solid rgba(255, 30, 56, 0.5);
+            color: #ffccd2;
+            font-size: 0.72rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .cue-box {
+            display: none;
+            margin-top: 8px;
+            padding: 10px 12px;
+            background: rgba(0, 0, 0, 0.55);
+            border-left: 2px solid var(--accent-gold);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: #e6dfe1;
+            line-height: 1.5;
+        }
+        .cue-box.open { display: block; }
+        .cue-box b { color: var(--accent-gold); }
+
+        /* Weight Control Bar inside Card */
+        .weight-control-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 208, 0, 0.14);
+            padding: 7px 11px;
+            border-radius: 12px;
+            margin: 9px 0 7px;
+        }
+
+        .weight-label {
+            font-size: 0.76rem;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .dynamic-weight {
             color: var(--accent-gold);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.92rem;
         }
 
-        .tag { 
-            display: inline-block; 
-            background-color: rgba(255, 193, 7, 0.1); 
-            color: var(--accent-gold); 
-            font-size: 0.75rem; 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-weight: 600; 
-            margin-bottom: 12px; 
-            border: 1px solid rgba(255, 193, 7, 0.3);
+        .weight-Steppers {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .check-box { 
-            width: 24px; 
-            height: 24px; 
-            border: 2px solid #444; 
-            border-radius: 50%; 
-            position: absolute;
-            right: 18px;
-            top: 18px;
-            cursor: pointer; 
-            transition: all 0.3s ease; 
+        .btn-step {
+            width: 27px;
+            height: 27px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 208, 0, 0.3);
+            background: #211619;
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-card);
+            cursor: pointer;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+        .btn-step:active {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: #fff;
         }
 
-        .card.completed .check-box { 
-            background-color: var(--accent-gold); 
-            border-color: var(--accent-gold); 
-            transform: scale(1.1);
+        /* Interactive Set Bubbles */
+        .sets-container {
+            display: flex;
+            gap: 7px;
+            margin-top: 10px;
+            padding-top: 9px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
         }
 
-        .card.completed .check-box::after { 
-            content: '';
-            width: 6px;
-            height: 10px;
-            border: solid #000;
-            border-width: 0 2.5px 2.5px 0;
-            transform: rotate(45deg);
-            margin-bottom: 2px;
+        .set-btn {
+            flex: 1;
+            padding: 7px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-sub);
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
         }
 
+        .set-btn.done {
+            background: linear-gradient(135deg, rgba(255, 30, 56, 0.42), rgba(115, 0, 19, 0.28));
+            border-color: var(--primary-red);
+            color: #ffffff;
+            box-shadow: 0 2px 10px var(--primary-red-glow);
+        }
+
+        .card.completed .set-btn.done {
+            background: linear-gradient(135deg, rgba(255, 30, 56, 0.5), rgba(140, 0, 24, 0.35));
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Action Buttons (Finish / Reset) */
+        .workout-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .btn-finish-workout {
+            flex: 2;
+            background: linear-gradient(135deg, var(--primary-red), #b80018);
+            color: #fff;
+            border: 1px solid rgba(255, 208, 0, 0.4);
+            padding: 13px;
+            border-radius: 14px;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            box-shadow: 0 4px 18px var(--primary-red-glow);
+        }
+        .btn-finish-workout:active { transform: scale(0.98); }
+
+        .btn-reset-workout {
+            flex: 1;
+            background: #1a1215;
+            color: var(--text-sub);
+            border: 1px solid var(--border-subtle);
+            padding: 13px;
+            border-radius: 14px;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+            font-size: 0.82rem;
+            cursor: pointer;
+        }
+
+        /* Nutrition Macro Grid */
+        .macro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .macro-box {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 208, 0, 0.16);
+            padding: 10px 8px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .macro-val {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .macro-lbl {
+            font-size: 0.68rem;
+            color: var(--text-sub);
+        }
+
+        /* Schedule List in Info Tab */
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            margin-bottom: 4px;
+        }
+        .schedule-row.today-highlight {
+            background: linear-gradient(90deg, rgba(255, 30, 56, 0.34), rgba(110, 0, 18, 0.16));
+            border: 1px solid var(--primary-red);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* History Log List */
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            background: rgba(0,0,0,0.45);
+            border-left: 3px solid var(--accent-gold);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 0.78rem;
+        }
+        .history-item b { color: var(--accent-gold); }
+
+        /* Floating Rest/Work Timer Dock */
+        .timer-dock {
+            position: fixed;
+            bottom: 66px;
+            left: 0;
+            right: 0;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 12px;
+            z-index: 95;
+        }
+
+        .timer-bar {
+            background: rgba(20, 12, 15, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 208, 0, 0.25);
+            border-radius: 16px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.75);
+        }
+
+        .timer-bar.running {
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .timer-bar.work-mode {
+            border-color: var(--primary-red);
+            box-shadow: 0 4px 20px var(--primary-red-glow);
+        }
+
+        .timer-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            min-width: 82px;
+        }
+
+        .timer-btns {
+            display: flex;
+            gap: 4px;
+        }
+
+        .t-btn {
+            background: linear-gradient(145deg, #2b1217, #18090c);
+            border: 1px solid rgba(255, 30, 56, 0.32);
+            color: #ffffff;
+            padding: 6px 8px;
+            border-radius: 9px;
+            font-size: 0.68rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .t-btn:active { background: var(--primary-red); color: #fff; }
+        .t-btn.stop { background: rgba(255, 30, 56, 0.28); color: #ffccd2; border-color: rgba(255, 30, 56, 0.55); }
+
+        /* Glassmorphism Tab Bar */
         .tab-bar { 
             position: fixed; 
             bottom: 0; 
             left: 0; 
             right: 0; 
-            background: rgba(10, 10, 10, 0.85); 
-            backdrop-filter: blur(12px);
+            background: rgba(10, 7, 8, 0.96); 
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             display: flex; 
             justify-content: space-around; 
-            border-top: 1px solid rgba(255,255,255,0.05); 
+            border-top: 1px solid rgba(255, 208, 0, 0.15); 
             max-width: 480px; 
             margin: 0 auto; 
             z-index: 100;
-            padding: 10px 0 20px;
+            padding: 8px 0 15px;
         }
 
         .tab { 
@@ -249,28 +792,54 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #666; 
-            font-size: 0.7rem; 
+            color: #85767a; 
+            font-size: 0.66rem; 
             cursor: pointer; 
             font-weight: 600; 
             gap: 4px;
+            transition: 0.2s;
         }
 
-        .tab svg { width: 22px; height: 22px; fill: currentColor; }
+        .tab svg { width: 20px; height: 20px; fill: currentColor; transition: 0.2s; }
         .tab.active { color: var(--accent-gold); }
+        .tab.active svg { transform: translateY(-2px); filter: drop-shadow(0 2px 8px var(--accent-gold-glow)); }
 
+        /* Custom Toast Banner */
+        .toast-banner {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(135deg, #261217, #12080b);
+            border: 1px solid var(--accent-gold);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            z-index: 2000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 15px var(--accent-gold-glow);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            max-width: 90%;
+            text-align: center;
+        }
+        .toast-banner.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Setup Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(6px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 999;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
+            transition: opacity 0.25s;
         }
 
         .modal-overlay.active {
@@ -279,217 +848,642 @@
         }
 
         .modal-box {
-            background: #141414;
-            padding: 30px;
-            border-radius: 20px;
-            width: 80%;
-            max-width: 320px;
-            border: 1px solid var(--primary-red);
+            background: #16161c;
+            padding: 24px 22px;
+            border-radius: 22px;
+            width: 90%;
+            max-width: 350px;
+            border: 1px solid rgba(239, 35, 60, 0.5);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(211,47,47,0.3);
-            transform: translateY(20px);
-            transition: transform 0.3s;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.75);
+            transform: translateY(15px);
+            transition: transform 0.25s;
         }
 
         .modal-overlay.active .modal-box { transform: translateY(0); }
 
-        .modal-box h3 { color: #fff; margin: 0 0 10px; font-size: 1.2rem; }
-        .modal-box p { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 20px; line-height: 1.4; }
+        .modal-box h3 { color: #fff; margin: 0 0 6px; font-size: 1.15rem; }
+        .modal-box p { color: var(--text-sub); font-size: 0.78rem; margin-bottom: 14px; line-height: 1.4; }
 
-        .input-group { margin-bottom: 20px; }
+        .input-row-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .input-group { text-align: left; }
+        .input-group label { display: block; font-size: 0.72rem; color: var(--text-sub); margin-bottom: 5px; }
         .input-group input {
             width: 100%;
-            background: #0a0a0a;
+            background: #0c0c10;
             border: 1px solid #333;
             color: var(--accent-gold);
-            font-size: 1.5rem;
-            padding: 12px;
+            font-size: 1.25rem;
+            padding: 9px;
             border-radius: 12px;
             text-align: center;
             font-family: 'Prompt', sans-serif;
-            font-weight: 600;
-            box-sizing: border-box;
+            font-weight: 700;
         }
         .input-group input:focus { outline: none; border-color: var(--accent-gold); }
 
+        .level-selector {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .lvl-btn {
+            flex: 1;
+            padding: 8px 4px;
+            background: #0c0c10;
+            border: 1px solid #2c2c34;
+            color: var(--text-sub);
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .lvl-btn.selected {
+            border-color: var(--accent-gold);
+            background: rgba(255, 183, 3, 0.15);
+            color: var(--accent-gold);
+        }
+
         .btn-start {
-            background: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), #b71c1c);
             color: #fff;
             border: none;
             padding: 12px 0;
             width: 100%;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 0.92rem;
             font-weight: 600;
             font-family: 'Prompt', sans-serif;
             cursor: pointer;
-            transition: 0.2s;
+            margin-bottom: 8px;
         }
-        .btn-start:active { background: #b71c1c; transform: scale(0.98); }
+
+        .btn-reset-custom {
+            background: transparent;
+            border: none;
+            color: #9ab0d6;
+            font-size: 0.72rem;
+            font-family: 'Prompt', sans-serif;
+            text-decoration: underline;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 6px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Popup ใส่ข้อมูลน้ำหนัก -->
+    <!-- Toast Notification -->
+    <div id="toastBanner" class="toast-banner">บันทึกข้อมูลเรียบร้อย!</div>
+
+    <!-- Popup ตั้งค่าน้ำหนัก ส่วนสูง และระดับความฟิต -->
     <div class="modal-overlay" id="setupModal">
         <div class="modal-box">
-            <h3>คำนวณเป้าหมาย</h3>
-            <p>กรอกน้ำหนักตัวของคุณ เพื่อให้ระบบคำนวณน้ำหนักเหล็ก (ดัมเบล/บาร์เบล) ที่เหมาะสมสำหรับการฝึก Explosive Power</p>
-            <div class="input-group">
-                <input type="number" id="userWeightInput" placeholder="น้ำหนัก (กก.)">
+            <h3>⚙️ ข้อมูลนักกีฬา (Athlete Profile)</h3>
+            <p>คำนวณน้ำหนักเหล็กสำหรับฝึกแรงระเบิด และสัดส่วนโภชนาการรายวัน</p>
+            
+            <div class="input-row-2col">
+                <div class="input-group">
+                    <label>น้ำหนักตัว (กก.)</label>
+                    <input type="number" id="userWeightInput" placeholder="เช่น 50" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label>ส่วนสูง (ซม.)</label>
+                    <input type="number" id="userHeightInput" placeholder="เช่น 168" step="1">
+                </div>
             </div>
-            <button class="btn-start" onclick="saveProfile()">สร้างโปรแกรมฝึก</button>
+
+            <div class="input-group" style="margin-bottom: 12px;">
+                <label>ระดับความแข็งแรงพื้นฐาน</label>
+                <div class="level-selector">
+                    <button type="button" class="lvl-btn" data-mult="0.85" onclick="selectLevel(this)">เริ่มต้น (-15%)</button>
+                    <button type="button" class="lvl-btn selected" data-mult="1.0" onclick="selectLevel(this)">มาตรฐาน</button>
+                    <button type="button" class="lvl-btn" data-mult="1.15" onclick="selectLevel(this)">โปร (+15%)</button>
+                </div>
+            </div>
+
+            <button class="btn-start" onclick="saveProfile()">บันทึกและคำนวณโปรแกรม</button>
+            <button class="btn-reset-custom" onclick="resetCustomOffsets()">รีเซ็ตค่าบวกลบน้ำหนักรายท่าทั้งหมด</button>
+            <button class="btn-reset-custom" style="color: var(--accent-gold);" onclick="downloadNewIconSvg()">⬇️ ดาวน์โหลดไฟล์ icon.svg โลโก้ใหม่ (สำหรับอัปเดต GitHub)</button>
         </div>
     </div>
 
     <div class="app-container">
+        <!-- Top Utility Bar -->
+        <div class="top-nav">
+            <div class="badge-pill">🔥 ซ้อมสำเร็จ: <span id="workout-count">0</span> ครั้ง</div>
+            <button class="user-profile-btn" onclick="openSetupModal()">⚙️ <span id="display-user-weight">-</span> กก. | <span id="display-user-height">-</span> ซม.</button>
+        </div>
+
         <!-- Header -->
         <div class="header">
-            <button class="user-profile-btn" onclick="openSetupModal()">⚙️ น้ำหนัก: <span id="display-user-weight">-</span> กก.</button>
-            <div class="logo-container">
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 13L2 2L7.5 5.5L12 1L16.5 5.5L22 2L19 13" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <line x1="8" y1="13" x2="8" y2="5.5" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="16" y1="13" x2="16" y2="5.5" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M12 23C15.5 23 18 20 18 16.5C18 13.5 15.5 12 12 12C8.5 12 6 13.5 6 16.5C6 20 8.5 23 12 23Z" fill="#ffc107"/>
-                    <path d="M6.2 15C8.5 16.5 15.5 16.5 17.8 15" stroke="#d32f2f" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13.5 2L8 10H12.5L11 17L18 8H13L14.5 2Z" fill="#ffc107" stroke="#1a1a1a" stroke-width="1" stroke-linejoin="round"/>
+            <div class="logo-container" id="app-logo-holder">
+                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- วงแหวนพลังงานด้านหลัง (แดง-ดำ-ทอง ไม่ปนส้ม) -->
+                        <linearGradient id="auraGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ff1e38" stop-opacity="0.85"/>
+                            <stop offset="50%" stop-color="#8a0014" stop-opacity="0.45"/>
+                            <stop offset="100%" stop-color="#ffd000" stop-opacity="0.75"/>
+                        </linearGradient>
+                        <!-- ขนลูกแบด 3 มิติ (ขาวอมแดงคริมสันจางๆ) -->
+                        <linearGradient id="featherLight" x1="20" y1="15" x2="95" y2="75" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="65%" stop-color="#ffeef0"/>
+                            <stop offset="100%" stop-color="#ffb3be"/>
+                        </linearGradient>
+                        <!-- หัวก๊อกลูกแบดสีทองบริสุทธิ์ -->
+                        <linearGradient id="corkGold" x1="35" y1="70" x2="85" y2="112" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#fff6b8"/>
+                            <stop offset="45%" stop-color="#ffd000"/>
+                            <stop offset="100%" stop-color="#b89200"/>
+                        </linearGradient>
+                        <!-- แถบคาดสีแดงนีออน -->
+                        <linearGradient id="bandCrimson" x1="30" y1="68" x2="90" y2="78" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ff1e38"/>
+                            <stop offset="50%" stop-color="#d60022"/>
+                            <stop offset="100%" stop-color="#7a0012"/>
+                        </linearGradient>
+                        <!-- สายฟ้าฟาดตรงกลาง (ทอง-แดงคริมสัน) -->
+                        <linearGradient id="boltGrad" x1="40" y1="5" x2="75" y2="105" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="40%" stop-color="#ffd000"/>
+                            <stop offset="78%" stop-color="#ff1e38"/>
+                            <stop offset="100%" stop-color="#990016"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- วงแหวนความเร็ว (Speed Orbit) -->
+                    <circle cx="60" cy="60" r="50" stroke="url(#auraGrad)" stroke-width="2.5" stroke-dasharray="18 8" opacity="0.85"/>
+
+                    <!-- กลุ่มลูกแบด + สายฟ้า เอียงทำมุมพุ่งทะยานเหมือนต้นฉบับแต่คมชัดสูง -->
+                    <g transform="translate(60, 60) scale(-1, 1) rotate(-24) translate(-60, -60)">
+                        <!-- โครงขนลูกแบดด้านหลัง -->
+                        <path d="M29 66 L14 20 L40 34 L60 12 L80 34 L106 20 L91 66 Z" fill="url(#featherLight)" fill-opacity="0.22" stroke="url(#featherLight)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- เส้นก้านขนลูกแบด -->
+                        <line x1="43" y1="66" x2="36" y2="29" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+                        <line x1="60" y1="66" x2="60" y2="16" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+                        <line x1="77" y1="66" x2="84" y2="29" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+
+                        <!-- เส้นเชือกถักคาดก้านขนสีทอง-แดง -->
+                        <path d="M24 46 Q60 54 96 46" stroke="#ffd000" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+
+                        <!-- หัวไม้ก๊อกลูกแบด (Cork Base) -->
+                        <path d="M31 68 C31 92 43 107 60 107 C77 107 89 92 89 68 C89 64 76 62 60 62 C44 62 31 64 31 68 Z" fill="url(#corkGold)" stroke="#ffffff" stroke-width="2"/>
+
+                        <!-- แถบคาดสีแดงแรงระเบิด -->
+                        <path d="M31.5 73 C45 81 75 81 88.5 73" stroke="url(#bandCrimson)" stroke-width="8" stroke-linecap="round"/>
+
+                        <!-- สายฟ้าฟาดทะลุแกนกลาง (Explosive Lightning) -->
+                        <path d="M68 6 L34 54 H61 L47 102 L90 46 H62 L68 6 Z" fill="url(#boltGrad)" stroke="#08080a" stroke-width="3.5" stroke-linejoin="round"/>
+                        <path d="M65 13 L40 51 H61 L51 89 L83 49 H61 L65 13 Z" fill="#fff9bd" opacity="0.65"/>
+                    </g>
                 </svg>
             </div>
             <h1 class="app-title">Explosive</h1>
-            <div class="app-subtitle">Athlete Blueprint</div>
+            <div class="app-subtitle">Athlete Blueprint v3.0</div>
+        </div>
+
+        <!-- Quick Stats Dashboard Strip -->
+        <div class="dashboard-strip">
+            <div class="stat-box">
+                <div class="stat-val gold" id="stat-volume">0 กก.</div>
+                <div class="stat-lbl">น้ำหนักรวมวันนี้</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val green" id="stat-sets-done">0 เซต</div>
+                <div class="stat-lbl">เซตที่ทำสำเร็จ</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="stat-bmi-status">-</div>
+                <div class="stat-lbl">ดัชนีหุ่นนักกีฬา</div>
+            </div>
+        </div>
+
+        <!-- Today Recommendation Banner -->
+        <div class="today-banner" id="today-banner">
+            <span>📅 วันนี้: <b id="today-plan-text">กำลังโหลด...</b></span>
+        </div>
+
+        <!-- Sticky Progress Bar -->
+        <div class="progress-wrapper" id="progress-wrapper">
+            <div class="progress-header">
+                <span id="progress-title">ความคืบหน้าโปรแกรม</span>
+                <b id="progress-percent">0%</b>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
         </div>
         
         <!-- Agility Tab -->
-        <div id="tab-agility" class="content">
-            <h2>Agility <span>ทำก่อนเวท 10 นาที</span></h2>
-            <div class="card info-card" style="border-color: #ffc107;">
-                <span class="tag" style="background-color: rgba(255,193,7,0.2); border: none;">💡 กฎเหล็ก Agility</span>
-                <p style="color: #fff; font-size: 0.95rem;">ทำท่าละ <b>3-4 เซต</b> <br><b>พักระหว่างเซต 1 นาทีเต็ม</b><br><span style="color: #aaa; font-size: 0.8rem;">(ห้ามฝืนทำต่อตอนที่ยังหอบ เพราะเราต้องการความเร็ว)</span></p>
+        <div id="tab-agility" class="content" data-tab-name="Agility">
+            <div class="section-header">
+                <h2>Agility & Reaction</h2>
+                <span class="section-sub">ทำก่อนเวท 10 นาที</span>
             </div>
-            <div class="card" onclick="toggleCheck(this)"><div class="check-box"></div><span class="tag">3-4 เซต x 30 วิ</span><h3>1. Shadow Badminton</h3><p>กระโดด Split Step ก่อนออกตัว พุ่ง 6 ทิศทางให้ไวที่สุด</p></div>
-            <div class="card" onclick="toggleCheck(this)"><div class="check-box"></div><span class="tag">3-4 เซต x 8-10 ครั้ง</span><h3>2. Reaction Ball Drop</h3><p>ทิ้งน้ำหนักปลายเท้า พุ่งไปจับลูกที่สะท้อนกำแพงก่อนตกพื้น</p></div>
-            <div class="card" onclick="toggleCheck(this)"><div class="check-box"></div><span class="tag">3-4 เซต x 15-20 วิ</span><h3>3. Lateral Line Hops</h3><p>โดดข้ามเส้นซ้าย-ขวา ส้นเท้าไม่แตะพื้น (เหมือนติดสปริง)</p></div>
+
+            <!-- NEW: 6-Corner Interactive Shadow Badminton Coach -->
+            <div class="court-coach-card">
+                <div class="court-header">
+                    <div class="court-title">🏸 โค้ชสุ่มเป้า 6 มุมคอร์ท (Shadow Drill)</div>
+                    <span class="tag" id="coach-timer-badge">30.0 วิ</span>
+                </div>
+                <div class="court-grid">
+                    <div class="court-net-label">NET (หน้าเน็ต)</div>
+                    <div class="court-center-line"></div>
+                    <div class="court-cell" id="corner-0">1. หน้าซ้าย</div>
+                    <div class="court-cell" id="corner-1">2. หน้าขวา</div>
+                    <div class="court-cell" id="corner-2">3. ข้างซ้าย</div>
+                    <div class="court-cell" id="corner-3">4. ข้างขวา</div>
+                    <div class="court-cell" id="corner-4">5. หลังซ้าย</div>
+                    <div class="court-cell" id="corner-5">6. หลังขวา</div>
+                </div>
+                <div class="coach-controls">
+                    <select class="coach-speed-select" id="coach-speed">
+                        <option value="2200">ความเร็ว: มาตรฐาน (2.2 วิ/ลูก)</option>
+                        <option value="1600">ความเร็ว: เร็ว (1.6 วิ/ลูก)</option>
+                        <option value="1200">ความเร็ว: Loh Kean Yew (1.2 วิ/ลูก)</option>
+                    </select>
+                    <button class="btn-coach-run" id="btn-coach-run" onclick="toggleCourtCoach()">▶️ เริ่มสุ่ม 30 วิ</button>
+                </div>
+            </div>
+
+            <div class="card" data-card-id="agi-1" data-weight-key="none" data-reps="1">
+                <div class="card-top"><h3>1. Shadow Badminton 6 ทิศ</h3><span class="tag">4 เซต x 30 วิ</span></div>
+                <p>ใช้โค้ชสุ่มเป้าด้านบน กระโดด Split Step ก่อนออกตัวทุกครั้ง พุ่งไปและกลับจุดศูนย์กลางให้ไวที่สุด</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 จุดโฟกัส & เทคนิค</button>
+                    <button class="btn-work-timer" onclick="startWorkTimer(30, 'Shadow 30วิ')">⏱️ จับเวลาทำ 30 วิ</button>
+                </div>
+                <div class="cue-box">
+                    • <b>จังหวะ Split Step:</b> ย่อเข่าดีดปลายเท้าคู่ขนานพื้นทันทีที่ไฟเปลี่ยนสี<br>
+                    • <b>การก้าวเท้าสุดท้าย:</b> ก้าวขาข้างที่ถือไม้เป็นก้าวยาว (Lunge) แล้วถีบตัวกลับจุดกลางทันที
+                </div>
+                <div class="sets-container" data-rest="60">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 4</div>
+                </div>
+            </div>
+
+            <div class="card" data-card-id="agi-2" data-weight-key="none" data-reps="10">
+                <div class="card-top"><h3>2. Reaction Ball Drop</h3><span class="tag">3 เซต x 10 ครั้ง</span></div>
+                <p>ยืนห่างกำแพง 2-3 เมตร ปาลูกเทนนิสหรือลูกแบดอัดกำแพง แล้วพุ่งตัวไปรับให้ทันก่อนตกพื้น</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 จุดโฟกัส & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>Athletic Stance:</b> ทิ้งน้ำหนักไปที่จมูกเท้า ย่อเข่าเล็กน้อย ส้นเท้าลอยนิดๆ พร้อมพุ่งตลอดเวลา
+                </div>
+                <div class="sets-container" data-rest="60">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
+            </div>
+
+            <div class="card" data-card-id="agi-3" data-weight-key="none" data-reps="1">
+                <div class="card-top"><h3>3. Lateral Line Hops</h3><span class="tag">3 เซต x 20 วิ</span></div>
+                <p>กระโดดสองขาข้ามเส้นซ้าย-ขวา สลับกันให้เร็วที่สุด เสมือนพื้นร้อนและข้อเท้าติดสปริง</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 จุดโฟกัส & เทคนิค</button>
+                    <button class="btn-work-timer" onclick="startWorkTimer(20, 'Line Hops 20วิ')">⏱️ จับเวลาทำ 20 วิ</button>
+                </div>
+                <div class="cue-box">
+                    • <b>Ground Contact Time:</b> ให้ปลายเท้าแตะพื้นสั้นที่สุด ห้ามให้ส้นเท้ากระแทกพื้นเด็ดขาด
+                </div>
+                <div class="sets-container" data-rest="60">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
+            </div>
         </div>
 
         <!-- Program A Tab -->
-        <div id="tab-proga" class="content active">
-            <h2>Program A <span>Vertical & Back</span></h2>
-            <div class="card info-card" style="border-color: #d32f2f;">
-                <span class="tag" style="background-color: rgba(211,47,47,0.2); color: #ffc107; border: none;">🔥 กฎเหล็กเวทเทรนนิ่ง</span>
-                <p style="color: #fff; font-size: 0.95rem;">น้ำหนักที่แสดงคือ <b>น้ำหนักเป้าหมาย</b><br>ยก (ออกแรง): <b>"เร็วและแรง"</b><br>ลง (ผ่อน): <b>"ช้าๆ คุมน้ำหนัก" (2-3 วิ)</b></p>
+        <div id="tab-proga" class="content active" data-tab-name="Program A">
+            <div class="section-header">
+                <h2>Program A: พลังแนวตั้ง</h2>
+                <span class="section-sub">Vertical & Back (พัก 90 วิ)</span>
+            </div>
+
+            <div class="card info-card">
+                <span class="tag">⚡ กฎ Explosive Intent</span>
+                <p style="color: #eee;">จังหวะออกแรงยก (Concentric): <b>"กระชากให้เร็วและแรงที่สุด"</b><br>จังหวะต้านลง (Eccentric): <b>"ผ่อนช้าๆ คุม 2-3 วินาที"</b></p>
             </div>
             
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">4 เซต x 6-8 ครั้ง</span>
-                <h3>1. Pull-Ups (ดึงข้อ)</h3>
-                <p>น้ำหนักตัว (ดึงให้สุด ปล่อยสุด ใช้ยางยืดช่วยได้)</p>
+            <div class="card" data-card-id="pa-1" data-weight-key="bw" data-reps="8">
+                <div class="card-top"><h3>1. Pull-Ups (ดึงข้อ)</h3><span class="tag">4 เซต x 6-8 ครั้ง</span></div>
+                <p>จับบาร์กว้างกว่าไหล่เล็กน้อย ดึงตัวขึ้นเร็วให้คางพ้นบาร์ ผ่อนลงช้าๆ 2 วินาทีจนแขนตึงสุด</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 ประโยชน์ในคอร์ทแบด</button>
+                </div>
+                <div class="cue-box">
+                    • สร้างกล้ามเนื้อปีก (Lats) ซึ่งเป็นขุมพลังหลักในการกระชากแขนลงมาตบลูก (Jump Smash) ให้หนักหน่วง
+                </div>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 4</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 8-10 ครั้ง</span>
-                <h3>2. Barbell RDLs</h3>
-                <p><span id="weight-rdl" class="dynamic-weight">รอคำนวณ.. กก.</span> ดึงตัวขึ้นเร็วปรู๊ด โฟกัสแรงจากก้นและหลังขา</p>
+
+            <div class="card" data-card-id="pa-2" data-weight-key="rdl" data-reps="9">
+                <div class="card-top"><h3>2. Barbell RDLs</h3><span class="tag">3 เซต x 8-10 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 เป้าหมาย: <span id="weight-rdl" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('rdl', -1)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('rdl', 1)">+</button>
+                    </div>
+                </div>
+                <p>ดันสะโพกไปด้านหลังจนตึงแฮมสตริง หลังตรง แล้วบีบก้นดันสะโพกกลับขึ้นมาอย่างทรงพลัง</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 ประโยชน์ในคอร์ทแบด</button>
+                </div>
+                <div class="cue-box">
+                    • เสริมแฮมสตริงและก้น ช่วยเพิ่มความสูงในการกระโดด (Vertical Jump) และดึงตัวกลับจากการก้าว Lunge ลึกๆ
+                </div>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 8-10 ครั้ง</span>
-                <h3>3. DB Bench Press</h3>
-                <p><span id="weight-bench" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> ดันขึ้นให้ทะยาน ลงช้าๆ ควบคุมกล้ามเนื้อ</p>
+
+            <div class="card" data-card-id="pa-3" data-weight-key="bench" data-reps="9">
+                <div class="card-top"><h3>3. DB Bench Press</h3><span class="tag">3 เซต x 8-10 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-bench" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('bench', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('bench', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>นอนบนม้านั่ง ออกแรงระเบิดดันดัมเบลขึ้นตรงๆ ให้ไวที่สุด ค่อยๆ คุมน้ำหนักลงช้าๆ</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 8 ครั้ง/ข้าง</span>
-                <h3>4. Bulgarian Split Squats</h3>
-                <p><span id="weight-bss" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> ดันตัวขึ้นเหมือนจังหวะกำลังจะเทคตัวกระโดด</p>
+
+            <div class="card" data-card-id="pa-4" data-weight-key="bss" data-reps="8">
+                <div class="card-top"><h3>4. Bulgarian Split Squats</h3><span class="tag">3 เซต x 8 ครั้ง/ข้าง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-bss" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('bss', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('bss', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>พาดเท้าหลังบนม้านั่ง ย่อเข่าหน้าลงจนขนานพื้น แล้วถีบเท้าหน้าส่งตัวขึ้นอย่างรวดเร็ว</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 ประโยชน์ในคอร์ทแบด</button>
+                </div>
+                <div class="cue-box">
+                    • ท่าเอกของนักแบดระดับโลก! สร้างแรงสปริงขาเดียวสำหรับการเทคตัวกระโดดและการเบรกตัวที่หน้าเน็ต
+                </div>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 12 ครั้ง</span>
-                <h3>5. Overhead Tricep Ext.</h3>
-                <p><span id="weight-tricep" class="dynamic-weight">รอคำนวณ.. กก.</span> (ดัมเบล 1 ลูก) ล็อกข้อศอกให้นิ่ง โฟกัสหลังแขน</p>
+
+            <div class="card" data-card-id="pa-5" data-weight-key="tricep" data-reps="12">
+                <div class="card-top"><h3>5. Overhead Tricep Ext.</h3><span class="tag">3 เซต x 12 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล 1 ลูก: <span id="weight-tricep" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('tricep', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('tricep', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>ถือดัมเบลเหนือศีรษะ ล็อกข้อศอกให้นิ่ง ย่อศอกลงด้านหลังแล้วดันเหยียดแขนขึ้นให้สุด</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 12-15 ครั้ง</span>
-                <h3>6. Hanging Knee Raises</h3>
-                <p>น้ำหนักตัว ดึงเข่าขึ้นเร็ว เกร็งหน้าท้อง ห้ามแกว่งตัวช่วย</p>
+
+            <div class="card" data-card-id="pa-6" data-weight-key="none" data-reps="15">
+                <div class="card-top"><h3>6. Hanging Knee Raises</h3><span class="tag">3 เซต x 12-15 ครั้ง</span></div>
+                <p>โหนบาร์ เกร็งหน้าท้องดึงเข่าขึ้นมาจนขนานพื้นอย่างรวดเร็ว ค่อยๆ ผ่อนลง ห้ามแกว่งตัว</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
+            </div>
+
+            <div class="workout-actions">
+                <button class="btn-finish-workout" onclick="completeWorkoutSession('Program A')">🏆 บันทึกจบการซ้อม Program A</button>
+                <button class="btn-reset-workout" onclick="clearCurrentTabSets()">ล้างเซต</button>
             </div>
         </div>
 
         <!-- Program B Tab -->
-        <div id="tab-progb" class="content">
-            <h2>Program B <span>Unilateral & Core</span></h2>
-            <div class="card info-card" style="border-color: #d32f2f;">
-                <span class="tag" style="background-color: rgba(211,47,47,0.2); color: #ffc107; border: none;">🔥 กฎเหล็กเวทเทรนนิ่ง</span>
-                <p style="color: #fff; font-size: 0.95rem;">น้ำหนักที่แสดงคือ <b>น้ำหนักเป้าหมาย</b><br>ยก (ออกแรง): <b>"เร็วและแรง"</b><br>ลง (ผ่อน): <b>"ช้าๆ คุมน้ำหนัก" (2-3 วิ)</b></p>
+        <div id="tab-progb" class="content" data-tab-name="Program B">
+            <div class="section-header">
+                <h2>Program B: สมดุลซ้าย-ขวา</h2>
+                <span class="section-sub">Unilateral & Core (พัก 90 วิ)</span>
+            </div>
+
+            <div class="card info-card">
+                <span class="tag">⚡ กฎ Explosive Intent</span>
+                <p style="color: #eee;">จังหวะออกแรงยก (Concentric): <b>"กระชากให้เร็วและแรงที่สุด"</b><br>จังหวะต้านลง (Eccentric): <b>"ผ่อนช้าๆ คุม 2-3 วินาที"</b></p>
             </div>
             
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">4 เซต x 6-8 ครั้ง</span>
-                <h3>1. Goblet Squats</h3>
-                <p><span id="weight-goblet" class="dynamic-weight">รอคำนวณ.. กก.</span> (ดัมเบล 1 ลูก) จังหวะยืนขึ้นต้องรวดเร็วและทรงพลัง</p>
+            <div class="card" data-card-id="pb-1" data-weight-key="goblet" data-reps="8">
+                <div class="card-top"><h3>1. Goblet Squats</h3><span class="tag">4 เซต x 6-8 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล 1 ลูก: <span id="weight-goblet" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('goblet', -1)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('goblet', 1)">+</button>
+                    </div>
+                </div>
+                <p>อุ้มดัมเบลแนบอก ย่อตัวลงลึกหลังตรง แล้วถีบส่งแรงจากพื้นยืนขึ้นอย่างรวดเร็ว</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 4</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 8-10 ครั้ง/ข้าง</span>
-                <h3>2. Single-Arm DB Rows</h3>
-                <p><span id="weight-row" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> กระชากเข้าหาเอวให้ไว (เหมือนง้างไม้ตบ)</p>
+
+            <div class="card" data-card-id="pb-2" data-weight-key="row" data-reps="9">
+                <div class="card-top"><h3>2. Single-Arm DB Rows</h3><span class="tag">3 เซต x 8-10 ครั้ง/ข้าง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-row" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('row', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('row', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>ค้ำม้านั่ง กระชากดัมเบลเข้าหาเอวให้ไว บีบสะบัก (สร้างกล้ามเนื้อเบรกแขนเวลาตบลูก)</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 10 ครั้ง/ข้าง</span>
-                <h3>3. DB Walking Lunges</h3>
-                <p><span id="weight-lunge" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> ก้าวแล้วดันตัวไปข้างหน้าให้สมูท ไม่เซ</p>
+
+            <div class="card" data-card-id="pb-3" data-weight-key="lunge" data-reps="10">
+                <div class="card-top"><h3>3. DB Walking/Reverse Lunges</h3><span class="tag">3 เซต x 10 ครั้ง/ข้าง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-lunge" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('lunge', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('lunge', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>ก้าวเท้าแล้วย่อลง ถีบเท้าหน้าดึงตัวกลับตำแหน่งยืนให้ไวที่สุดโดยตัวไม่เซ</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 8-10 ครั้ง</span>
-                <h3>4. Seated DB Press</h3>
-                <p><span id="weight-press" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> ดันสุดแขนไว ลงช้า โฟกัสหัวไหล่</p>
+
+            <div class="card" data-card-id="pb-4" data-weight-key="press" data-reps="9">
+                <div class="card-top"><h3>4. Seated DB Press</h3><span class="tag">3 เซต x 8-10 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-press" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('press', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('press', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>นั่งดันดัมเบลขึ้นเหนือศีรษะจนสุดแขนด้วยความเร็ว คุมหลังไม่ให้แอ่น</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 12-15 ครั้ง</span>
-                <h3>5. DB Lateral Raises</h3>
-                <p><span id="weight-lat" class="dynamic-weight">รอคำนวณ.. กก./ข้าง</span> เบาๆ เซฟข้อไหล่ ห้ามเหวี่ยงตัว</p>
+
+            <div class="card" data-card-id="pb-5" data-weight-key="lat" data-reps="14">
+                <div class="card-top"><h3>5. DB Lateral Raises</h3><span class="tag">3 เซต x 12-15 ครั้ง</span></div>
+                <div class="weight-control-bar">
+                    <span class="weight-label">🎯 ดัมเบล: <span id="weight-lat" class="dynamic-weight">-</span></span>
+                    <div class="weight-Steppers">
+                        <button class="btn-step" onclick="adjustWeight('lat', -0.5)">-</button>
+                        <button class="btn-step" onclick="adjustWeight('lat', 0.5)">+</button>
+                    </div>
+                </div>
+                <p>ยกดัมเบลกางออกด้านข้างระดับไหล่ เสริมความมั่นคงข้อต่อหัวไหล่ คุมจังหวะลงช้าๆ</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
             </div>
-            <div class="card" onclick="toggleCheck(this)">
-                <div class="check-box"></div>
-                <span class="tag">3 เซต x 10-12 ครั้ง</span>
-                <h3>6. Lying Leg Lifts</h3>
-                <p>น้ำหนักตัว กดหลังล่างติดพื้นตลอดเวลา เกร็งหน้าท้อง</p>
+
+            <div class="card" data-card-id="pb-6" data-weight-key="none" data-reps="12">
+                <div class="card-top"><h3>6. Lying Leg Lifts</h3><span class="tag">3 เซต x 10-12 ครั้ง</span></div>
+                <p>นอนหงาย กดหลังล่างให้ติดพื้นตลอดเวลา ยกขาคู่ขึ้นตั้งฉากแล้วค่อยๆ ลดลงโดยไม่แตะพื้น</p>
+                <div class="sets-container" data-rest="90">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
+            </div>
+
+            <div class="workout-actions">
+                <button class="btn-finish-workout" onclick="completeWorkoutSession('Program B')">🏆 บันทึกจบการซ้อม Program B</button>
+                <button class="btn-reset-workout" onclick="clearCurrentTabSets()">ล้างเซต</button>
             </div>
         </div>
 
-        <!-- Info Tab (เพิ่มตารางฝึก) -->
-        <div id="tab-info" class="content">
-            <h2>Schedule & Info <span>แผนฝึกและเคล็ดลับ</span></h2>
+        <!-- Info & Nutrition Tab -->
+        <div id="tab-info" class="content" data-tab-name="Info">
+            <div class="section-header">
+                <h2>Smart Nutrition & Log</h2>
+                <span class="section-sub">คำนวณจากสัดส่วนของคุณ</span>
+            </div>
+
+            <!-- NEW: Dynamic Nutrition Calculator Card -->
+            <div class="card info-card">
+                <div class="card-top">
+                    <h3>🍽️ เป้าหมายพลังงานในวันซ้อม</h3>
+                    <span class="tag" id="calc-kcal-tag">- kcal/วัน</span>
+                </div>
+                <p>คำนวณจากน้ำหนักและส่วนสูงของคุณ เพื่อสร้างกล้ามเนื้อ Fast-Twitch โดยตัวไม่หนาเทอะทะ</p>
+                <div class="macro-grid">
+                    <div class="macro-box">
+                        <div class="macro-val" id="macro-protein">- g</div>
+                        <div class="macro-lbl">โปรตีน (ซ่อมแซม)</div>
+                    </div>
+                    <div class="macro-box">
+                        <div class="macro-val" id="macro-carbs">- g</div>
+                        <div class="macro-lbl">คาร์บ (แรงระเบิด)</div>
+                    </div>
+                    <div class="macro-box">
+                        <div class="macro-val" id="macro-water">- L</div>
+                        <div class="macro-lbl">น้ำดื่มขั้นต่ำ/วัน</div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="card info-card" style="border-color: #d32f2f;">
-                <span class="tag" style="background-color: rgba(211,47,47,0.2); color: #ffc107; border: none;">📅 Weekly Schedule</span>
-                <h3>ตารางฝึก 3 วัน/สัปดาห์</h3>
-                <p style="color: #fff; font-size: 0.95rem; line-height: 1.8; margin-top: 8px;">
-                    <b>จันทร์:</b> 🏋️‍♂️ Program A<br>
-                    <b>อังคาร:</b> 🏸 ซ้อมคอร์ท / พักฟื้น<br>
-                    <b>พุธ:</b> 🏋️‍♂️ Program B<br>
-                    <b>พฤหัส:</b> 🏸 ซ้อมคอร์ท / พักฟื้น<br>
-                    <b>ศุกร์:</b> 🏋️‍♂️ Program A <span style="color: #888; font-size: 0.8rem;">(สัปดาห์ถัดไปขึ้น B)</span><br>
-                    <b>เสาร์-อาทิตย์:</b> 🛌 พักผ่อน / แข่งขัน
-                </p>
+            <div class="card">
+                <span class="tag">📅 ตารางฝึก 3 วัน/สัปดาห์ (สลับ A-B)</span>
+                <div style="margin-top: 10px;">
+                    <div class="schedule-row" data-day="1"><span>จันทร์</span><span>⚡ Agility + 🏋️‍♂️ Program A</span></div>
+                    <div class="schedule-row" data-day="2"><span>อังคาร</span><span>🏸 ซ้อมคอร์ทแบด / พักฟื้น</span></div>
+                    <div class="schedule-row" data-day="3"><span>พุธ</span><span>⚡ Agility + 🏋️‍♂️ Program B</span></div>
+                    <div class="schedule-row" data-day="4"><span>พฤหัสบดี</span><span>🏸 ซ้อมคอร์ทแบด / พักฟื้น</span></div>
+                    <div class="schedule-row" data-day="5"><span>ศุกร์</span><span>⚡ Agility + 🏋️‍♂️ Program A/B</span></div>
+                    <div class="schedule-row" data-day="6"><span>เสาร์</span><span>🏸 ลงคอร์ทตีแบด (Skill Play)</span></div>
+                    <div class="schedule-row" data-day="0"><span>อาทิตย์</span><span>🛌 พักผ่อนเต็มที่ (Total Rest)</span></div>
+                </div>
+            </div>
+
+            <!-- NEW: Workout History Log -->
+            <div class="card">
+                <div class="card-top">
+                    <h3>📜 ประวัติการซ้อมล่าสุด</h3>
+                    <span class="tag">History Log</span>
+                </div>
+                <div id="history-list" style="margin-top: 10px;">
+                    <p style="font-size: 0.8rem;">ยังไม่มีประวัติการซ้อม กดปุ่ม "บันทึกจบการซ้อม" เมื่อเล่นครบโปรแกรม</p>
+                </div>
             </div>
 
             <div class="card">
-                <span class="tag">The 2-Rep Rule</span>
-                <h3>หลักการปรับน้ำหนัก</h3>
-                <p>ถ้ายกน้ำหนักที่แอปคำนวณให้แล้วรู้สึกว่า <b>"ยังทำต่อได้อีก 2 ครั้งสบายๆ"</b> ให้เพิ่มน้ำหนักขึ้น 2.5 กก. ในรอบถัดไป</p>
+                <div class="card-top"><h3>กฎเหล็ก 2-Rep Rule</h3><span class="tag">การปรับน้ำหนัก</span></div>
+                <p>เมื่อยกครบจำนวนครั้ง ต้องรู้สึกว่า <b>"ถ้าฝืนต่อ ยังทำได้อีก 2 ครั้งสบายๆ"</b> หากเบาเกินไปให้กดปุ่ม <b>+</b> เพิ่มน้ำหนัก แต่ถ้าหมดแรงลุกไม่ขึ้นให้กด <b>-</b> ลดน้ำหนักลง</p>
             </div>
-            <div class="card">
-                <span class="tag">Pre-Workout</span>
-                <h3>เติมพลังงาน (1-2 ชม. ก่อนซ้อม)</h3>
-                <p>กล้วยหอม 1-2 ลูก หรือ ขนมปังปิ้ง 2 แผ่น งดอาหารไขมันสูง</p>
+        </div>
+
+        <!-- Floating Rest/Work Timer Dock -->
+        <div class="timer-dock">
+            <div class="timer-bar" id="timer-bar">
+                <div class="timer-display">
+                    <span>⏱️</span>
+                    <span id="timer-text">พร้อมพัก</span>
+                </div>
+                <div class="timer-btns">
+                    <button class="t-btn" onclick="startRestTimer(30)">30วิ</button>
+                    <button class="t-btn" onclick="startRestTimer(60)">60วิ</button>
+                    <button class="t-btn" onclick="startRestTimer(90)">90วิ</button>
+                    <button class="t-btn" onclick="addTimerSeconds(15)">+15วิ</button>
+                    <button class="t-btn stop" onclick="stopRestTimer()">หยุด</button>
+                </div>
             </div>
         </div>
 
@@ -509,67 +1503,482 @@
             </div>
             <div class="tab" onclick="openTab('tab-info', this)">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                INFO
+                INFO & LOG
             </div>
         </div>
     </div>
     
     <script>
+        // สัดส่วนน้ำหนักมาตรฐานตามวิทยาศาสตร์การกีฬา (mult2 สำหรับท่าถือดัมเบล 2 ข้างในการคิด Volume)
         const weightMultipliers = {
-            rdl: 0.35,       
-            bench: 0.15,     
-            bss: 0.10,       
-            tricep: 0.08,    
-            goblet: 0.25,    
-            row: 0.15,       
-            lunge: 0.10,     
-            press: 0.12,     
-            lat: 0.05        
+            rdl:    { mult: 0.35, unit: " กก. (รวมบาร์)", hands: 1 },
+            bench:  { mult: 0.15, unit: " กก./ข้าง", hands: 2 },
+            bss:    { mult: 0.10, unit: " กก./ข้าง", hands: 2 },
+            tricep: { mult: 0.10, unit: " กก.", hands: 1 },
+            goblet: { mult: 0.24, unit: " กก.", hands: 1 },
+            row:    { mult: 0.16, unit: " กก./ข้าง", hands: 2 },
+            lunge:  { mult: 0.10, unit: " กก./ข้าง", hands: 2 },
+            press:  { mult: 0.12, unit: " กก./ข้าง", hands: 2 },
+            lat:    { mult: 0.06, unit: " กก./ข้าง", hands: 2 }
         };
 
+        let timerInterval = null;
+        let remainingSeconds = 0;
+        let currentComputedWeights = {};
+
+        // ตัวแปรสำหรับ 6-Corner Shadow Badminton Coach
+        let coachInterval = null;
+        let coachTimerInterval = null;
+        let coachRemainingMs = 30000;
+        const cornerNames = ["หน้าซ้าย", "หน้าขวา", "ข้างซ้าย", "ข้างขวา", "หลังซ้าย", "หลังขวา"];
+
         document.addEventListener('DOMContentLoaded', () => {
-            let savedWeight = localStorage.getItem('athleteWeight');
+            initTodaySchedule();
+            loadSavedState();
+            updateProgressBar();
+            renderHistoryLog();
+            requestWakeLock();
+        });
+
+        // ป้องกันหน้าจอดับขณะซ้อม (Screen Wake Lock API)
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try { await navigator.wakeLock.request('screen'); } catch (e) {}
+            }
+        }
+
+        function initTodaySchedule() {
+            const day = new Date().getDay();
+            const plans = {
+                1: "วันจันทร์ — Agility + Program A 💪",
+                2: "วันอังคาร — ซ้อมคอร์ทแบด / พักฟื้น 🏸",
+                3: "วันพุธ — Agility + Program B 🔥",
+                4: "วันพฤหัสบดี — ซ้อมคอร์ทแบด / พักฟื้น 🏸",
+                5: "วันศุกร์ — Agility + Program A/B ⚡",
+                6: "วันเสาร์ — ลงคอร์ทตีแบด (Skill Play) 🏆",
+                0: "วันอาทิตย์ — พักผ่อนเต็มที่ (Total Rest) 🛌"
+            };
+            document.getElementById('today-plan-text').innerText = plans[day];
+
+            const row = document.querySelector(`.schedule-row[data-day="${day}"]`);
+            if (row) row.classList.add('today-highlight');
+        }
+
+        function loadSavedState() {
+            const savedWeight = localStorage.getItem('athleteWeight');
+            const savedHeight = localStorage.getItem('athleteHeight') || "168";
+            const savedLevel = localStorage.getItem('athleteLevel') || "1.0";
+            const workoutCount = localStorage.getItem('athleteWorkoutCount') || "0";
+
+            document.getElementById('workout-count').innerText = workoutCount;
+
+            document.querySelectorAll('.lvl-btn').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.mult === savedLevel);
+            });
+
             if (savedWeight) {
                 document.getElementById('display-user-weight').innerText = savedWeight;
-                updateWorkoutWeights(savedWeight);
+                document.getElementById('display-user-height').innerText = savedHeight;
+                updateWorkoutWeights();
+                updateNutritionAndBMI(parseFloat(savedWeight), parseFloat(savedHeight));
             } else {
                 openSetupModal();
             }
-        });
+
+            const savedSets = JSON.parse(localStorage.getItem('athleteSetsState') || '{}');
+            document.querySelectorAll('.card[data-card-id]').forEach(card => {
+                const cid = card.dataset.cardId;
+                const btns = card.querySelectorAll('.set-btn');
+                if (savedSets[cid]) {
+                    btns.forEach((b, idx) => {
+                        if (savedSets[cid][idx]) b.classList.add('done');
+                    });
+                    checkCardCompletion(card);
+                }
+            });
+            calculateDashboardMetrics();
+        }
+
+        function selectLevel(btn) {
+            document.querySelectorAll('.lvl-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
 
         function openSetupModal() {
             document.getElementById('setupModal').classList.add('active');
-            let saved = localStorage.getItem('athleteWeight');
-            if(saved) document.getElementById('userWeightInput').value = saved;
+            const savedW = localStorage.getItem('athleteWeight');
+            const savedH = localStorage.getItem('athleteHeight') || "168";
+            if (savedW) document.getElementById('userWeightInput').value = savedW;
+            if (savedH) document.getElementById('userHeightInput').value = savedH;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastBanner');
+            if (!toast) return;
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+
+        function downloadNewIconSvg() {
+            const svgEl = document.querySelector('#app-logo-holder svg');
+            if (!svgEl) return;
+            const fullSvg = `<svg width="512" height="512" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="120" rx="28" fill="#08080a"/>
+                <rect x="3" y="3" width="114" height="114" rx="25" stroke="#ffd000" stroke-width="3"/>
+                ${svgEl.innerHTML}
+            </svg>`;
+            const blob = new Blob([fullSvg], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'icon.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast("⬇️ ดาวน์โหลดไฟล์ icon.svg โลโก้ใหม่เรียบร้อย!");
         }
 
         function saveProfile() {
-            let bw = parseFloat(document.getElementById('userWeightInput').value);
-            if (!bw || bw < 30 || bw > 150) {
-                alert("กรุณากรอกน้ำหนักตัวให้ถูกต้อง (30-150 กก.)");
+            const bw = parseFloat(document.getElementById('userWeightInput').value);
+            const bh = parseFloat(document.getElementById('userHeightInput').value) || 168;
+            if (!bw || bw < 25 || bw > 180) {
+                showToast("⚠️ กรุณากรอกน้ำหนักตัวให้ถูกต้อง (25-180 กก.)");
                 return;
             }
-            
+            const selectedLvl = document.querySelector('.lvl-btn.selected').dataset.mult;
+
             localStorage.setItem('athleteWeight', bw);
+            localStorage.setItem('athleteHeight', bh);
+            localStorage.setItem('athleteLevel', selectedLvl);
+
             document.getElementById('display-user-weight').innerText = bw;
+            document.getElementById('display-user-height').innerText = bh;
             document.getElementById('setupModal').classList.remove('active');
-            updateWorkoutWeights(bw);
+
+            updateWorkoutWeights();
+            updateNutritionAndBMI(bw, bh);
+            calculateDashboardMetrics();
+            showToast("✅ บันทึกข้อมูลและคำนวณตารางซ้อมแล้ว!");
+        }
+
+        // คำนวณโภชนาการและดัชนีหุ่นนักแบดจากน้ำหนัก + ส่วนสูง
+        function updateNutritionAndBMI(bw, bh) {
+            const heightM = bh / 100;
+            const bmi = bw / (heightM * heightM);
+            let status = "ลีนมาตรฐาน";
+            if (bmi < 18.5) status = "ลีนพริ้ว (เบา)";
+            else if (bmi <= 22.5) status = "หุ่นนักแบด 🏸";
+            else status = "เน้นรีดไขมัน";
+
+            document.getElementById('stat-bmi-status').innerText = status;
+
+            // คำนวณพลังงานวันซ้อม (Mifflin-St Jeor ประมาณการสำหรับนักกีฬา)
+            const bmr = (10 * bw) + (6.25 * bh) - (5 * 22) + 5;
+            const tdee = Math.round(bmr * 1.65);
+            const protein = Math.round(bw * 1.8);
+            const carbs = Math.round(bw * 4.5);
+            const water = (bw * 0.045).toFixed(1);
+
+            document.getElementById('calc-kcal-tag').innerText = `${tdee} kcal/วัน`;
+            document.getElementById('macro-protein').innerText = `${protein} g`;
+            document.getElementById('macro-carbs').innerText = `${carbs} g`;
+            document.getElementById('macro-water').innerText = `${water} L`;
         }
 
         function roundWeight(weight) {
-            return Math.round(weight * 2) / 2;
+            return Math.max(1, Math.round(weight * 2) / 2);
         }
 
-        function updateWorkoutWeights(bw) {
-            document.getElementById('weight-rdl').innerText = roundWeight(bw * weightMultipliers.rdl) + " กก.";
-            document.getElementById('weight-bench').innerText = roundWeight(bw * weightMultipliers.bench) + " กก./ข้าง";
-            document.getElementById('weight-bss').innerText = roundWeight(bw * weightMultipliers.bss) + " กก./ข้าง";
-            document.getElementById('weight-tricep').innerText = roundWeight(bw * weightMultipliers.tricep) + " กก.";
-            document.getElementById('weight-goblet').innerText = roundWeight(bw * weightMultipliers.goblet) + " กก.";
-            document.getElementById('weight-row').innerText = roundWeight(bw * weightMultipliers.row) + " กก./ข้าง";
-            document.getElementById('weight-lunge').innerText = roundWeight(bw * weightMultipliers.lunge) + " กก./ข้าง";
-            document.getElementById('weight-press').innerText = roundWeight(bw * weightMultipliers.press) + " กก./ข้าง";
-            document.getElementById('weight-lat').innerText = roundWeight(bw * weightMultipliers.lat) + " กก./ข้าง";
+        function updateWorkoutWeights() {
+            const bw = parseFloat(localStorage.getItem('athleteWeight')) || 50;
+            const lvl = parseFloat(localStorage.getItem('athleteLevel')) || 1.0;
+            const offsets = JSON.parse(localStorage.getItem('athleteWeightOffsets') || '{}');
+
+            for (const key in weightMultipliers) {
+                const base = roundWeight(bw * weightMultipliers[key].mult * lvl);
+                const offset = offsets[key] || 0;
+                const finalW = Math.max(1, base + offset);
+                currentComputedWeights[key] = finalW;
+
+                const el = document.getElementById('weight-' + key);
+                if (el) {
+                    const sign = offset > 0 ? ` (+${offset})` : (offset < 0 ? ` (${offset})` : '');
+                    el.innerText = finalW + weightMultipliers[key].unit + sign;
+                }
+            }
+        }
+
+        function adjustWeight(key, delta) {
+            const offsets = JSON.parse(localStorage.getItem('athleteWeightOffsets') || '{}');
+            offsets[key] = (offsets[key] || 0) + delta;
+            localStorage.setItem('athleteWeightOffsets', JSON.stringify(offsets));
+            updateWorkoutWeights();
+            calculateDashboardMetrics();
+        }
+
+        function resetCustomOffsets() {
+            localStorage.removeItem('athleteWeightOffsets');
+            updateWorkoutWeights();
+            calculateDashboardMetrics();
+            document.getElementById('setupModal').classList.remove('active');
+        }
+
+        function toggleCue(btn) {
+            const box = btn.closest('.card').querySelector('.cue-box');
+            box.classList.toggle('open');
+        }
+
+        // ระบบนับเซต + คำนวณน้ำหนักรวม (Volume) + จับเวลาพักอัตโนมัติ
+        function toggleSet(btn) {
+            btn.classList.toggle('done');
+            const card = btn.closest('.card');
+            checkCardCompletion(card);
+            saveSetsState();
+            updateProgressBar();
+            calculateDashboardMetrics();
+
+            if (btn.classList.contains('done')) {
+                const restSec = parseInt(btn.parentElement.dataset.rest) || 90;
+                startRestTimer(restSec);
+            }
+        }
+
+        function checkCardCompletion(card) {
+            const btns = card.querySelectorAll('.set-btn');
+            const allDone = Array.from(btns).every(b => b.classList.contains('done'));
+            card.classList.toggle('completed', allDone);
+        }
+
+        function saveSetsState() {
+            const state = {};
+            document.querySelectorAll('.card[data-card-id]').forEach(card => {
+                const cid = card.dataset.cardId;
+                state[cid] = Array.from(card.querySelectorAll('.set-btn')).map(b => b.classList.contains('done'));
+            });
+            localStorage.setItem('athleteSetsState', JSON.stringify(state));
+        }
+
+        // คำนวณ Total Volume (น้ำหนักเหล็กรวมที่ยกไปวันนี้)
+        function calculateDashboardMetrics() {
+            const bw = parseFloat(localStorage.getItem('athleteWeight')) || 50;
+            let totalVolume = 0;
+            let totalSetsDone = 0;
+
+            document.querySelectorAll('.card[data-card-id]').forEach(card => {
+                const wKey = card.dataset.weightKey;
+                const reps = parseInt(card.dataset.reps) || 8;
+                const doneCount = card.querySelectorAll('.set-btn.done').length;
+                totalSetsDone += doneCount;
+
+                if (doneCount > 0) {
+                    if (wKey === 'bw') {
+                        totalVolume += doneCount * reps * bw;
+                    } else if (wKey && wKey !== 'none' && currentComputedWeights[wKey]) {
+                        const hands = weightMultipliers[wKey].hands || 1;
+                        totalVolume += doneCount * reps * currentComputedWeights[wKey] * hands;
+                    }
+                }
+            });
+
+            document.getElementById('stat-volume').innerText = Math.round(totalVolume).toLocaleString() + " กก.";
+            document.getElementById('stat-sets-done').innerText = totalSetsDone + " เซต";
+        }
+
+        function updateProgressBar() {
+            const activeTab = document.querySelector('.content.active');
+            const wrapper = document.getElementById('progress-wrapper');
+            if (!activeTab || activeTab.id === 'tab-info') {
+                wrapper.style.display = 'none';
+                return;
+            }
+            wrapper.style.display = 'block';
+
+            const sets = activeTab.querySelectorAll('.set-btn');
+            const doneSets = activeTab.querySelectorAll('.set-btn.done');
+            const pct = sets.length ? Math.round((doneSets.length / sets.length) * 100) : 0;
+
+            document.getElementById('progress-title').innerText = `ความคืบหน้า ${activeTab.dataset.tabName}`;
+            document.getElementById('progress-percent').innerText = `${pct}% (${doneSets.length}/${sets.length} เซต)`;
+            document.getElementById('progress-fill').style.width = pct + '%';
+        }
+
+        function clearCurrentTabSets() {
+            const activeTab = document.querySelector('.content.active');
+            activeTab.querySelectorAll('.set-btn').forEach(b => b.classList.remove('done'));
+            activeTab.querySelectorAll('.card').forEach(c => c.classList.remove('completed'));
+            saveSetsState();
+            updateProgressBar();
+            calculateDashboardMetrics();
+        }
+
+        function completeWorkoutSession(progName) {
+            let count = parseInt(localStorage.getItem('athleteWorkoutCount') || '0') + 1;
+            localStorage.setItem('athleteWorkoutCount', count);
+            document.getElementById('workout-count').innerText = count;
+
+            const volText = document.getElementById('stat-volume').innerText;
+            const history = JSON.parse(localStorage.getItem('athleteHistoryLog') || '[]');
+            const dateStr = new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+            history.unshift({ prog: progName, date: dateStr, vol: volText });
+            localStorage.setItem('athleteHistoryLog', JSON.stringify(history.slice(0, 7)));
+
+            clearCurrentTabSets();
+            stopRestTimer();
+            renderHistoryLog();
+            playBeep([660, 880, 1100]);
+            showToast(`🏆 ยอดเยี่ยม! บันทึกการซ้อม ${progName} (ครั้งที่ ${count}) เรียบร้อย!`);
+        }
+
+        function renderHistoryLog() {
+            const history = JSON.parse(localStorage.getItem('athleteHistoryLog') || '[]');
+            const container = document.getElementById('history-list');
+            if (!history.length) return;
+            container.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <span>✅ <b>${item.prog}</b> (${item.date})</span>
+                    <span>Volume: <b>${item.vol}</b></span>
+                </div>
+            `).join('');
+        }
+
+        // โค้ชสุ่มเป้า 6 มุมคอร์ทอัตโนมัติ (6-Corner Shadow Badminton Virtual Coach)
+        function toggleCourtCoach() {
+            const btn = document.getElementById('btn-coach-run');
+            if (coachInterval) {
+                stopCourtCoach();
+                return;
+            }
+            const speed = parseInt(document.getElementById('coach-speed').value) || 2000;
+            coachRemainingMs = 30000;
+            btn.classList.add('active');
+            btn.innerText = "⏹️ หยุดโค้ช";
+
+            triggerRandomCorner();
+            coachInterval = setInterval(triggerRandomCorner, speed);
+
+            coachTimerInterval = setInterval(() => {
+                coachRemainingMs -= 100;
+                if (coachRemainingMs <= 0) {
+                    stopCourtCoach();
+                    playBeep([880, 1100, 1320]);
+                    startRestTimer(60);
+                } else {
+                    document.getElementById('coach-timer-badge').innerText = (coachRemainingMs / 1000).toFixed(1) + " วิ";
+                }
+            }, 100);
+        }
+
+        function triggerRandomCorner() {
+            document.querySelectorAll('.court-cell').forEach(c => c.classList.remove('active-target'));
+            const idx = Math.floor(Math.random() * 6);
+            const cell = document.getElementById('corner-' + idx);
+            if (cell) cell.classList.add('active-target');
+            playBeep([750]);
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(cornerNames[idx]);
+                utter.lang = 'th-TH';
+                utter.rate = 1.35;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        function stopCourtCoach() {
+            clearInterval(coachInterval);
+            clearInterval(coachTimerInterval);
+            coachInterval = null;
+            document.querySelectorAll('.court-cell').forEach(c => c.classList.remove('active-target'));
+            document.getElementById('btn-coach-run').classList.remove('active');
+            document.getElementById('btn-coach-run').innerText = "▶️ เริ่มสุ่ม 30 วิ";
+            document.getElementById('coach-timer-badge').innerText = "30.0 วิ";
+        }
+
+        // ระบบนาฬิกาจับเวลาพักและจับเวลาฝึก
+        function startRestTimer(seconds) {
+            clearInterval(timerInterval);
+            remainingSeconds = seconds;
+            const bar = document.getElementById('timer-bar');
+            bar.classList.remove('work-mode');
+            bar.classList.add('running');
+            renderTimerText("พัก");
+
+            timerInterval = setInterval(() => {
+                remainingSeconds--;
+                if (remainingSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    bar.classList.remove('running');
+                    document.getElementById('timer-text').innerText = "ลุยเซตต่อไป!";
+                    playBeep([880, 1100]);
+                    if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                } else {
+                    renderTimerText("พัก");
+                }
+            }, 1000);
+        }
+
+        function startWorkTimer(seconds, label) {
+            clearInterval(timerInterval);
+            remainingSeconds = seconds;
+            const bar = document.getElementById('timer-bar');
+            bar.classList.remove('running');
+            bar.classList.add('work-mode');
+            renderTimerText(label);
+
+            timerInterval = setInterval(() => {
+                remainingSeconds--;
+                if (remainingSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    bar.classList.remove('work-mode');
+                    document.getElementById('timer-text').innerText = "ครบเวลา! พัก 60วิ";
+                    playBeep([1000, 1250]);
+                    setTimeout(() => startRestTimer(60), 1200);
+                } else {
+                    renderTimerText(label);
+                }
+            }, 1000);
+        }
+
+        function addTimerSeconds(sec) {
+            if (remainingSeconds > 0) {
+                remainingSeconds += sec;
+                renderTimerText("พัก");
+            } else {
+                startRestTimer(sec);
+            }
+        }
+
+        function stopRestTimer() {
+            clearInterval(timerInterval);
+            remainingSeconds = 0;
+            const bar = document.getElementById('timer-bar');
+            bar.classList.remove('running', 'work-mode');
+            document.getElementById('timer-text').innerText = "พร้อมพัก";
+        }
+
+        function renderTimerText(prefix) {
+            const m = Math.floor(remainingSeconds / 60);
+            const s = remainingSeconds % 60;
+            document.getElementById('timer-text').innerText = `${prefix} ${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function playBeep(freqs = [880, 1100]) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                freqs.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq;
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + i * 0.14);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.14 + 0.13);
+                    osc.stop(ctx.currentTime + i * 0.14 + 0.13);
+                });
+            } catch (e) {}
         }
 
         function openTab(tabId, element) {
@@ -577,11 +1986,8 @@
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
+            updateProgressBar();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleCheck(card) {
-            card.classList.toggle('completed');
         }
     </script>
 </body>
