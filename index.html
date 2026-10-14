@@ -690,19 +690,142 @@
             font-weight: 600;
         }
 
-        /* History Log List */
-        .history-item {
+        /* History Log List (Upgraded Detailed View) */
+        .history-card-item {
+            background: linear-gradient(145deg, rgba(18, 12, 15, 0.9), rgba(10, 7, 9, 0.95));
+            border: 1px solid rgba(255, 208, 0, 0.22);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+            transition: all 0.2s ease;
+        }
+
+        .history-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .history-prog-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .history-date-sub {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .btn-del-history {
+            background: rgba(255, 30, 56, 0.15);
+            border: 1px solid rgba(255, 30, 56, 0.45);
+            color: #ff8a98;
+            border-radius: 8px;
+            padding: 4px 9px;
+            font-size: 0.7rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-del-history.confirm-mode {
+            background: var(--primary-red);
+            color: #ffffff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px var(--primary-red-glow);
+            transform: scale(1.03);
+        }
+        .btn-del-history:active {
+            background: var(--primary-red);
+            color: #fff;
+            transform: scale(0.95);
+        }
+
+        .btn-clear-all-history {
+            background: rgba(255, 30, 56, 0.16);
+            border: 1px solid rgba(255, 30, 56, 0.45);
+            color: #ff99a6;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-clear-all-history.confirm-mode {
+            background: var(--primary-red);
+            color: #ffffff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px var(--primary-red-glow);
+        }
+
+        .history-metrics-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 7px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .h-metric {
+            text-align: center;
+        }
+        .h-metric-val {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .h-metric-val.gold { color: var(--accent-gold); }
+        .h-metric-val.green { color: var(--success-green); }
+        .h-metric-lbl {
+            font-size: 0.62rem;
+            color: var(--text-sub);
+        }
+
+        .history-ex-list {
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 8px;
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .history-ex-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 10px;
-            background: rgba(0,0,0,0.45);
-            border-left: 3px solid var(--accent-gold);
-            border-radius: 8px;
-            margin-bottom: 6px;
-            font-size: 0.78rem;
+            font-size: 0.74rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px 8px;
+            border-radius: 7px;
         }
-        .history-item b { color: var(--accent-gold); }
+
+        .history-ex-name {
+            color: #e8e2e4;
+            font-weight: 500;
+        }
+
+        .history-ex-meta {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-align: right;
+        }
 
         /* Floating Rest/Work Timer Dock */
         .timer-dock {
@@ -1152,21 +1275,9 @@
                 </div>
             </div>
 
-            <div class="card" data-card-id="agi-3" data-weight-key="none" data-reps="1">
-                <div class="card-top"><h3>3. Lateral Line Hops</h3><span class="tag">3 เซต x 20 วิ</span></div>
-                <p>กระโดดสองขาข้ามเส้นซ้าย-ขวา สลับกันให้เร็วที่สุด เสมือนพื้นร้อนและข้อเท้าติดสปริง</p>
-                <div class="cue-toggle-row">
-                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 จุดโฟกัส & เทคนิค</button>
-                    <button class="btn-work-timer" onclick="startWorkTimer(20, 'Line Hops 20วิ')">⏱️ จับเวลาทำ 20 วิ</button>
-                </div>
-                <div class="cue-box">
-                    • <b>Ground Contact Time:</b> ให้ปลายเท้าแตะพื้นสั้นที่สุด ห้ามให้ส้นเท้ากระแทกพื้นเด็ดขาด
-                </div>
-                <div class="sets-container" data-rest="60">
-                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
-                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
-                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
-                </div>
+            <div class="workout-actions">
+                <button class="btn-finish-workout" onclick="completeWorkoutSession('Agility & Reaction')">🏆 บันทึกจบการซ้อม Agility</button>
+                <button class="btn-reset-workout" onclick="clearCurrentTabSets()">ล้างเซต</button>
             </div>
         </div>
 
@@ -1452,13 +1563,16 @@
                 </div>
             </div>
 
-            <!-- NEW: Workout History Log -->
+            <!-- Upgraded Detailed Workout History Log -->
             <div class="card">
                 <div class="card-top">
-                    <h3>📜 ประวัติการซ้อมล่าสุด</h3>
-                    <span class="tag">History Log</span>
+                    <div>
+                        <h3>📜 ประวัติการซ้อมละเอียด</h3>
+                        <p style="font-size: 0.72rem; margin-top: 2px;">บันทึกท่าฝึก น้ำหนักที่ใช้ จำนวนเซต และ Volume รายวัน</p>
+                    </div>
+                    <button id="btn-clear-all-history" class="btn-clear-all-history" onclick="clearAllHistory()" style="display: none;">🗑️ ล้างทั้งหมด</button>
                 </div>
-                <div id="history-list" style="margin-top: 10px;">
+                <div id="history-list" style="margin-top: 12px;">
                     <p style="font-size: 0.8rem;">ยังไม่มีประวัติการซ้อม กดปุ่ม "บันทึกจบการซ้อม" เมื่อเล่นครบโปรแกรม</p>
                 </div>
             </div>
@@ -1792,34 +1906,248 @@
             calculateDashboardMetrics();
         }
 
+        let clearHistoryConfirmTimeout = null;
+
         function completeWorkoutSession(progName) {
+            const activeTab = document.querySelector('.content.active');
+            const bw = parseFloat(localStorage.getItem('athleteWeight')) || 50;
+            const lvl = localStorage.getItem('athleteLevel') || "1.0";
+            const levelNames = { "0.85": "เริ่มต้น", "1.0": "มาตรฐาน", "1.15": "โปร" };
+            const levelText = levelNames[lvl] || "มาตรฐาน";
+
+            // รวบรวมรายละเอียดท่าฝึกจากหน้าปัจจุบัน (และรวมท่า Agility หากมีการกดเซตไว้ด้วย)
+            const targetCards = [];
+            if (activeTab && activeTab.id !== 'tab-agility') {
+                document.querySelectorAll('#tab-agility .card[data-card-id]').forEach(c => {
+                    if (c.querySelectorAll('.set-btn.done').length > 0) targetCards.push(c);
+                });
+            }
+            if (activeTab) {
+                activeTab.querySelectorAll('.card[data-card-id]').forEach(c => targetCards.push(c));
+            }
+
+            let sessionVolume = 0;
+            let sessionSetsDone = 0;
+            let sessionTotalSets = 0;
+            const exercisesDetail = [];
+
+            targetCards.forEach(card => {
+                const titleEl = card.querySelector('h3');
+                const exName = titleEl ? titleEl.innerText : 'ท่าฝึก';
+                const allBtns = card.querySelectorAll('.set-btn');
+                const doneBtns = card.querySelectorAll('.set-btn.done');
+                const doneCount = doneBtns.length;
+                const totalCount = allBtns.length;
+
+                sessionSetsDone += doneCount;
+                sessionTotalSets += totalCount;
+
+                const wKey = card.dataset.weightKey;
+                const reps = parseInt(card.dataset.reps) || 8;
+                let weightLabel = "ฝึกความไว";
+                let exVol = 0;
+
+                if (wKey === 'bw') {
+                    weightLabel = `นน.ตัว (${bw} กก.)`;
+                    exVol = doneCount * reps * bw;
+                } else if (wKey && wKey !== 'none' && currentComputedWeights[wKey]) {
+                    const hands = weightMultipliers[wKey].hands || 1;
+                    const unitW = currentComputedWeights[wKey];
+                    weightLabel = hands === 2 ? `${unitW} กก./ข้าง` : `${unitW} กก.`;
+                    exVol = doneCount * reps * unitW * hands;
+                }
+
+                sessionVolume += exVol;
+
+                if (doneCount > 0) {
+                    exercisesDetail.push({
+                        name: exName,
+                        sets: `${doneCount}/${totalCount} เซต`,
+                        weight: weightLabel,
+                        vol: exVol > 0 ? `${Math.round(exVol).toLocaleString()} กก.` : null
+                    });
+                }
+            });
+
+            // หากผู้ใช้กดบันทึกโดยยังไม่ได้ติ๊กเซตเลย ให้บันทึกค่าเริ่มต้นของโปรแกรมนั้น
+            if (exercisesDetail.length === 0 && activeTab) {
+                activeTab.querySelectorAll('.card[data-card-id]').forEach(card => {
+                    const exName = card.querySelector('h3')?.innerText || 'ท่าฝึก';
+                    const totalCount = card.querySelectorAll('.set-btn').length;
+                    const wKey = card.dataset.weightKey;
+                    let weightLabel = "น้ำหนักตัว/ความไว";
+                    if (wKey && wKey !== 'none' && wKey !== 'bw' && currentComputedWeights[wKey]) {
+                        const hands = weightMultipliers[wKey].hands || 1;
+                        weightLabel = hands === 2 ? `${currentComputedWeights[wKey]} กก./ข้าง` : `${currentComputedWeights[wKey]} กก.`;
+                    }
+                    exercisesDetail.push({
+                        name: exName,
+                        sets: `ครบ ${totalCount} เซต`,
+                        weight: weightLabel,
+                        vol: null
+                    });
+                });
+            }
+
             let count = parseInt(localStorage.getItem('athleteWorkoutCount') || '0') + 1;
             localStorage.setItem('athleteWorkoutCount', count);
             document.getElementById('workout-count').innerText = count;
 
-            const volText = document.getElementById('stat-volume').innerText;
+            const pct = sessionTotalSets > 0 ? Math.round((sessionSetsDone / sessionTotalSets) * 100) : 100;
+            const finalVolText = sessionVolume > 0
+                ? `${Math.round(sessionVolume).toLocaleString()} กก.`
+                : document.getElementById('stat-volume').innerText;
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('th-TH', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'short',
+                year: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
             const history = JSON.parse(localStorage.getItem('athleteHistoryLog') || '[]');
-            const dateStr = new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ prog: progName, date: dateStr, vol: volText });
-            localStorage.setItem('athleteHistoryLog', JSON.stringify(history.slice(0, 7)));
+            history.unshift({
+                id: Date.now(),
+                prog: progName,
+                date: dateStr,
+                vol: finalVolText,
+                setsSummary: sessionSetsDone > 0 ? `${sessionSetsDone}/${sessionTotalSets} เซต (${pct}%)` : `ครบโปรแกรม`,
+                bw: `${bw} กก. (${levelText})`,
+                exercises: exercisesDetail
+            });
+
+            localStorage.setItem('athleteHistoryLog', JSON.stringify(history.slice(0, 25)));
 
             clearCurrentTabSets();
             stopRestTimer();
             renderHistoryLog();
             playBeep([660, 880, 1100]);
-            showToast(`🏆 ยอดเยี่ยม! บันทึกการซ้อม ${progName} (ครั้งที่ ${count}) เรียบร้อย!`);
+            showToast(`🏆 บันทึกการซ้อม ${progName} พร้อมรายละเอียดครบถ้วนแล้ว!`);
         }
 
         function renderHistoryLog() {
             const history = JSON.parse(localStorage.getItem('athleteHistoryLog') || '[]');
             const container = document.getElementById('history-list');
-            if (!history.length) return;
-            container.innerHTML = history.map(item => `
-                <div class="history-item">
-                    <span>✅ <b>${item.prog}</b> (${item.date})</span>
-                    <span>Volume: <b>${item.vol}</b></span>
+            const clearAllBtn = document.getElementById('btn-clear-all-history');
+
+            if (!history.length) {
+                if (clearAllBtn) clearAllBtn.style.display = 'none';
+                container.innerHTML = `<p style="font-size: 0.8rem; color: var(--text-sub);">ยังไม่มีประวัติการซ้อม กดปุ่ม "บันทึกจบการซ้อม" เมื่อเล่นจบโปรแกรม</p>`;
+                return;
+            }
+
+            if (clearAllBtn) clearAllBtn.style.display = 'inline-block';
+
+            container.innerHTML = history.map((item, idx) => {
+                const exListHtml = (item.exercises && item.exercises.length)
+                    ? `<div class="history-ex-list">
+                        ${item.exercises.map(ex => `
+                            <div class="history-ex-row">
+                                <span class="history-ex-name">• ${ex.name}</span>
+                                <span class="history-ex-meta">${ex.weight} | ${ex.sets}${ex.vol ? ` (${ex.vol})` : ''}</span>
+                            </div>
+                        `).join('')}
+                       </div>`
+                    : '';
+
+                return `
+                <div class="history-card-item">
+                    <div class="history-top-row">
+                        <div>
+                            <div class="history-prog-title">✅ ${item.prog}</div>
+                            <div class="history-date-sub">🕒 ${item.date}</div>
+                        </div>
+                        <button class="btn-del-history" onclick="deleteHistoryItem(${idx}, this)">🗑️ ลบ</button>
+                    </div>
+                    <div class="history-metrics-strip">
+                        <div class="h-metric">
+                            <div class="h-metric-val gold">${item.vol || '0 กก.'}</div>
+                            <div class="h-metric-lbl">Volume รวม</div>
+                        </div>
+                        <div class="h-metric">
+                            <div class="h-metric-val green">${item.setsSummary || 'สำเร็จ'}</div>
+                            <div class="h-metric-lbl">จำนวนเซตที่ทำ</div>
+                        </div>
+                        <div class="h-metric">
+                            <div class="h-metric-val">${item.bw || '-'}</div>
+                            <div class="h-metric-lbl">สัดส่วนขณะซ้อม</div>
+                        </div>
+                    </div>
+                    ${exListHtml}
                 </div>
-            `).join('');
+                `;
+            }).join('');
+        }
+
+        function deleteHistoryItem(index, btnEl) {
+            if (btnEl && !btnEl.classList.contains('confirm-mode')) {
+                // รีเซ็ตปุ่มลบรายการอื่นที่อาจค้างสถานะยืนยันอยู่
+                document.querySelectorAll('.btn-del-history.confirm-mode').forEach(b => {
+                    b.classList.remove('confirm-mode');
+                    b.innerText = "🗑️ ลบ";
+                });
+
+                btnEl.classList.add('confirm-mode');
+                btnEl.innerText = "⚠️ แน่ใจนะ? (กดซ้ำ)";
+
+                if (btnEl.dataset.timeoutId) clearTimeout(parseInt(btnEl.dataset.timeoutId));
+                const tid = setTimeout(() => {
+                    if (btnEl && btnEl.classList.contains('confirm-mode')) {
+                        btnEl.classList.remove('confirm-mode');
+                        btnEl.innerText = "🗑️ ลบ";
+                    }
+                }, 3500);
+                btnEl.dataset.timeoutId = tid;
+                return;
+            }
+
+            if (btnEl && btnEl.dataset.timeoutId) {
+                clearTimeout(parseInt(btnEl.dataset.timeoutId));
+            }
+
+            const history = JSON.parse(localStorage.getItem('athleteHistoryLog') || '[]');
+            if (index < 0 || index >= history.length) return;
+
+            const removed = history.splice(index, 1)[0];
+            localStorage.setItem('athleteHistoryLog', JSON.stringify(history));
+
+            let count = parseInt(localStorage.getItem('athleteWorkoutCount') || '0');
+            if (count > 0) {
+                count--;
+                localStorage.setItem('athleteWorkoutCount', count);
+                document.getElementById('workout-count').innerText = count;
+            }
+
+            renderHistoryLog();
+            showToast(`🗑️ ลบประวัติ "${removed.prog}" เรียบร้อยแล้ว`);
+        }
+
+        function clearAllHistory() {
+            const btn = document.getElementById('btn-clear-all-history');
+            if (!btn.classList.contains('confirm-mode')) {
+                btn.classList.add('confirm-mode');
+                btn.innerText = "⚠️ แน่ใจนะ? (กดซ้ำเพื่อล้าง)";
+                clearTimeout(clearHistoryConfirmTimeout);
+                clearHistoryConfirmTimeout = setTimeout(() => {
+                    btn.classList.remove('confirm-mode');
+                    btn.innerText = "🗑️ ล้างทั้งหมด";
+                }, 3500);
+                return;
+            }
+
+            clearTimeout(clearHistoryConfirmTimeout);
+            btn.classList.remove('confirm-mode');
+            btn.innerText = "🗑️ ล้างทั้งหมด";
+
+            localStorage.removeItem('athleteHistoryLog');
+            localStorage.setItem('athleteWorkoutCount', '0');
+            document.getElementById('workout-count').innerText = '0';
+
+            renderHistoryLog();
+            showToast("🗑️ ล้างประวัติการซ้อมทั้งหมดเรียบร้อยแล้ว");
         }
 
         // โค้ชสุ่มเป้า 6 มุมคอร์ทอัตโนมัติ (6-Corner Shadow Badminton Virtual Coach)
