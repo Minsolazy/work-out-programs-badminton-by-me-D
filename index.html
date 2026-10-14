@@ -972,7 +972,6 @@
 
             <button class="btn-start" onclick="saveProfile()">บันทึกและคำนวณโปรแกรม</button>
             <button class="btn-reset-custom" onclick="resetCustomOffsets()">รีเซ็ตค่าบวกลบน้ำหนักรายท่าทั้งหมด</button>
-            <button class="btn-reset-custom" style="color: var(--accent-gold);" onclick="downloadNewIconSvg()">⬇️ ดาวน์โหลดไฟล์ icon.svg โลโก้ใหม่ (สำหรับอัปเดต GitHub)</button>
         </div>
     </div>
 
@@ -1618,26 +1617,6 @@
             toast.innerText = msg;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3200);
-        }
-
-        function downloadNewIconSvg() {
-            const svgEl = document.querySelector('#app-logo-holder svg');
-            if (!svgEl) return;
-            const fullSvg = `<svg width="512" height="512" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="120" height="120" rx="28" fill="#08080a"/>
-                <rect x="3" y="3" width="114" height="114" rx="25" stroke="#ffd000" stroke-width="3"/>
-                ${svgEl.innerHTML}
-            </svg>`;
-            const blob = new Blob([fullSvg], { type: 'image/svg+xml;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'icon.svg';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast("⬇️ ดาวน์โหลดไฟล์ icon.svg โลโก้ใหม่เรียบร้อย!");
         }
 
         function saveProfile() {
