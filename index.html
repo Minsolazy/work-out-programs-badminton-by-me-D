@@ -5,25 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Explosive Athlete Pro</title>
     
-    <link rel="icon" href="icon.svg">
+    <link rel="icon" id="app-favicon" href="icon.svg">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#08080a">
+    <meta name="theme-color" id="meta-theme-color" content="#08080a">
     
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #08080a;
             --bg-card: rgba(22, 18, 20, 0.92);
-            --bg-glass: rgba(28, 22, 24, 0.85);
+            --bg-glass: rgba(20, 12, 15, 0.94);
             --primary-red: #ff1e38;
+            --primary-red-dark: #990016;
             --primary-red-glow: rgba(255, 30, 56, 0.5);
             --accent-gold: #ffd000;
+            --accent-gold-light: #ffe66d;
             --accent-gold-glow: rgba(255, 208, 0, 0.42);
             --success-green: #00e676;
             --success-glow: rgba(0, 230, 118, 0.3);
             --text-main: #ffffff;
             --text-sub: #b8b2b4;
-            --border-subtle: rgba(255, 208, 0, 0.16);
+            --border-subtle: rgba(255, 208, 0, 0.2);
+            --app-bg-gradient: 
+                radial-gradient(circle at 88% 4%, rgba(255, 20, 50, 0.38) 0%, rgba(140, 0, 22, 0.14) 35%, transparent 55%),
+                radial-gradient(circle at 12% 20%, rgba(200, 0, 32, 0.22) 0%, transparent 48%),
+                radial-gradient(circle at 50% 65%, rgba(255, 30, 56, 0.14) 0%, transparent 60%),
+                linear-gradient(180deg, #28090e 0%, #120608 45%, #08080a 100%);
+            --card-bg-gradient: linear-gradient(145deg, rgba(24, 16, 19, 0.94), rgba(14, 10, 12, 0.96));
+            --card-completed-bg: linear-gradient(145deg, rgba(38, 30, 14, 0.92), rgba(20, 16, 10, 0.94));
+            --title-gradient: linear-gradient(90deg, #ffffff 0%, #ffe66d 45%, #ffd000 100%);
+            /* Dynamic Logo Colors (Crimson Gold Default) */
+            --logo-box-bg: radial-gradient(circle at 30% 25%, #2b1116 0%, #14090b 70%, #070506 100%);
+            --logo-aura-1: #ff1e38;
+            --logo-aura-2: #8a0014;
+            --logo-aura-3: #ffd000;
+            --logo-feather-end: #ffb3be;
+            --logo-cork-1: #fff6b8;
+            --logo-cork-2: #ffd000;
+            --logo-cork-3: #b89200;
+            --logo-band-1: #ff1e38;
+            --logo-band-2: #d60022;
+            --logo-band-3: #7a0012;
+            --logo-bolt-1: #ffffff;
+            --logo-bolt-2: #ffd000;
+            --logo-bolt-3: #ff1e38;
+            --logo-bolt-4: #990016;
+            --logo-bolt-inner: #fff9bd;
+        }
+
+        /* THEME 2: MERCURY (BEYOND THE STARS - COSMIC STARFIELD & NEBULA) */
+        body[data-theme="mercury"] {
+            --bg-main: #050914;
+            --bg-card: rgba(11, 22, 44, 0.88);
+            --bg-glass: rgba(9, 17, 36, 0.94);
+            --primary-red: #38bdf8;
+            --primary-red-dark: #0369a1;
+            --primary-red-glow: rgba(56, 189, 248, 0.52);
+            --accent-gold: #e2e8f0;
+            --accent-gold-light: #bae6fd;
+            --accent-gold-glow: rgba(186, 230, 253, 0.45);
+            --success-green: #34d399;
+            --success-glow: rgba(52, 211, 153, 0.3);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-subtle: rgba(148, 163, 184, 0.28);
+            --app-bg-gradient:
+                radial-gradient(circle at 88% 18%, rgba(125, 211, 252, 0.32) 0%, rgba(29, 78, 216, 0.18) 38%, transparent 65%),
+                radial-gradient(circle at 14% 24%, rgba(148, 163, 184, 0.24) 0%, transparent 50%),
+                radial-gradient(circle at 82% 68%, rgba(56, 189, 248, 0.22) 0%, rgba(15, 23, 42, 0.3) 52%, transparent 70%),
+                linear-gradient(180deg, #1b283d 0%, #0b162c 42%, #040814 100%);
+            --card-bg-gradient: linear-gradient(145deg, rgba(19, 32, 60, 0.9), rgba(9, 16, 34, 0.95));
+            --card-completed-bg: linear-gradient(145deg, rgba(16, 44, 78, 0.94), rgba(9, 22, 44, 0.96));
+            --title-gradient: linear-gradient(90deg, #ffffff 0%, #e2e8f0 45%, #38bdf8 100%);
+            /* Dynamic Logo Colors (Mercury Cosmic Silver & Cyan) */
+            --logo-box-bg: radial-gradient(circle at 30% 25%, #1e3a5f 0%, #0b1528 70%, #040812 100%);
+            --logo-aura-1: #38bdf8;
+            --logo-aura-2: #1e3a8a;
+            --logo-aura-3: #e2e8f0;
+            --logo-feather-end: #bae6fd;
+            --logo-cork-1: #ffffff;
+            --logo-cork-2: #cbd5e1;
+            --logo-cork-3: #64748b;
+            --logo-band-1: #38bdf8;
+            --logo-band-2: #0284c7;
+            --logo-band-3: #1e3a8a;
+            --logo-bolt-1: #ffffff;
+            --logo-bolt-2: #bae6fd;
+            --logo-bolt-3: #38bdf8;
+            --logo-bolt-4: #0369a1;
+            --logo-bolt-inner: #e0f2fe;
+        }
+
+        /* THEME 3: BLUE LAVENDER ROSE (ROMANTIC PERIWINKLE & BLOOMING ROSES) */
+        body[data-theme="lavender"] {
+            --bg-main: #0b091b;
+            --bg-card: rgba(24, 20, 52, 0.88);
+            --bg-glass: rgba(18, 14, 42, 0.94);
+            --primary-red: #818cf8;
+            --primary-red-dark: #4f46e5;
+            --primary-red-glow: rgba(129, 140, 248, 0.55);
+            --accent-gold: #f4b8e4;
+            --accent-gold-light: #fbcfe8;
+            --accent-gold-glow: rgba(244, 184, 228, 0.45);
+            --success-green: #6ee7b7;
+            --success-glow: rgba(110, 231, 183, 0.3);
+            --text-main: #faf5ff;
+            --text-sub: #b9b0d8;
+            --border-subtle: rgba(196, 181, 253, 0.26);
+            --app-bg-gradient:
+                radial-gradient(circle at 86% 10%, rgba(167, 139, 250, 0.34) 0%, rgba(99, 102, 241, 0.18) 40%, transparent 62%),
+                radial-gradient(circle at 12% 24%, rgba(96, 165, 250, 0.25) 0%, transparent 52%),
+                radial-gradient(circle at 50% 70%, rgba(244, 114, 182, 0.16) 0%, transparent 62%),
+                linear-gradient(180deg, #1b1638 0%, #100d26 50%, #090716 100%);
+            --card-bg-gradient: linear-gradient(145deg, rgba(32, 27, 68, 0.9), rgba(16, 13, 38, 0.95));
+            --card-completed-bg: linear-gradient(145deg, rgba(46, 32, 82, 0.92), rgba(22, 16, 46, 0.95));
+            --title-gradient: linear-gradient(90deg, #ffffff 0%, #c4b5fd 45%, #f9a8d4 100%);
+            /* Dynamic Logo Colors (Blue Lavender & Rose Pink) */
+            --logo-box-bg: radial-gradient(circle at 30% 25%, #2e235c 0%, #151030 70%, #090716 100%);
+            --logo-aura-1: #818cf8;
+            --logo-aura-2: #4f46e5;
+            --logo-aura-3: #f4b8e4;
+            --logo-feather-end: #ddd6fe;
+            --logo-cork-1: #fdf2f8;
+            --logo-cork-2: #f4b8e4;
+            --logo-cork-3: #a855f7;
+            --logo-band-1: #818cf8;
+            --logo-band-2: #6366f1;
+            --logo-band-3: #3730a3;
+            --logo-bolt-1: #ffffff;
+            --logo-bolt-2: #f4b8e4;
+            --logo-bolt-3: #818cf8;
+            --logo-bolt-4: #4338ca;
+            --logo-bolt-inner: #fce7f3;
+        }
+
+        /* THEME 4: Y2K LIQUID CHROME (METALLIC SILK WAVES & HALFTONE Y2K STARS) */
+        body[data-theme="y2k"] {
+            --bg-main: #06080b;
+            --bg-card: rgba(16, 22, 29, 0.86);
+            --bg-glass: rgba(10, 14, 20, 0.94);
+            --primary-red: #94a3b8;
+            --primary-red-dark: #334155;
+            --primary-red-glow: rgba(226, 232, 240, 0.42);
+            --accent-gold: #f8fafc;
+            --accent-gold-light: #ffffff;
+            --accent-gold-glow: rgba(248, 250, 252, 0.48);
+            --success-green: #5eead4;
+            --success-glow: rgba(94, 234, 212, 0.3);
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+            --border-subtle: rgba(226, 232, 240, 0.28);
+            --app-bg-gradient:
+                radial-gradient(circle at 22% 18%, rgba(148, 163, 184, 0.26) 0%, transparent 48%),
+                radial-gradient(circle at 82% 52%, rgba(100, 116, 139, 0.22) 0%, transparent 55%),
+                linear-gradient(165deg, #1b2430 0%, #0d131a 38%, #05070a 75%, #121a24 100%);
+            --card-bg-gradient: linear-gradient(145deg, rgba(24, 32, 42, 0.88), rgba(10, 14, 20, 0.94));
+            --card-completed-bg: linear-gradient(145deg, rgba(45, 58, 74, 0.92), rgba(18, 24, 34, 0.95));
+            --title-gradient: linear-gradient(90deg, #ffffff 0%, #cbd5e1 48%, #f8fafc 100%);
+            /* Dynamic Logo Colors (Y2K Liquid Silver Chrome) */
+            --logo-box-bg: radial-gradient(circle at 30% 25%, #334155 0%, #111827 70%, #05070a 100%);
+            --logo-aura-1: #f8fafc;
+            --logo-aura-2: #475569;
+            --logo-aura-3: #cbd5e1;
+            --logo-feather-end: #cbd5e1;
+            --logo-cork-1: #ffffff;
+            --logo-cork-2: #e2e8f0;
+            --logo-cork-3: #64748b;
+            --logo-band-1: #cbd5e1;
+            --logo-band-2: #64748b;
+            --logo-band-3: #1e293b;
+            --logo-bolt-1: #ffffff;
+            --logo-bolt-2: #e2e8f0;
+            --logo-bolt-3: #94a3b8;
+            --logo-bolt-4: #334155;
+            --logo-bolt-inner: #ffffff;
+        }
+
+        /* BATTERY SAVER / ANIMATION OFF MODE */
+        body.no-anim *,
+        body.no-anim *::before,
+        body.no-anim *::after {
+            animation-play-state: paused !important;
+            transition: none !important;
         }
 
         * {
@@ -45,11 +208,221 @@
             margin: 0 auto; 
             min-height: 100vh; 
             position: relative; 
-            background: 
-                radial-gradient(circle at 88% 4%, rgba(255, 20, 50, 0.38) 0%, rgba(140, 0, 22, 0.14) 35%, transparent 55%),
-                radial-gradient(circle at 12% 20%, rgba(200, 0, 32, 0.22) 0%, transparent 48%),
-                radial-gradient(circle at 50% 65%, rgba(255, 30, 56, 0.14) 0%, transparent 60%),
-                linear-gradient(180deg, #16070a 0%, #08080a 100%);
+            background: var(--app-bg-gradient);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .theme-backdrop {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .app-container > *:not(.theme-backdrop) {
+            position: relative;
+            z-index: 2;
+        }
+
+        .theme-scene {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+        }
+
+        body:not([data-theme]) .scene-crimson,
+        body[data-theme="crimson"] .scene-crimson { display: block; }
+        body[data-theme="mercury"] .scene-mercury { display: block; }
+        body[data-theme="lavender"] .scene-lavender { display: block; }
+        body[data-theme="y2k"] .scene-y2k { display: block; }
+
+        @keyframes twinkleStar {
+            0%, 100% { opacity: 0.22; transform: scale(0.85); }
+            50% { opacity: 1; transform: scale(1.22); }
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        @keyframes starFlarePulse {
+            0%, 100% { transform: scale(0.92) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.12) rotate(8deg); opacity: 1; }
+        }
+        @keyframes petalDrift {
+            0% { transform: translateY(-10px) translateX(0px) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.75; }
+            80% { opacity: 0.75; }
+            100% { transform: translateY(420px) translateX(-35px) rotate(220deg); opacity: 0; }
+        }
+        @keyframes rosePulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.28; }
+            50% { transform: scale(1.06) rotate(4deg); opacity: 0.44; }
+        }
+        @keyframes y2kWaveFlowVertical {
+            0%, 100% { transform: translate3d(0px, -22px, 0) scaleX(1) skewY(0deg); }
+            50% { transform: translate3d(-14px, 22px, 0) scaleX(1.06) skewY(-1.8deg); }
+        }
+        @keyframes y2kWaveFlowReverse {
+            0%, 100% { transform: translate3d(0px, 18px, 0) scaleX(1.04) skewX(0deg); }
+            50% { transform: translate3d(16px, -20px, 0) scaleX(0.96) skewX(2.2deg); }
+        }
+        @keyframes y2kSpecularShimmer {
+            0%, 100% { opacity: 0.35; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); }
+            50% { opacity: 0.92; filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.85)); }
+        }
+
+        .star-sparkle {
+            position: absolute;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px var(--primary-red), 0 0 18px #ffffff;
+            animation: twinkleStar 3.2s ease-in-out infinite;
+        }
+
+        /* Y2K Liquid Chrome Ribbon Graphics */
+        .y2k-chrome-canvas {
+            position: absolute;
+            inset: -40px -25px;
+            width: calc(100% + 50px);
+            height: calc(100% + 80px);
+            opacity: 0.82;
+        }
+        .y2k-ribbon-layer-1 {
+            animation: y2kWaveFlowVertical 8s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .y2k-ribbon-layer-2 {
+            animation: y2kWaveFlowReverse 10.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .y2k-specular-line {
+            animation: y2kSpecularShimmer 5.2s ease-in-out infinite;
+        }
+        .y2k-halftone-star {
+            position: absolute;
+            top: 210px;
+            left: -12px;
+            width: 115px;
+            height: 115px;
+            opacity: 0.75;
+            animation: starFlarePulse 5.5s ease-in-out infinite;
+        }
+        .y2k-pixel-star {
+            position: absolute;
+            bottom: 95px;
+            right: 8px;
+            width: 120px;
+            height: 120px;
+            opacity: 0.65;
+            animation: floatOrb 7.5s ease-in-out infinite;
+        }
+
+        /* Mercury Cosmic Star & Ringed Planet (No Gear Teeth!) */
+        .mercury-cosmic-planet {
+            position: absolute;
+            top: 56px;
+            right: -36px;
+            width: 230px;
+            height: 200px;
+            opacity: 0.42;
+            animation: floatOrb 7s ease-in-out infinite;
+        }
+        .mercury-star-flare {
+            position: absolute;
+            top: 110px;
+            left: 10%;
+            width: 64px;
+            height: 64px;
+            opacity: 0.65;
+            animation: starFlarePulse 4.5s ease-in-out infinite;
+        }
+        .mercury-nebula-glow {
+            position: absolute;
+            top: 230px;
+            right: -40px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(125, 211, 252, 0.22) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 70%);
+            filter: blur(12px);
+        }
+
+        /* Blue Lavender Rose Graphics */
+        .lavender-rose-hero {
+            position: absolute;
+            top: 58px;
+            right: -34px;
+            width: 195px;
+            height: 195px;
+            animation: rosePulse 7s ease-in-out infinite;
+        }
+        .lavender-rose-left {
+            position: absolute;
+            top: 280px;
+            left: -42px;
+            width: 145px;
+            height: 145px;
+            animation: rosePulse 9s ease-in-out infinite reverse;
+        }
+        .floating-petal {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            animation: petalDrift 11s linear infinite;
+        }
+
+        .theme-pills-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+        }
+        .theme-pill-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text-sub);
+            padding: 9px 8px;
+            border-radius: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .theme-pill-btn.active {
+            background: linear-gradient(135deg, var(--primary-red), rgba(255, 255, 255, 0.14));
+            color: #ffffff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 3px 12px var(--primary-red-glow);
+        }
+        .btn-anim-toggle {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-gold);
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-anim-toggle.eco-on {
+            color: var(--success-green);
+            border-color: var(--success-green);
+            background: rgba(0, 230, 118, 0.12);
         }
 
         /* Top Utility Bar */
@@ -57,14 +430,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 18px 0;
+            padding: 10px 18px 0;
             gap: 8px;
         }
 
         .badge-pill {
-            background: linear-gradient(135deg, rgba(255, 30, 56, 0.32), rgba(120, 0, 20, 0.22));
-            border: 1px solid rgba(255, 30, 56, 0.65);
-            color: #ffccd2;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.35));
+            border: 1px solid var(--primary-red);
+            color: var(--text-main);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.72rem;
@@ -72,12 +445,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            box-shadow: 0 4px 12px rgba(255, 30, 56, 0.25);
+            box-shadow: 0 4px 12px var(--primary-red-glow);
         }
 
         .user-profile-btn {
-            background: linear-gradient(135deg, rgba(255, 30, 56, 0.26), rgba(90, 0, 15, 0.3));
-            border: 1px solid rgba(255, 208, 0, 0.65);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.4));
+            border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
             padding: 5px 12px;
             border-radius: 20px;
@@ -86,13 +459,13 @@
             cursor: pointer;
             font-family: 'Prompt', sans-serif;
             transition: transform 0.2s;
-            box-shadow: 0 4px 12px rgba(255, 30, 56, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         .user-profile-btn:active { transform: scale(0.95); }
 
         /* Header */
         .header { 
-            padding: 14px 20px 10px; 
+            padding: 12px 20px 8px; 
             text-align: center; 
         }
         
@@ -100,7 +473,7 @@
             width: 78px;
             height: 78px;
             margin: 0 auto 10px;
-            background: radial-gradient(circle at 30% 25%, #2b1116 0%, #14090b 70%, #070506 100%);
+            background: var(--logo-box-bg);
             border-radius: 22px;
             display: flex;
             align-items: center;
@@ -108,15 +481,16 @@
             box-shadow: 
                 0 10px 28px var(--primary-red-glow), 
                 0 0 18px var(--accent-gold-glow),
-                inset 0 2px 3px rgba(255, 208, 0, 0.35);
+                inset 0 2px 3px rgba(255, 255, 255, 0.25);
             border: 2px solid var(--accent-gold);
             position: relative;
             animation: logoPulse 3.5s ease-in-out infinite;
+            transition: all 0.3s ease;
         }
 
         @keyframes logoPulse {
-            0%, 100% { transform: translateY(0px); box-shadow: 0 10px 28px var(--primary-red-glow), 0 0 15px var(--accent-gold-glow), inset 0 2px 3px rgba(255, 208, 0, 0.35); }
-            50% { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(255, 30, 56, 0.68), 0 0 24px rgba(255, 208, 0, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.45); }
+            0%, 100% { transform: translateY(0px); box-shadow: 0 10px 28px var(--primary-red-glow), 0 0 15px var(--accent-gold-glow); }
+            50% { transform: translateY(-3px); box-shadow: 0 14px 32px var(--primary-red-glow), 0 0 24px var(--accent-gold-glow); }
         }
 
         .logo-container svg {
@@ -131,12 +505,12 @@
             font-size: 1.55rem; 
             text-transform: uppercase; 
             letter-spacing: 2.5px;
-            background: linear-gradient(90deg, #ffffff 0%, #ffe66d 45%, var(--accent-gold) 100%);
+            background: var(--title-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 10px rgba(255, 208, 0, 0.28));
+            filter: drop-shadow(0 2px 10px var(--accent-gold-glow));
         }
 
         .app-subtitle {
@@ -146,10 +520,9 @@
             letter-spacing: 3.5px;
             text-transform: uppercase;
             margin-top: 4px;
-            text-shadow: 0 0 12px rgba(255, 30, 56, 0.55);
+            text-shadow: 0 0 12px var(--primary-red-glow);
         }
 
-        /* Quick Stats Dashboard Strip */
         .dashboard-strip {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -158,7 +531,7 @@
         }
 
         .stat-box {
-            background: linear-gradient(145deg, rgba(34, 22, 26, 0.9), rgba(16, 12, 14, 0.92));
+            background: var(--card-bg-gradient);
             border: 1px solid var(--border-subtle);
             border-radius: 14px;
             padding: 9px 6px;
@@ -167,12 +540,12 @@
         }
 
         .stat-val {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
-            color: #ff6b7b;
+            color: var(--primary-red);
         }
-        .stat-val.gold { color: var(--accent-gold); text-shadow: 0 0 10px rgba(255, 208, 0, 0.35); }
-        .stat-val.green { color: var(--success-green); text-shadow: 0 0 10px rgba(0, 230, 118, 0.3); }
+        .stat-val.gold { color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-gold-glow); }
+        .stat-val.green { color: var(--success-green); text-shadow: 0 0 10px var(--success-glow); }
 
         .stat-lbl {
             font-size: 0.65rem;
@@ -182,12 +555,13 @@
 
         /* Today's Recommendation Banner */
         .today-banner {
-            margin: 8px 18px 4px;
+            margin: 8px 18px 6px;
             padding: 10px 14px;
-            background: linear-gradient(90deg, rgba(255, 30, 56, 0.34) 0%, rgba(130, 0, 22, 0.16) 65%, rgba(20, 10, 13, 0.85) 100%);
+            background: linear-gradient(90deg, var(--primary-red-glow) 0%, rgba(0, 0, 0, 0.65) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-left: 4px solid var(--primary-red);
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -196,16 +570,16 @@
         }
         .today-banner b { color: var(--accent-gold); }
 
-        /* Sticky Progress Bar */
+        /* Sticky Progress Bar (Properly closed!) */
         .progress-wrapper {
             padding: 10px 18px 8px;
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(8, 8, 10, 0.92);
+            background: var(--bg-glass);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255, 30, 56, 0.18);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .progress-header {
@@ -222,7 +596,7 @@
         .progress-track {
             width: 100%;
             height: 7px;
-            background: #1f1215;
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -230,178 +604,152 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #7a0012 0%, var(--primary-red) 65%, #ff5c70 100%);
+            background: linear-gradient(90deg, var(--primary-red-dark) 0%, var(--primary-red) 60%, var(--accent-gold) 100%);
             border-radius: 10px;
             transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 0 12px var(--primary-red-glow);
+            box-shadow: 0 0 10px var(--primary-red-glow);
         }
 
-        /* Content Area */
-        .content { 
-            padding: 4px 18px 20px; 
-            display: none; 
-            animation: fadeIn 0.28s ease; 
+        .content {
+            display: none;
+            padding: 14px 18px 20px;
+            animation: fadeInTab 0.25s ease;
         }
-        
-        .content.active { display: block; }
+        .content.active {
+            display: block;
+        }
 
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(8px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin: 14px 0 10px;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 8px;
         }
 
-        h2 { 
-            color: var(--text-main); 
-            font-size: 1.1rem; 
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin: 0; 
+            color: var(--text-main);
         }
 
         .section-sub {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--accent-gold);
-            background: rgba(255, 208, 0, 0.12);
-            border: 1px solid rgba(255, 208, 0, 0.35);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
             padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 500;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
-        /* Interactive 6-Corner Shadow Badminton Coach */
+        /* 6-Corner Shadow Badminton Coach Card */
         .court-coach-card {
-            background: linear-gradient(145deg, rgba(32, 18, 22, 0.96), rgba(16, 11, 13, 0.96));
-            border: 1px solid rgba(255, 208, 0, 0.45);
+            background: var(--card-bg-gradient);
+            border: 1px solid var(--border-subtle);
             border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 30, 56, 0.15);
+            padding: 14px 15px;
+            margin-bottom: 13px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
-
         .court-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
-
         .court-title {
-            font-size: 0.95rem;
+            font-size: 0.86rem;
             font-weight: 700;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--text-main);
         }
-
         .court-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, 54px);
             gap: 8px;
-            background: linear-gradient(180deg, #1b1114 0%, #100a0c 100%);
-            border: 2px solid var(--accent-gold);
-            border-radius: 12px;
-            padding: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 2px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 24px 10px 10px;
             position: relative;
-            margin-bottom: 12px;
-            box-shadow: inset 0 0 20px rgba(255, 30, 56, 0.18);
+            margin-bottom: 10px;
         }
-
-        .court-center-line {
-            position: absolute;
-            top: 0; bottom: 0; left: 50%;
-            width: 1.5px;
-            background: rgba(255, 208, 0, 0.4);
-            transform: translateX(-50%);
-            pointer-events: none;
-        }
-
         .court-net-label {
             position: absolute;
-            top: -9px;
+            top: 4px;
             left: 50%;
             transform: translateX(-50%);
-            background: #08080a;
-            color: var(--accent-gold);
             font-size: 0.62rem;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
             font-weight: 700;
-            padding: 1px 10px;
-            letter-spacing: 1px;
-            border: 1px solid var(--accent-gold);
-            border-radius: 6px;
         }
-
+        .court-center-line {
+            position: absolute;
+            top: 22px;
+            bottom: 8px;
+            left: 50%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.12);
+        }
         .court-cell {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 208, 0, 0.22);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.78rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 10px 8px;
+            text-align: center;
+            font-size: 0.76rem;
             font-weight: 600;
-            color: #f0e6e8;
+            color: var(--text-sub);
             transition: all 0.15s ease;
-            z-index: 2;
         }
-
         .court-cell.active-target {
-            background: linear-gradient(135deg, #ff1e38, #990016);
-            color: #ffffff;
-            font-weight: 800;
-            transform: scale(1.05);
-            box-shadow: 0 0 22px var(--primary-red-glow);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             border-color: var(--accent-gold);
+            color: #ffffff;
+            transform: scale(1.04);
+            box-shadow: 0 0 18px var(--primary-red-glow);
         }
-
         .coach-controls {
             display: flex;
             gap: 8px;
-            align-items: center;
         }
-
         .coach-speed-select {
-            background: #140d10;
+            flex: 1.3;
+            background: rgba(0, 0, 0, 0.6);
             color: var(--text-main);
-            border: 1px solid rgba(255, 208, 0, 0.3);
-            padding: 9px 10px;
+            border: 1px solid var(--border-subtle);
             border-radius: 10px;
+            padding: 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+        }
+        .btn-coach-run {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            color: #ffffff;
+            border: 1px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 8px 10px;
             font-family: 'Prompt', sans-serif;
             font-size: 0.76rem;
-            flex: 1;
-        }
-
-        .btn-coach-run {
-            background: linear-gradient(135deg, var(--primary-red), #900014);
-            color: #ffffff;
-            border: 1px solid rgba(255, 208, 0, 0.45);
-            padding: 9px 16px;
-            border-radius: 10px;
-            font-family: 'Prompt', sans-serif;
             font-weight: 700;
-            font-size: 0.8rem;
             cursor: pointer;
-            flex: 1.2;
-            box-shadow: 0 4px 14px var(--primary-red-glow);
         }
         .btn-coach-run.active {
-            background: linear-gradient(135deg, #3a0810, #1a0408);
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            box-shadow: 0 4px 14px var(--accent-gold-glow);
+            background: var(--accent-gold);
+            color: #08080a;
         }
 
-        /* Card Design 3.0 - Black, Red & Gold */
         .card { 
-            background: linear-gradient(145deg, rgba(28, 20, 23, 0.94), rgba(16, 12, 14, 0.94)); 
+            background: var(--card-bg-gradient); 
             padding: 15px 16px; 
             margin-bottom: 13px; 
             border-radius: 18px; 
@@ -410,6 +758,8 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .card::before {
@@ -417,14 +767,14 @@
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 4px;
-            background: linear-gradient(180deg, var(--primary-red), #ff6b7b);
+            background: linear-gradient(180deg, var(--primary-red), var(--accent-gold));
             transition: 0.3s;
         }
 
         .card.completed {
-            background: linear-gradient(145deg, rgba(38, 30, 14, 0.92), rgba(20, 16, 10, 0.94));
-            border-color: rgba(255, 208, 0, 0.55);
-            box-shadow: 0 6px 20px rgba(255, 208, 0, 0.15);
+            background: var(--card-completed-bg);
+            border-color: var(--accent-gold);
+            box-shadow: 0 6px 20px var(--accent-gold-glow);
         }
 
         .card.completed::before {
@@ -434,6 +784,171 @@
 
         .card.info-card::before {
             background: var(--accent-gold);
+        }
+
+        /* AI Injury Adaptation Highlight on Cards */
+        .card.ai-modified {
+            border: 1px solid rgba(0, 230, 118, 0.55);
+            box-shadow: 0 6px 22px rgba(0, 230, 118, 0.14);
+        }
+        .card.ai-modified::before {
+            background: linear-gradient(180deg, var(--success-green), var(--accent-gold));
+            width: 5px;
+        }
+        .ai-swap-banner {
+            display: none;
+            margin: 7px 0;
+            padding: 8px 11px;
+            background: linear-gradient(90deg, rgba(0, 230, 118, 0.16), rgba(0, 0, 0, 0.45));
+            border-left: 3px solid var(--success-green);
+            border-radius: 9px;
+            font-size: 0.74rem;
+            color: #d1fae5;
+            line-height: 1.45;
+        }
+        .ai-swap-banner.show { display: block; }
+        .ai-swap-banner b { color: var(--success-green); }
+
+        /* Soreness Tracker & AI Injury Biofeedback Drawer */
+        .soreness-card {
+            margin: 6px 18px 6px;
+            background: var(--card-bg-gradient);
+            border: 1px solid var(--border-subtle);
+            border-radius: 15px;
+            padding: 10px 13px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        }
+        .soreness-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .soreness-title {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .soreness-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .sore-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text-sub);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+        .sore-pill.active {
+            background: linear-gradient(135deg, var(--primary-red), rgba(0, 0, 0, 0.5));
+            color: #ffffff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 2px 10px var(--primary-red-glow);
+        }
+        .ai-coach-diagnostic {
+            display: none;
+            margin-top: 9px;
+            padding: 9px 11px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(0, 230, 118, 0.45);
+            border-radius: 11px;
+            font-size: 0.73rem;
+            color: #e2f8ee;
+            line-height: 1.48;
+        }
+        .ai-coach-diagnostic.show { display: block; }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+        }
+        .schedule-row:active { cursor: grabbing; }
+        .schedule-row.dragging {
+            opacity: 0.55;
+            transform: scale(0.98);
+            border: 1px dashed var(--accent-gold);
+        }
+        .schedule-row.drag-over {
+            border: 1px solid var(--accent-gold);
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.01);
+        }
+        .schedule-row.today-highlight {
+            background: linear-gradient(90deg, var(--primary-red-glow), rgba(0, 0, 0, 0.35));
+            border: 1px solid var(--primary-red);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .sched-left {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            min-width: 82px;
+        }
+        .drag-handle {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            cursor: grab;
+            opacity: 0.7;
+        }
+        .sched-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-sched-move {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            border-radius: 6px;
+            width: 22px;
+            height: 22px;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+        }
+        .btn-sched-move:active {
+            background: var(--primary-red);
+            border-color: var(--accent-gold);
+        }
+        .btn-default-sched {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-default-sched:active {
+            transform: scale(0.95);
         }
 
         .card-top {
@@ -455,14 +970,14 @@
 
         .tag { 
             display: inline-block; 
-            background-color: rgba(255, 208, 0, 0.14); 
+            background-color: rgba(255, 255, 255, 0.06); 
             color: var(--accent-gold); 
             font-size: 0.7rem; 
             padding: 3px 9px; 
             border-radius: 10px; 
             font-weight: 600; 
             white-space: nowrap;
-            border: 1px solid rgba(255, 208, 0, 0.32);
+            border: 1px solid var(--border-subtle);
         }
 
         .card p { 
@@ -496,9 +1011,9 @@
         }
 
         .btn-work-timer {
-            background: rgba(255, 30, 56, 0.18);
-            border: 1px solid rgba(255, 30, 56, 0.5);
-            color: #ffccd2;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--primary-red);
+            color: var(--text-main);
             font-size: 0.72rem;
             font-family: 'Prompt', sans-serif;
             font-weight: 600;
@@ -521,13 +1036,273 @@
         .cue-box.open { display: block; }
         .cue-box b { color: var(--accent-gold); }
 
+        .smart-rep-hint {
+            display: none;
+            margin: 6px 0 4px;
+            padding: 6px 10px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.35));
+            border-left: 3px solid var(--accent-gold);
+            border-radius: 8px;
+            font-size: 0.73rem;
+            color: var(--accent-gold-light);
+            line-height: 1.4;
+        }
+        .smart-rep-hint.show { display: block; }
+
+        .btn-side-rest {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-gold);
+            font-size: 0.72rem;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .btn-side-rest:active {
+            transform: scale(0.95);
+            background: var(--accent-gold);
+            color: #08080a;
+        }
+
+        .warmup-drawer {
+            margin: 6px 18px 6px;
+            background: var(--card-bg-gradient);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .warmup-header {
+            padding: 9px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+        }
+        .warmup-header span.w-status {
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+        }
+        .warmup-body {
+            display: none;
+            padding: 8px 14px 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        .warmup-body.open { display: block; }
+        .warmup-chips {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .w-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 6px 8px;
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.18s;
+        }
+        .w-chip.done {
+            background: var(--primary-red-glow);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* CNS Readiness & Explosive Tempo Pacer Strip */
+        .coach-tools-strip {
+            margin: 6px 18px 6px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .tool-mini-card {
+            background: var(--card-bg-gradient);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 9px 11px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 6px;
+        }
+        .tool-mini-title {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .readiness-select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            color: var(--accent-gold);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 5px 6px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .btn-tempo-pacer {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-tempo-pacer.active {
+            background: var(--accent-gold);
+            border-color: #ffffff;
+            color: #08080a;
+            box-shadow: 0 0 14px var(--accent-gold-glow);
+        }
+
+        /* Volume Trend Bar Chart */
+        .chart-box {
+            margin-top: 12px;
+            padding: 12px 10px 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 95px;
+            gap: 6px;
+            padding-top: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .chart-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        .chart-val-top {
+            font-size: 0.58rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 3px;
+            white-space: nowrap;
+        }
+        .chart-bar-fill {
+            width: 100%;
+            max-width: 26px;
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--primary-red) 75%, var(--primary-red-dark) 100%);
+            border-radius: 5px 5px 0 0;
+            min-height: 6px;
+            transition: height 0.35s ease;
+            box-shadow: 0 0 10px var(--primary-red-glow);
+        }
+        .chart-lbl-bot {
+            font-size: 0.58rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 48px;
+        }
+
+        /* Backup & Restore Box in Modal */
+        .backup-section {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.14);
+            text-align: left;
+        }
+        .backup-btns {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .btn-backup {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-gold);
+            padding: 7px 6px;
+            border-radius: 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Split-Step Reflex Tester Mini-Game */
+        .reflex-box {
+            background: var(--card-bg-gradient);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .reflex-pad {
+            margin-top: 10px;
+            height: 82px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px dashed var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.12s ease;
+            font-weight: 700;
+            font-size: 0.86rem;
+            color: var(--text-sub);
+        }
+        .reflex-pad.waiting {
+            background: rgba(255, 30, 56, 0.16);
+            border-style: solid;
+            border-color: var(--primary-red);
+            color: var(--text-main);
+        }
+        .reflex-pad.go {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            border-style: solid;
+            border-color: var(--accent-gold);
+            color: #ffffff;
+            font-size: 1.02rem;
+            box-shadow: 0 0 28px var(--primary-red-glow);
+            transform: scale(1.02);
+        }
+
         /* Weight Control Bar inside Card */
         .weight-control-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(255, 208, 0, 0.14);
+            border: 1px solid var(--border-subtle);
             padding: 7px 11px;
             border-radius: 12px;
             margin: 9px 0 7px;
@@ -557,8 +1332,8 @@
             width: 27px;
             height: 27px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 208, 0, 0.3);
-            background: #211619;
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--accent-gold);
             font-size: 0.95rem;
             font-weight: 700;
@@ -600,14 +1375,13 @@
         }
 
         .set-btn.done {
-            background: linear-gradient(135deg, rgba(255, 30, 56, 0.42), rgba(115, 0, 19, 0.28));
-            border-color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            border-color: var(--accent-gold);
             color: #ffffff;
             box-shadow: 0 2px 10px var(--primary-red-glow);
         }
 
         .card.completed .set-btn.done {
-            background: linear-gradient(135deg, rgba(255, 30, 56, 0.5), rgba(140, 0, 24, 0.35));
             border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
@@ -621,9 +1395,9 @@
 
         .btn-finish-workout {
             flex: 2;
-            background: linear-gradient(135deg, var(--primary-red), #b80018);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             color: #fff;
-            border: 1px solid rgba(255, 208, 0, 0.4);
+            border: 1px solid var(--accent-gold);
             padding: 13px;
             border-radius: 14px;
             font-family: 'Prompt', sans-serif;
@@ -636,7 +1410,7 @@
 
         .btn-reset-workout {
             flex: 1;
-            background: #1a1215;
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-sub);
             border: 1px solid var(--border-subtle);
             padding: 13px;
@@ -647,7 +1421,6 @@
             cursor: pointer;
         }
 
-        /* Nutrition Macro Grid */
         .macro-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -657,7 +1430,7 @@
 
         .macro-box {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 208, 0, 0.16);
+            border: 1px solid var(--border-subtle);
             padding: 10px 8px;
             border-radius: 12px;
             text-align: center;
@@ -674,26 +1447,10 @@
             color: var(--text-sub);
         }
 
-        /* Schedule List in Info Tab */
-        .schedule-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 7px 10px;
-            border-radius: 8px;
-            font-size: 0.84rem;
-            margin-bottom: 4px;
-        }
-        .schedule-row.today-highlight {
-            background: linear-gradient(90deg, rgba(255, 30, 56, 0.34), rgba(110, 0, 18, 0.16));
-            border: 1px solid var(--primary-red);
-            color: var(--accent-gold);
-            font-weight: 600;
-        }
-
-        /* History Log List (Upgraded Detailed View) */
+        /* History Log List */
         .history-card-item {
-            background: linear-gradient(145deg, rgba(18, 12, 15, 0.9), rgba(10, 7, 9, 0.95));
-            border: 1px solid rgba(255, 208, 0, 0.22);
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--border-subtle);
             border-left: 4px solid var(--accent-gold);
             border-radius: 14px;
             padding: 12px 14px;
@@ -745,11 +1502,6 @@
             box-shadow: 0 0 12px var(--primary-red-glow);
             transform: scale(1.03);
         }
-        .btn-del-history:active {
-            background: var(--primary-red);
-            color: #fff;
-            transform: scale(0.95);
-        }
 
         .btn-clear-all-history {
             background: rgba(255, 30, 56, 0.16);
@@ -767,7 +1519,6 @@
             background: var(--primary-red);
             color: #ffffff;
             border-color: var(--accent-gold);
-            box-shadow: 0 0 12px var(--primary-red-glow);
         }
 
         .history-metrics-strip {
@@ -781,20 +1532,11 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .h-metric {
-            text-align: center;
-        }
-        .h-metric-val {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #fff;
-        }
+        .h-metric { text-align: center; }
+        .h-metric-val { font-size: 0.78rem; font-weight: 700; color: #fff; }
         .h-metric-val.gold { color: var(--accent-gold); }
         .h-metric-val.green { color: var(--success-green); }
-        .h-metric-lbl {
-            font-size: 0.62rem;
-            color: var(--text-sub);
-        }
+        .h-metric-lbl { font-size: 0.62rem; color: var(--text-sub); }
 
         .history-ex-list {
             border-top: 1px dashed rgba(255, 255, 255, 0.1);
@@ -815,17 +1557,8 @@
             border-radius: 7px;
         }
 
-        .history-ex-name {
-            color: #e8e2e4;
-            font-weight: 500;
-        }
-
-        .history-ex-meta {
-            color: var(--accent-gold);
-            font-weight: 600;
-            font-size: 0.7rem;
-            text-align: right;
-        }
+        .history-ex-name { color: #e8e2e4; font-weight: 500; }
+        .history-ex-meta { color: var(--accent-gold); font-weight: 600; font-size: 0.7rem; text-align: right; }
 
         /* Floating Rest/Work Timer Dock */
         .timer-dock {
@@ -840,16 +1573,18 @@
         }
 
         .timer-bar {
-            background: rgba(20, 12, 15, 0.96);
+            background: var(--bg-glass);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 208, 0, 0.25);
+            border: 1px solid var(--border-subtle);
             border-radius: 16px;
             padding: 8px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.75);
+            position: relative;
+            overflow: hidden;
         }
 
         .timer-bar.running {
@@ -867,7 +1602,7 @@
             align-items: center;
             gap: 5px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--accent-gold);
             min-width: 82px;
         }
@@ -878,8 +1613,8 @@
         }
 
         .t-btn {
-            background: linear-gradient(145deg, #2b1217, #18090c);
-            border: 1px solid rgba(255, 30, 56, 0.32);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
             color: #ffffff;
             padding: 6px 8px;
             border-radius: 9px;
@@ -889,7 +1624,17 @@
             cursor: pointer;
         }
         .t-btn:active { background: var(--primary-red); color: #fff; }
-        .t-btn.stop { background: rgba(255, 30, 56, 0.28); color: #ffccd2; border-color: rgba(255, 30, 56, 0.55); }
+        .t-btn.stop { background: rgba(255, 30, 56, 0.25); color: #ffccd2; border-color: var(--primary-red); }
+
+        .timer-progress-line {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+            transition: width 0.3s linear;
+        }
 
         /* Glassmorphism Tab Bar */
         .tab-bar { 
@@ -897,12 +1642,12 @@
             bottom: 0; 
             left: 0; 
             right: 0; 
-            background: rgba(10, 7, 8, 0.96); 
+            background: var(--bg-glass); 
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             display: flex; 
             justify-content: space-around; 
-            border-top: 1px solid rgba(255, 208, 0, 0.15); 
+            border-top: 1px solid var(--border-subtle); 
             max-width: 480px; 
             margin: 0 auto; 
             z-index: 100;
@@ -915,7 +1660,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #85767a; 
+            color: var(--text-sub); 
             font-size: 0.66rem; 
             cursor: pointer; 
             font-weight: 600; 
@@ -932,19 +1677,20 @@
             position: fixed;
             top: 18px;
             left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: linear-gradient(135deg, #261217, #12080b);
+            transform: translateX(-50%) translateY(-120px);
+            background: var(--bg-glass);
             border: 1px solid var(--accent-gold);
             color: #fff;
-            padding: 12px 18px;
+            padding: 11px 18px;
             border-radius: 14px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             z-index: 2000;
             box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 15px var(--accent-gold-glow);
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             max-width: 90%;
             text-align: center;
+            pointer-events: none;
         }
         .toast-banner.show {
             transform: translateX(-50%) translateY(0);
@@ -954,7 +1700,7 @@
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.88);
+            background: rgba(0,0,0,0.86);
             backdrop-filter: blur(6px);
             display: flex;
             align-items: center;
@@ -971,22 +1717,22 @@
         }
 
         .modal-box {
-            background: #16161c;
+            background: var(--bg-card);
             padding: 24px 22px;
             border-radius: 22px;
             width: 90%;
-            max-width: 350px;
-            border: 1px solid rgba(239, 35, 60, 0.5);
+            max-width: 355px;
+            border: 1px solid var(--primary-red);
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.75);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
             transform: translateY(15px);
             transition: transform 0.25s;
         }
 
         .modal-overlay.active .modal-box { transform: translateY(0); }
 
-        .modal-box h3 { color: #fff; margin: 0 0 6px; font-size: 1.15rem; }
-        .modal-box p { color: var(--text-sub); font-size: 0.78rem; margin-bottom: 14px; line-height: 1.4; }
+        .modal-box h3 { color: #fff; margin: 0 0 6px; font-size: 1.12rem; }
+        .modal-box p { color: var(--text-sub); font-size: 0.76rem; margin-bottom: 14px; line-height: 1.4; }
 
         .input-row-2col {
             display: grid;
@@ -999,10 +1745,10 @@
         .input-group label { display: block; font-size: 0.72rem; color: var(--text-sub); margin-bottom: 5px; }
         .input-group input {
             width: 100%;
-            background: #0c0c10;
-            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid var(--border-subtle);
             color: var(--accent-gold);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             padding: 9px;
             border-radius: 12px;
             text-align: center;
@@ -1019,8 +1765,8 @@
         .lvl-btn {
             flex: 1;
             padding: 8px 4px;
-            background: #0c0c10;
-            border: 1px solid #2c2c34;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             color: var(--text-sub);
             border-radius: 10px;
             font-size: 0.7rem;
@@ -1030,18 +1776,18 @@
         }
         .lvl-btn.selected {
             border-color: var(--accent-gold);
-            background: rgba(255, 183, 3, 0.15);
+            background: var(--primary-red-glow);
             color: var(--accent-gold);
         }
 
         .btn-start {
-            background: linear-gradient(135deg, var(--primary-red), #b71c1c);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             color: #fff;
-            border: none;
+            border: 1px solid var(--accent-gold);
             padding: 12px 0;
             width: 100%;
             border-radius: 12px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 600;
             font-family: 'Prompt', sans-serif;
             cursor: pointer;
@@ -1051,7 +1797,7 @@
         .btn-reset-custom {
             background: transparent;
             border: none;
-            color: #9ab0d6;
+            color: var(--text-sub);
             font-size: 0.72rem;
             font-family: 'Prompt', sans-serif;
             text-decoration: underline;
@@ -1080,7 +1826,7 @@
                 </div>
                 <div class="input-group">
                     <label>ส่วนสูง (ซม.)</label>
-                    <input type="number" id="userHeightInput" placeholder="เช่น 168" step="1">
+                    <input type="number" id="userHeightInput" placeholder="เช่น 160" step="1">
                 </div>
             </div>
 
@@ -1095,84 +1841,274 @@
 
             <button class="btn-start" onclick="saveProfile()">บันทึกและคำนวณโปรแกรม</button>
             <button class="btn-reset-custom" onclick="resetCustomOffsets()">รีเซ็ตค่าบวกลบน้ำหนักรายท่าทั้งหมด</button>
+
+            <div class="backup-section">
+                <label style="font-size: 0.7rem; color: var(--text-sub); display:block;">💾 สำรอง/ย้ายข้อมูลสถิติ (ป้องกันข้อมูลหายเมื่อเปลี่ยนเครื่อง)</label>
+                <div class="backup-btns">
+                    <button type="button" class="btn-backup" onclick="exportBackupCode()">📋 คัดลอกโค้ดสำรอง</button>
+                    <button type="button" class="btn-backup" onclick="toggleImportBox()">📥 นำเข้าข้อมูล</button>
+                </div>
+                <div id="importBoxWrap" style="display:none; margin-top:8px;">
+                    <input type="text" id="importCodeInput" placeholder="วางโค้ดสำรองที่นี่..." style="width:100%; background:#08080a; border:1px solid var(--accent-gold); color:#fff; padding:6px 8px; border-radius:8px; font-size:0.72rem; font-family:'Prompt',sans-serif; margin-bottom:6px;">
+                    <button type="button" class="btn-backup" style="width:100%; background:var(--primary-red); color:#fff; border:none;" onclick="importBackupCode()">ยืนยันกู้คืนข้อมูล</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="app-container">
+        <div class="theme-backdrop" aria-hidden="true">
+            <!-- Scene 1: Crimson Gold Sparks -->
+            <div class="theme-scene scene-crimson">
+                <div class="star-sparkle" style="top:85px; left:12%; color:#ffd000;">✦</div>
+                <div class="star-sparkle" style="top:190px; right:10%; color:#ff1e38; animation-delay:1.2s;">✧</div>
+                <div class="star-sparkle" style="top:360px; left:8%; color:#ffd000; animation-delay:2.1s;">✦</div>
+            </div>
+
+            <!-- Scene 2: Mercury (PE KMUTT Cosmic Starfield, 4-Point Star Flare & Ringed Planet - NO GEAR) -->
+            <div class="theme-scene scene-mercury">
+                <div class="mercury-nebula-glow"></div>
+                <div class="star-sparkle" style="top:42px; left:10%;">✦</div>
+                <div class="star-sparkle" style="top:98px; left:26%; font-size:0.7rem; animation-delay:0.8s;">✧</div>
+                <div class="star-sparkle" style="top:175px; left:8%; font-size:1.15rem; animation-delay:1.6s;">✦</div>
+                <div class="star-sparkle" style="top:260px; right:14%; font-size:0.9rem; animation-delay:0.4s;">✦</div>
+                <div class="star-sparkle" style="top:340px; left:18%; font-size:0.75rem; animation-delay:2.2s;">✧</div>
+                <div class="star-sparkle" style="top:450px; right:10%; font-size:1.05rem; animation-delay:1.1s;">✦</div>
+
+                <!-- 4-Point Cosmic Star Flare (like top-center of Mercury poster) -->
+                <svg class="mercury-star-flare" viewBox="0 0 100 100" fill="none">
+                    <defs>
+                        <radialGradient id="starFlareGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                            <stop offset="35%" stop-color="#bae6fd" stop-opacity="0.75"/>
+                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="36" fill="url(#starFlareGlow)"/>
+                    <path d="M50 2 C52 38 62 48 98 50 C62 52 52 62 50 98 C48 62 38 52 2 50 C38 48 48 38 50 2 Z" fill="#ffffff"/>
+                    <path d="M50 20 L53 47 L80 50 L53 53 L50 80 L47 53 L20 50 L47 47 Z" fill="#e0f2fe" transform="rotate(45 50 50)" opacity="0.65"/>
+                </svg>
+
+                <!-- Cosmic Star-Filled Planet with Glowing Orbital Ring (No Gear Teeth!) -->
+                <svg class="mercury-cosmic-planet" viewBox="0 0 260 220" fill="none">
+                    <defs>
+                        <radialGradient id="planetCoreGrad" cx="40%" cy="35%" r="60%">
+                            <stop offset="0%" stop-color="#1e3a8a"/>
+                            <stop offset="45%" stop-color="#091326"/>
+                            <stop offset="100%" stop-color="#02050b"/>
+                        </radialGradient>
+                        <radialGradient id="planetOuterHalo" cx="50%" cy="50%" r="50%">
+                            <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="orbitalRingGrad" x1="0" y1="0" x2="260" y2="120" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="50%" stop-color="#7dd3fc" stop-opacity="0.8"/>
+                            <stop offset="100%" stop-color="#1e40af" stop-opacity="0.15"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Soft Nebula Halo -->
+                    <circle cx="135" cy="110" r="78" fill="url(#planetOuterHalo)"/>
+                    <!-- Back half of orbital ring -->
+                    <ellipse cx="135" cy="114" rx="108" ry="28" transform="rotate(-18 135 114)" stroke="url(#orbitalRingGrad)" stroke-width="3.5" opacity="0.55"/>
+                    <!-- Cosmic Star Planet Sphere -->
+                    <circle cx="135" cy="110" r="50" fill="url(#planetCoreGrad)" stroke="#7dd3fc" stroke-width="1.8" stroke-opacity="0.6"/>
+                    <!-- Tiny stars inside the dark planet core (just like the shirt emblem) -->
+                    <circle cx="118" cy="95" r="1.3" fill="#ffffff" opacity="0.9"/>
+                    <circle cx="148" cy="88" r="1" fill="#bae6fd" opacity="0.75"/>
+                    <circle cx="155" cy="118" r="1.4" fill="#ffffff" opacity="0.85"/>
+                    <circle cx="125" cy="126" r="1.1" fill="#7dd3fc" opacity="0.8"/>
+                    <circle cx="138" cy="106" r="1.6" fill="#ffffff" opacity="0.95"/>
+                    <!-- Front glowing swoosh of orbital ring + bright star flare on ring -->
+                    <path d="M 35 147 A 108 28 -18 0 0 235 81" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.92"/>
+                    <path d="M 42 142 A 96 22 -18 0 0 226 86" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+                    <!-- Bright 4-Point Star on the ring -->
+                    <path d="M68 124 L71 134 L81 137 L71 140 L68 150 L65 140 L55 137 L65 134 Z" fill="#ffffff"/>
+                </svg>
+            </div>
+
+            <!-- Scene 3: Blue Lavender & Blooming Roses -->
+            <div class="theme-scene scene-lavender">
+                <svg class="lavender-rose-hero" viewBox="0 0 200 200" fill="none">
+                    <defs>
+                        <radialGradient id="roseGrad1" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#f9a8d4"/>
+                            <stop offset="55%" stop-color="#a78bfa"/>
+                            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.2"/>
+                        </radialGradient>
+                    </defs>
+                    <g stroke="#e9d5ff" stroke-width="1.6" fill="url(#roseGrad1)" fill-opacity="0.35">
+                        <path d="M100 30 C130 30 155 55 155 85 C155 118 128 145 100 150 C72 145 45 118 45 85 C45 55 70 30 100 30 Z"/>
+                        <path d="M100 45 C124 45 142 66 138 92 C134 115 116 130 100 132 C84 130 66 115 62 92 C58 66 76 45 100 45 Z"/>
+                        <path d="M100 60 C116 60 126 74 122 90 C118 104 108 114 100 115 C92 114 82 104 78 90 C74 74 84 60 100 60 Z"/>
+                        <path d="M100 74 C108 74 114 81 112 89 C110 96 104 100 100 100 C96 100 90 96 88 89 C86 81 92 74 100 74 Z" fill="#fbcfe8" fill-opacity="0.6"/>
+                        <path d="M52 122 Q24 130 32 102 Q45 108 52 122 Z" fill="#60a5fa" fill-opacity="0.28"/>
+                        <path d="M148 122 Q176 130 168 102 Q155 108 148 122 Z" fill="#60a5fa" fill-opacity="0.28"/>
+                    </g>
+                </svg>
+
+                <svg class="lavender-rose-left" viewBox="0 0 200 200" fill="none">
+                    <g stroke="#c4b5fd" stroke-width="1.5" fill="#818cf8" fill-opacity="0.22">
+                        <path d="M100 38 C128 38 150 62 150 90 C150 120 125 142 100 146 C75 142 50 120 50 90 C50 62 72 38 100 38 Z"/>
+                        <path d="M100 56 C120 56 134 74 130 94 C126 112 112 124 100 126 C88 124 74 112 70 94 C66 74 80 56 100 56 Z"/>
+                        <circle cx="100" cy="90" r="14" fill="#f4b8e4" fill-opacity="0.45"/>
+                    </g>
+                </svg>
+
+                <svg class="floating-petal" style="top:15px; left:18%; animation-delay:0s;" viewBox="0 0 24 24">
+                    <path d="M12 2 C17 6 20 12 16 19 C12 22 7 19 6 14 C5 8 8 4 12 2 Z" fill="#f4b8e4" opacity="0.7"/>
+                </svg>
+                <svg class="floating-petal" style="top:45px; left:68%; animation-delay:3.5s;" viewBox="0 0 24 24">
+                    <path d="M12 2 C17 6 20 12 16 19 C12 22 7 19 6 14 C5 8 8 4 12 2 Z" fill="#a78bfa" opacity="0.7"/>
+                </svg>
+                <svg class="floating-petal" style="top:80px; left:42%; animation-delay:6.2s;" viewBox="0 0 24 24">
+                    <path d="M12 2 C17 6 20 12 16 19 C12 22 7 19 6 14 C5 8 8 4 12 2 Z" fill="#93c5fd" opacity="0.65"/>
+                </svg>
+            </div>
+
+            <!-- Scene 4: Y2K Liquid Chrome Silk Waves (Poster 1 + Video Motion) -->
+            <div class="theme-scene scene-y2k">
+                <svg class="y2k-chrome-canvas" viewBox="0 0 480 920" preserveAspectRatio="none" fill="none">
+                    <defs>
+                        <!-- Metallic Dark Chrome Ribbon Gradients -->
+                        <linearGradient id="y2kChromeFold1" x1="0%" y1="0%" x2="100%" y2="15%">
+                            <stop offset="0%" stop-color="#040609" stop-opacity="0.95"/>
+                            <stop offset="28%" stop-color="#1e293b" stop-opacity="0.75"/>
+                            <stop offset="52%" stop-color="#cbd5e1" stop-opacity="0.55"/>
+                            <stop offset="62%" stop-color="#ffffff" stop-opacity="0.82"/>
+                            <stop offset="76%" stop-color="#334155" stop-opacity="0.8"/>
+                            <stop offset="100%" stop-color="#05070a" stop-opacity="0.98"/>
+                        </linearGradient>
+
+                        <linearGradient id="y2kChromeFold2" x1="100%" y1="0%" x2="0%" y2="25%">
+                            <stop offset="0%" stop-color="#05070a" stop-opacity="0.9"/>
+                            <stop offset="35%" stop-color="#0f172a" stop-opacity="0.85"/>
+                            <stop offset="56%" stop-color="#94a3b8" stop-opacity="0.5"/>
+                            <stop offset="66%" stop-color="#f8fafc" stop-opacity="0.72"/>
+                            <stop offset="82%" stop-color="#1e293b" stop-opacity="0.85"/>
+                            <stop offset="100%" stop-color="#040608" stop-opacity="0.95"/>
+                        </linearGradient>
+
+                        <linearGradient id="y2kSpecularEdge" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+                            <stop offset="30%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="55%" stop-color="#cbd5e1" stop-opacity="0.4"/>
+                            <stop offset="80%" stop-color="#ffffff" stop-opacity="0.88"/>
+                            <stop offset="100%" stop-color="#94a3b8" stop-opacity="0.1"/>
+                        </linearGradient>
+
+                        <!-- Halftone Dot Pattern for Y2K Star -->
+                        <pattern id="y2kHalftoneDots" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+                            <circle cx="2.5" cy="2.5" r="1.5" fill="#f8fafc" opacity="0.85"/>
+                        </pattern>
+                    </defs>
+
+                    <!-- Primary Undulating Vertical/Diagonal Chrome Drapery (Right & Center-Right like Poster 1) -->
+                    <g class="y2k-ribbon-layer-1">
+                        <path d="M250 -60 C340 120 190 310 310 510 C420 690 240 820 350 980 L530 980 L530 -60 Z" fill="url(#y2kChromeFold1)"/>
+                        <path d="M310 -60 C395 140 245 330 365 520 C465 680 300 830 400 980" stroke="url(#y2kSpecularEdge)" stroke-width="3.2" class="y2k-specular-line"/>
+                        <path d="M355 -60 C435 130 295 340 410 530 C495 670 345 835 440 980" stroke="url(#y2kSpecularEdge)" stroke-width="1.5" opacity="0.65"/>
+                    </g>
+
+                    <!-- Secondary Counter-Flowing Liquid Metallic Ribbon (Left & Center Sweep like Video) -->
+                    <g class="y2k-ribbon-layer-2">
+                        <path d="M-50 -60 C60 150 210 290 95 520 C-15 730 155 850 65 980 L-50 980 Z" fill="url(#y2kChromeFold2)" opacity="0.78"/>
+                        <path d="M35 -60 C140 155 245 310 130 535 C20 740 195 855 110 980" stroke="url(#y2kSpecularEdge)" stroke-width="2.6" class="y2k-specular-line"/>
+                        <path d="M155 -60 C260 175 115 390 235 600 C335 780 185 880 270 980" stroke="url(#y2kSpecularEdge)" stroke-width="1.8" opacity="0.5"/>
+                    </g>
+                </svg>
+
+                <!-- Left Y2K Halftone Starburst (Just like Poster 1 left edge) -->
+                <svg class="y2k-halftone-star" viewBox="0 0 120 120" fill="none">
+                    <path d="M55 6 C59 42 68 51 106 55 C68 59 59 68 55 106 C51 68 42 59 4 55 C42 51 51 42 55 6 Z" fill="url(#y2kHalftoneDots)" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.5"/>
+                    <path d="M88 20 C90 34 94 38 108 40 C94 42 90 46 88 60 C86 46 82 42 68 40 C82 38 86 34 88 20 Z" fill="#ffffff" opacity="0.85"/>
+                </svg>
+
+                <!-- Bottom-Right Y2K Pixel-Dot Star Outline (Just like Poster 1 bottom right) -->
+                <svg class="y2k-pixel-star" viewBox="0 0 100 100" fill="#e2e8f0">
+                    <!-- Pixelated 4-point star contour dots -->
+                    <rect x="48" y="6" width="3" height="3"/><rect x="48" y="12" width="3" height="3"/>
+                    <rect x="45" y="18" width="3" height="3"/><rect x="51" y="18" width="3" height="3"/>
+                    <rect x="42" y="24" width="3" height="3"/><rect x="54" y="24" width="3" height="3"/>
+                    <rect x="38" y="30" width="3" height="3"/><rect x="58" y="30" width="3" height="3"/>
+                    <rect x="32" y="36" width="3" height="3"/><rect x="64" y="36" width="3" height="3"/>
+                    <rect x="24" y="42" width="3" height="3"/><rect x="72" y="42" width="3" height="3"/>
+                    <rect x="14" y="46" width="3" height="3"/><rect x="82" y="46" width="3" height="3"/>
+                    <rect x="6" y="49" width="3" height="3"/><rect x="90" y="49" width="3" height="3"/>
+                    <rect x="14" y="52" width="3" height="3"/><rect x="82" y="52" width="3" height="3"/>
+                    <rect x="24" y="56" width="3" height="3"/><rect x="72" y="56" width="3" height="3"/>
+                    <rect x="32" y="62" width="3" height="3"/><rect x="64" y="62" width="3" height="3"/>
+                    <rect x="38" y="68" width="3" height="3"/><rect x="58" y="68" width="3" height="3"/>
+                    <rect x="42" y="74" width="3" height="3"/><rect x="54" y="74" width="3" height="3"/>
+                    <rect x="45" y="80" width="3" height="3"/><rect x="51" y="80" width="3" height="3"/>
+                    <rect x="48" y="86" width="3" height="3"/><rect x="48" y="92" width="3" height="3"/>
+                </svg>
+            </div>
+        </div>
+
         <!-- Top Utility Bar -->
         <div class="top-nav">
             <div class="badge-pill">🔥 ซ้อมสำเร็จ: <span id="workout-count">0</span> ครั้ง</div>
-            <button class="user-profile-btn" onclick="openSetupModal()">⚙️ <span id="display-user-weight">-</span> กก. | <span id="display-user-height">-</span> ซม.</button>
+            <button class="user-profile-btn" onclick="openSetupModal()">⚙️ <span id="display-user-weight">50</span> กก. | <span id="display-user-height">160</span> ซม.</button>
         </div>
 
-        <!-- Header -->
+        <!-- Header with Dynamic Theme-Synced Logo -->
         <div class="header">
             <div class="logo-container" id="app-logo-holder">
-                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg id="main-app-logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <!-- วงแหวนพลังงานด้านหลัง (แดง-ดำ-ทอง ไม่ปนส้ม) -->
                         <linearGradient id="auraGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ff1e38" stop-opacity="0.85"/>
-                            <stop offset="50%" stop-color="#8a0014" stop-opacity="0.45"/>
-                            <stop offset="100%" stop-color="#ffd000" stop-opacity="0.75"/>
+                            <stop offset="0%" style="stop-color:var(--logo-aura-1); stop-opacity:0.85"/>
+                            <stop offset="50%" style="stop-color:var(--logo-aura-2); stop-opacity:0.45"/>
+                            <stop offset="100%" style="stop-color:var(--logo-aura-3); stop-opacity:0.75"/>
                         </linearGradient>
-                        <!-- ขนลูกแบด 3 มิติ (ขาวอมแดงคริมสันจางๆ) -->
                         <linearGradient id="featherLight" x1="20" y1="15" x2="95" y2="75" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="65%" stop-color="#ffeef0"/>
-                            <stop offset="100%" stop-color="#ffb3be"/>
+                            <stop offset="0%" style="stop-color:#ffffff"/>
+                            <stop offset="65%" style="stop-color:#f8fafc"/>
+                            <stop offset="100%" style="stop-color:var(--logo-feather-end)"/>
                         </linearGradient>
-                        <!-- หัวก๊อกลูกแบดสีทองบริสุทธิ์ -->
                         <linearGradient id="corkGold" x1="35" y1="70" x2="85" y2="112" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#fff6b8"/>
-                            <stop offset="45%" stop-color="#ffd000"/>
-                            <stop offset="100%" stop-color="#b89200"/>
+                            <stop offset="0%" style="stop-color:var(--logo-cork-1)"/>
+                            <stop offset="45%" style="stop-color:var(--logo-cork-2)"/>
+                            <stop offset="100%" style="stop-color:var(--logo-cork-3)"/>
                         </linearGradient>
-                        <!-- แถบคาดสีแดงนีออน -->
                         <linearGradient id="bandCrimson" x1="30" y1="68" x2="90" y2="78" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ff1e38"/>
-                            <stop offset="50%" stop-color="#d60022"/>
-                            <stop offset="100%" stop-color="#7a0012"/>
+                            <stop offset="0%" style="stop-color:var(--logo-band-1)"/>
+                            <stop offset="50%" style="stop-color:var(--logo-band-2)"/>
+                            <stop offset="100%" style="stop-color:var(--logo-band-3)"/>
                         </linearGradient>
-                        <!-- สายฟ้าฟาดตรงกลาง (ทอง-แดงคริมสัน) -->
                         <linearGradient id="boltGrad" x1="40" y1="5" x2="75" y2="105" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="40%" stop-color="#ffd000"/>
-                            <stop offset="78%" stop-color="#ff1e38"/>
-                            <stop offset="100%" stop-color="#990016"/>
+                            <stop offset="0%" style="stop-color:var(--logo-bolt-1)"/>
+                            <stop offset="40%" style="stop-color:var(--logo-bolt-2)"/>
+                            <stop offset="78%" style="stop-color:var(--logo-bolt-3)"/>
+                            <stop offset="100%" style="stop-color:var(--logo-bolt-4)"/>
                         </linearGradient>
                     </defs>
 
-                    <!-- วงแหวนความเร็ว (Speed Orbit) -->
+                    <!-- Speed Orbit Ring -->
                     <circle cx="60" cy="60" r="50" stroke="url(#auraGrad)" stroke-width="2.5" stroke-dasharray="18 8" opacity="0.85"/>
 
-                    <!-- กลุ่มลูกแบด + สายฟ้า เอียงทำมุมพุ่งทะยานเหมือนต้นฉบับแต่คมชัดสูง -->
+                    <!-- Shuttlecock + Lightning Bolt -->
                     <g transform="translate(60, 60) scale(-1, 1) rotate(-24) translate(-60, -60)">
-                        <!-- โครงขนลูกแบดด้านหลัง -->
                         <path d="M29 66 L14 20 L40 34 L60 12 L80 34 L106 20 L91 66 Z" fill="url(#featherLight)" fill-opacity="0.22" stroke="url(#featherLight)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                         
-                        <!-- เส้นก้านขนลูกแบด -->
                         <line x1="43" y1="66" x2="36" y2="29" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
                         <line x1="60" y1="66" x2="60" y2="16" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
                         <line x1="77" y1="66" x2="84" y2="29" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
 
-                        <!-- เส้นเชือกถักคาดก้านขนสีทอง-แดง -->
-                        <path d="M24 46 Q60 54 96 46" stroke="#ffd000" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+                        <path d="M24 46 Q60 54 96 46" style="stroke:var(--accent-gold)" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
 
-                        <!-- หัวไม้ก๊อกลูกแบด (Cork Base) -->
                         <path d="M31 68 C31 92 43 107 60 107 C77 107 89 92 89 68 C89 64 76 62 60 62 C44 62 31 64 31 68 Z" fill="url(#corkGold)" stroke="#ffffff" stroke-width="2"/>
 
-                        <!-- แถบคาดสีแดงแรงระเบิด -->
                         <path d="M31.5 73 C45 81 75 81 88.5 73" stroke="url(#bandCrimson)" stroke-width="8" stroke-linecap="round"/>
 
-                        <!-- สายฟ้าฟาดทะลุแกนกลาง (Explosive Lightning) -->
                         <path d="M68 6 L34 54 H61 L47 102 L90 46 H62 L68 6 Z" fill="url(#boltGrad)" stroke="#08080a" stroke-width="3.5" stroke-linejoin="round"/>
-                        <path d="M65 13 L40 51 H61 L51 89 L83 49 H61 L65 13 Z" fill="#fff9bd" opacity="0.65"/>
+                        <path d="M65 13 L40 51 H61 L51 89 L83 49 H61 L65 13 Z" style="fill:var(--logo-bolt-inner)" opacity="0.65"/>
                     </g>
                 </svg>
             </div>
-            <h1 class="app-title">Explosive</h1>
-            <div class="app-subtitle">Athlete Blueprint v3.0</div>
+            <h1 class="app-title" id="app-main-title">EXPLOSIVE</h1>
+            <div class="app-subtitle" id="app-main-subtitle">ATHLETE BLUEPRINT V5.0</div>
         </div>
 
         <!-- Quick Stats Dashboard Strip -->
@@ -1186,7 +2122,7 @@
                 <div class="stat-lbl">เซตที่ทำสำเร็จ</div>
             </div>
             <div class="stat-box">
-                <div class="stat-val" id="stat-bmi-status">-</div>
+                <div class="stat-val" id="stat-bmi-status">หุ่นนักแบด 🏸</div>
                 <div class="stat-lbl">ดัชนีหุ่นนักกีฬา</div>
             </div>
         </div>
@@ -1194,13 +2130,71 @@
         <!-- Today Recommendation Banner -->
         <div class="today-banner" id="today-banner">
             <span>📅 วันนี้: <b id="today-plan-text">กำลังโหลด...</b></span>
+            <span style="font-size: 0.7rem; color: var(--accent-gold);">⚡</span>
+        </div>
+
+        <!-- 5-Minute Dynamic Warm-up Drawer (Properly closed!) -->
+        <div class="warmup-drawer">
+            <div class="warmup-header" onclick="toggleWarmupDrawer()">
+                <span>🔥 วอร์มอัพก่อนซ้อม 5 นาที (Dynamic Warm-Up)</span>
+                <span class="w-status" id="warmup-status-text">กดเพื่อเช็คชื่อ ▾</span>
+            </div>
+            <div class="warmup-body" id="warmup-body">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.72rem; color:var(--text-sub);">แตะท่าที่วอร์มเสร็จแล้วเพื่อปลุกระบบประสาท:</span>
+                    <button class="btn-work-timer" onclick="startWorkTimer(60, 'วอร์มอัพ 60วิ')">⏱️ จับเวลา 60 วิ</button>
+                </div>
+                <div class="warmup-chips">
+                    <div class="w-chip" onclick="toggleWarmupChip(this)">⚡ High Knees (ยกเข่าสูง)</div>
+                    <div class="w-chip" onclick="toggleWarmupChip(this)">🦵 Butt Kicks (เตะก้น)</div>
+                    <div class="w-chip" onclick="toggleWarmupChip(this)">🔄 Arm Circles (หมุนไหล่)</div>
+                    <div class="w-chip" onclick="toggleWarmupChip(this)">🏸 Lunge + Twist (บิดลำตัว)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CNS Readiness & Explosive Tempo Pacer Strip -->
+        <div class="coach-tools-strip">
+            <div class="tool-mini-card">
+                <div class="tool-mini-title">
+                    <span>🔋 สภาพร่างกายวันนี้</span>
+                </div>
+                <select class="readiness-select" id="readiness-select" onchange="changeReadinessMode(this.value)">
+                    <option value="1.0">🔥 สดชื่นพร้อมลุย (100%)</option>
+                    <option value="0.9">🏸 เพิ่งตีแบดมา (-10% เซฟล้า)</option>
+                    <option value="1.05">⚡ ฟิตจัด (+5% อัปพลัง)</option>
+                </select>
+            </div>
+            <div class="tool-mini-card">
+                <div class="tool-mini-title">
+                    <span>🎵 โค้ชคุมจังหวะยก</span>
+                    <span id="tempo-rep-counter" style="color:var(--accent-gold);">ขึ้น 1วิ / ลง 3วิ</span>
+                </div>
+                <button id="btn-tempo-pacer" class="btn-tempo-pacer" onclick="toggleTempoPacer()">▶️ เริ่มเคาะจังหวะ (10 ครั้ง)</button>
+            </div>
+        </div>
+
+        <!-- Soreness Tracker & Smart AI Injury Adaptation -->
+        <div class="soreness-card">
+            <div class="soreness-top">
+                <div class="soreness-title">🩺 เช็คอาการปวด & AI ปรับตารางอัตโนมัติ</div>
+                <span style="font-size: 0.65rem; color: var(--accent-gold);" id="soreness-active-badge">พร้อมลุย 100%</span>
+            </div>
+            <div class="soreness-pills">
+                <button type="button" class="sore-pill active" data-sore="none" onclick="setSorenessMode('none')">✅ ปกติ</button>
+                <button type="button" class="sore-pill" data-sore="knee" onclick="setSorenessMode('knee')">🦵 ปวดเข่า</button>
+                <button type="button" class="sore-pill" data-sore="shoulder" onclick="setSorenessMode('shoulder')">💪 ปวดไหล่</button>
+                <button type="button" class="sore-pill" data-sore="back" onclick="setSorenessMode('back')">⚡ ตึงหลังล่าง</button>
+                <button type="button" class="sore-pill" data-sore="ankle" onclick="setSorenessMode('ankle')">🦶 ตึงน่อง/ข้อเท้า</button>
+            </div>
+            <div id="ai-coach-diagnostic" class="ai-coach-diagnostic"></div>
         </div>
 
         <!-- Sticky Progress Bar -->
         <div class="progress-wrapper" id="progress-wrapper">
             <div class="progress-header">
-                <span id="progress-title">ความคืบหน้าโปรแกรม</span>
-                <b id="progress-percent">0%</b>
+                <span id="progress-title">ความคืบหน้า Program A</span>
+                <b id="progress-percent">0% (0/19 เซต)</b>
             </div>
             <div class="progress-track">
                 <div class="progress-fill" id="progress-fill"></div>
@@ -1214,7 +2208,7 @@
                 <span class="section-sub">ทำก่อนเวท 10 นาที</span>
             </div>
 
-            <!-- NEW: 6-Corner Interactive Shadow Badminton Coach -->
+            <!-- 6-Corner Interactive Shadow Badminton Coach -->
             <div class="court-coach-card">
                 <div class="court-header">
                     <div class="court-title">🏸 โค้ชสุ่มเป้า 6 มุมคอร์ท (Shadow Drill)</div>
@@ -1237,6 +2231,18 @@
                         <option value="1200">ความเร็ว: Loh Kean Yew (1.2 วิ/ลูก)</option>
                     </select>
                     <button class="btn-coach-run" id="btn-coach-run" onclick="toggleCourtCoach()">▶️ เริ่มสุ่ม 30 วิ</button>
+                </div>
+            </div>
+
+            <!-- Split-Step Reaction Time Tester -->
+            <div class="reflex-box">
+                <div class="court-header" style="margin-bottom: 4px;">
+                    <div class="court-title">⚡ ทดสอบปฏิกิริยา Split-Step (Reflex Test)</div>
+                    <span class="tag" id="best-reflex-badge">สถิติสูงสุด: - ms</span>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-sub); margin: 0;">แตะเพื่อเริ่ม รอจนแถบเปลี่ยนเป็น <b>สีสว่าง</b> แล้วแตะให้ไวที่สุด!</p>
+                <div class="reflex-pad" id="reflex-pad" onclick="handleReflexTap()">
+                    👆 แตะที่นี่เพื่อเริ่มทดสอบความไว
                 </div>
             </div>
 
@@ -1267,6 +2273,23 @@
                 </div>
                 <div class="cue-box">
                     • <b>Athletic Stance:</b> ทิ้งน้ำหนักไปที่จมูกเท้า ย่อเข่าเล็กน้อย ส้นเท้าลอยนิดๆ พร้อมพุ่งตลอดเวลา
+                </div>
+                <div class="sets-container" data-rest="60">
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
+                    <div class="set-btn" onclick="toggleSet(this)">เซต 3</div>
+                </div>
+            </div>
+
+            <div class="card" data-card-id="agi-3" data-weight-key="none" data-reps="20">
+                <div class="card-top"><h3>3. Lateral Line Hops (โดดสลับเส้น)</h3><span class="tag">3 เซต x 20 วิ</span></div>
+                <p>กระโดดสองขาข้ามเส้นซ้าย-ขวาสลับกันให้เร็วที่สุด เสมือนเท้าติดสปริงและพื้นร้อน</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 จุดโฟกัส & เทคนิค</button>
+                    <button class="btn-work-timer" onclick="startWorkTimer(20, 'Line Hops 20วิ')">⏱️ จับเวลาทำ 20 วิ</button>
+                </div>
+                <div class="cue-box">
+                    • <b>ส้นเท้าห้ามแตะพื้น:</b> ใช้จมูกเท้าดีดตัวให้สัมผัสพื้นสั้นที่สุด (Minimal Ground Contact Time) เพื่อสร้างเอ็นร้อยหวายที่เด้งเหมือนสปริง
                 </div>
                 <div class="sets-container" data-rest="60">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
@@ -1319,12 +2342,14 @@
                         <button class="btn-step" onclick="adjustWeight('rdl', 1)">+</button>
                     </div>
                 </div>
+                <div id="hint-rdl" class="smart-rep-hint"></div>
                 <p>ดันสะโพกไปด้านหลังจนตึงแฮมสตริง หลังตรง แล้วบีบก้นดันสะโพกกลับขึ้นมาอย่างทรงพลัง</p>
                 <div class="cue-toggle-row">
-                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 ประโยชน์ในคอร์ทแบด</button>
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & ประโยชน์</button>
                 </div>
                 <div class="cue-box">
-                    • เสริมแฮมสตริงและก้น ช่วยเพิ่มความสูงในการกระโดด (Vertical Jump) และดึงตัวกลับจากการก้าว Lunge ลึกๆ
+                    • <b>การจัดท่า:</b> งอเข่านิดเดียว ล็อกหลังตรง พับสะโพกไปข้างหลังเหมือนใช้ก้นดันประตูให้ปิด<br>
+                    • <b>ประโยชน์:</b> เพิ่มความสูงในการกระโดดตบ (Jump Smash) และดึงตัวกลับจากการก้าว Lunge ลึกๆ
                 </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
@@ -1342,7 +2367,15 @@
                         <button class="btn-step" onclick="adjustWeight('bench', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-bench" class="smart-rep-hint"></div>
                 <p>นอนบนม้านั่ง ออกแรงระเบิดดันดัมเบลขึ้นตรงๆ ให้ไวที่สุด ค่อยๆ คุมน้ำหนักลงช้าๆ</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>มุมข้อศอก:</b> เก็บศอกทำมุมเฉียง 45 องศากับลำตัว (ไม่กางศอกตั้งฉาก 90 องศา) เพื่อเซฟหัวไหล่<br>
+                    • <b>จังหวะระเบิด:</b> ดันขึ้นให้พุ่งเร็ว 1 วินาที ต้านตอนลงช้าๆ 2-3 วินาที
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1359,12 +2392,15 @@
                         <button class="btn-step" onclick="adjustWeight('bss', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-bss" class="smart-rep-hint"></div>
                 <p>พาดเท้าหลังบนม้านั่ง ย่อเข่าหน้าลงจนขนานพื้น แล้วถีบเท้าหน้าส่งตัวขึ้นอย่างรวดเร็ว</p>
                 <div class="cue-toggle-row">
-                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 ประโยชน์ในคอร์ทแบด</button>
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & การพักสลับข้าง</button>
+                    <button class="btn-side-rest" onclick="startRestTimer(20)">⏱️ พักสลับข้าง 20วิ</button>
                 </div>
                 <div class="cue-box">
-                    • ท่าเอกของนักแบดระดับโลก! สร้างแรงสปริงขาเดียวสำหรับการเทคตัวกระโดดและการเบรกตัวที่หน้าเน็ต
+                    • <b>เริ่มจากขาข้างที่ไม่ถนัดก่อน:</b> เมื่อทำครบ 8 ครั้ง ให้กดปุ่ม <b>"พักสลับข้าง 20วิ"</b> แล้วทำอีกข้างจนครบ ค่อยกดนับเซตเพื่อพักใหญ่ 90 วิ<br>
+                    • <b>ประโยชน์:</b> สร้างแรงสปริงขาเดียวสำหรับการเทคตัวกระโดดและการเบรกตัวที่หน้าเน็ต
                 </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
@@ -1382,7 +2418,14 @@
                         <button class="btn-step" onclick="adjustWeight('tricep', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-tricep" class="smart-rep-hint"></div>
                 <p>ถือดัมเบลเหนือศีรษะ ล็อกข้อศอกให้นิ่ง ย่อศอกลงด้านหลังแล้วดันเหยียดแขนขึ้นให้สุด</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>ข้อศอกห้ามกาง:</b> บีบข้อศอกให้ชี้ไปข้างหน้าตลอดเวลา ท่านี้สร้างกล้ามเนื้อหลังแขนที่ใช้สะบัดตบลูกและตวัดไม้รับลูกตบ
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1393,6 +2436,12 @@
             <div class="card" data-card-id="pa-6" data-weight-key="none" data-reps="15">
                 <div class="card-top"><h3>6. Hanging Knee Raises</h3><span class="tag">3 เซต x 12-15 ครั้ง</span></div>
                 <p>โหนบาร์ เกร็งหน้าท้องดึงเข่าขึ้นมาจนขนานพื้นอย่างรวดเร็ว ค่อยๆ ผ่อนลง ห้ามแกว่งตัว</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>โฟกัสม้วนก้นกบขึ้น:</b> ดึงเข่าขึ้นพร้อมม้วนสะโพกเข้าหาอกเล็กน้อย จะโดนหน้าท้องส่วนล่างเต็มๆ ช่วยให้ทรงตัวกลางอากาศเวลากระโดดตบได้นิ่งขึ้น
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1427,7 +2476,14 @@
                         <button class="btn-step" onclick="adjustWeight('goblet', 1)">+</button>
                     </div>
                 </div>
+                <div id="hint-goblet" class="smart-rep-hint"></div>
                 <p>อุ้มดัมเบลแนบอก ย่อตัวลงลึกหลังตรง แล้วถีบส่งแรงจากพื้นยืนขึ้นอย่างรวดเร็ว</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>เปิดปลายเท้าเล็กน้อย:</b> ย่อลงให้ลึกโดยหลังไม่ค่อม ตอนถีบตัวขึ้นให้ระเบิดแรงเหมือนกำลังจะกระโดด
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1445,7 +2501,15 @@
                         <button class="btn-step" onclick="adjustWeight('row', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-row" class="smart-rep-hint"></div>
                 <p>ค้ำม้านั่ง กระชากดัมเบลเข้าหาเอวให้ไว บีบสะบัก (สร้างกล้ามเนื้อเบรกแขนเวลาตบลูก)</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & การพักสลับข้าง</button>
+                    <button class="btn-side-rest" onclick="startRestTimer(20)">⏱️ พักสลับข้าง 20วิ</button>
+                </div>
+                <div class="cue-box">
+                    • <b>ดึงเข้าหาสะโพก:</b> กระชากดัมเบลเป็นแนวโค้งเข้าหาเอว/สะโพก (ไม่ใช่ดึงขึ้นหาหัวไหล่) พักสลับซ้าย-ขวา 20 วินาที
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1462,7 +2526,16 @@
                         <button class="btn-step" onclick="adjustWeight('lunge', 0.5)">+</button>
                     </div>
                 </div>
-                <p>ก้าวเท้าแล้วย่อลง ถีบเท้าหน้าดึงตัวกลับตำแหน่งยืนให้ไวที่สุดโดยตัวไม่เซ</p>
+                <div id="hint-lunge" class="smart-rep-hint"></div>
+                <p>เลือกทำ Reverse Lunge (ก้าวถอยหลังเซฟเข่า) หรือ Walking Lunge (ก้าวเดิน) ถีบเท้าหน้ากลับไวๆ</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 เลือกท่าไหนดี & การพักสลับข้าง</button>
+                    <button class="btn-side-rest" onclick="startRestTimer(20)">⏱️ พักสลับข้าง 20วิ</button>
+                </div>
+                <div class="cue-box">
+                    • <b>Reverse Lunge (แนะนำ):</b> ยืนกับที่ ก้าวขาถอยหลังย่อลง แล้วถีบส้นเท้าหน้าดึงตัวกลับไวๆ เซฟหัวเข่าดีมาก<br>
+                    • <b>การนับเซต:</b> หากทำสลับซ้าย-ขวาครบ 20 ก้าวให้กดพัก 90 วิได้เลย หรือหากทำทีละข้างให้พักคั่น 20 วิก่อนเปลี่ยนขา
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1479,7 +2552,15 @@
                         <button class="btn-step" onclick="adjustWeight('press', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-press" class="smart-rep-hint"></div>
                 <p>นั่งดันดัมเบลขึ้นเหนือศีรษะจนสุดแขนด้วยความเร็ว คุมหลังไม่ให้แอ่น</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่าที่ถูกต้อง (เซฟไหล่)</button>
+                </div>
+                <div class="cue-box">
+                    • <b>ท่านั่งดันดัมเบลเหนือหัว:</b> นั่งหลังพิงเบาะ ยกดัมเบลระดับหู หันฝ่ามือไปด้านหน้า<br>
+                    • <b>มุมศอก 45-60 องศา:</b> บิดข้อศอกเข้ามาด้านหน้าเล็กน้อย (ห้ามกางศอกออกข้างลำตัว 90 องศา) ดันขึ้นให้ไว ผ่อนลงระดับหูช้าๆ 2-3 วิ
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1496,7 +2577,14 @@
                         <button class="btn-step" onclick="adjustWeight('lat', 0.5)">+</button>
                     </div>
                 </div>
+                <div id="hint-lat" class="smart-rep-hint"></div>
                 <p>ยกดัมเบลกางออกด้านข้างระดับไหล่ เสริมความมั่นคงข้อต่อหัวไหล่ คุมจังหวะลงช้าๆ</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>งอศอกเล็กน้อย:</b> ยกแขนกางออกด้านข้างขึ้นมาแค่ระดับหัวไหล่ ห้ามใช้แรงเหวี่ยงลำตัว เน้นเกร็งต้านตอนเอาลง
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1507,6 +2595,12 @@
             <div class="card" data-card-id="pb-6" data-weight-key="none" data-reps="12">
                 <div class="card-top"><h3>6. Lying Leg Lifts</h3><span class="tag">3 เซต x 10-12 ครั้ง</span></div>
                 <p>นอนหงาย กดหลังล่างให้ติดพื้นตลอดเวลา ยกขาคู่ขึ้นตั้งฉากแล้วค่อยๆ ลดลงโดยไม่แตะพื้น</p>
+                <div class="cue-toggle-row">
+                    <button class="btn-cue-toggle" onclick="toggleCue(this)">💡 วิธีจัดท่า & เทคนิค</button>
+                </div>
+                <div class="cue-box">
+                    • <b>หลังล่างห้ามลอย:</b> สอดมือรองใต้ก้นเล็กน้อยได้ กดหลังล่างให้แนบพื้นตลอดเวลาเพื่อกันปวดหลังและให้โดนหน้าท้องล่าง 100%
+                </div>
                 <div class="sets-container" data-rest="90">
                     <div class="set-btn" onclick="toggleSet(this)">เซต 1</div>
                     <div class="set-btn" onclick="toggleSet(this)">เซต 2</div>
@@ -1527,7 +2621,22 @@
                 <span class="section-sub">คำนวณจากสัดส่วนของคุณ</span>
             </div>
 
-            <!-- NEW: Dynamic Nutrition Calculator Card -->
+            <!-- Theme & Animation Settings Card -->
+            <div class="card info-card">
+                <div class="card-top" style="align-items: center; margin-bottom: 6px;">
+                    <h3>🎨 Theme</h3>
+                    <button type="button" id="btn-anim-toggle" class="btn-anim-toggle" onclick="toggleAnimationMode()">✨ แอนิเมชัน: เปิด</button>
+                </div>
+                <p style="font-size: 0.76rem; margin-bottom: 10px;">เลือกโทนสีของแอปและโลโก้ หรือกดปิดแอนิเมชันเพื่อประหยัดแบตเตอรี่</p>
+                <div class="theme-pills-wrap">
+                    <button type="button" class="theme-pill-btn active" data-theme-btn="crimson" onclick="setAppTheme('crimson')">🔥 แดง-ทอง</button>
+                    <button type="button" class="theme-pill-btn" data-theme-btn="mercury" onclick="setAppTheme('mercury')">✦ Mercury</button>
+                    <button type="button" class="theme-pill-btn" data-theme-btn="y2k" onclick="setAppTheme('y2k')">🪩 Y2K Chrome</button>
+                    <button type="button" class="theme-pill-btn" data-theme-btn="lavender" onclick="setAppTheme('lavender')">🌹 Blue Rose</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Nutrition Calculator Card -->
             <div class="card info-card">
                 <div class="card-top">
                     <h3>🍽️ เป้าหมายพลังงานในวันซ้อม</h3>
@@ -1550,16 +2659,43 @@
                 </div>
             </div>
             
+            <!-- Schedule with Drag & Drop + Reset to Default -->
             <div class="card">
-                <span class="tag">📅 ตารางฝึก 3 วัน/สัปดาห์ (สลับ A-B)</span>
-                <div style="margin-top: 10px;">
-                    <div class="schedule-row" data-day="1"><span>จันทร์</span><span>⚡ Agility + 🏋️‍♂️ Program A</span></div>
-                    <div class="schedule-row" data-day="2"><span>อังคาร</span><span>🏸 ซ้อมคอร์ทแบด / พักฟื้น</span></div>
-                    <div class="schedule-row" data-day="3"><span>พุธ</span><span>⚡ Agility + 🏋️‍♂️ Program B</span></div>
-                    <div class="schedule-row" data-day="4"><span>พฤหัสบดี</span><span>🏸 ซ้อมคอร์ทแบด / พักฟื้น</span></div>
-                    <div class="schedule-row" data-day="5"><span>ศุกร์</span><span>⚡ Agility + 🏋️‍♂️ Program A/B</span></div>
-                    <div class="schedule-row" data-day="6"><span>เสาร์</span><span>🏸 ลงคอร์ทตีแบด (Skill Play)</span></div>
-                    <div class="schedule-row" data-day="0"><span>อาทิตย์</span><span>🛌 พักผ่อนเต็มที่ (Total Rest)</span></div>
+                <div class="card-top" style="align-items: center; margin-bottom: 6px;">
+                    <div>
+                        <span class="tag">📅 ตารางฝึก 7 วัน (ลากสลับวันได้)</span>
+                        <p style="font-size: 0.72rem; margin-top: 4px;">แตะค้างเพื่อลากสลับ หรือกดปุ่ม ⬆️⬇️ เพื่อย้ายวันซ้อมตามตารางชีวิตจริง</p>
+                    </div>
+                    <button type="button" class="btn-default-sched" onclick="resetScheduleToDefault()">🔄 ค่าเริ่มต้น</button>
+                </div>
+                <div id="custom-schedule-list" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- Visual Volume Progression Chart -->
+            <div class="card">
+                <div class="card-top">
+                    <div>
+                        <h3>📈 กราฟพัฒนาการน้ำหนักรวม (Volume Trend)</h3>
+                        <p style="font-size: 0.72rem; margin-top: 2px;">เปรียบเทียบ Volume การซ้อม 7 ครั้งล่าสุดเพื่อดูความก้าวหน้า</p>
+                    </div>
+                </div>
+                <div class="chart-box" id="volume-chart-box">
+                    <div class="chart-bars" id="volume-chart-bars"></div>
+                </div>
+            </div>
+
+            <!-- Post-Workout Cooldown & Badminton Injury Prevention -->
+            <div class="card">
+                <div class="card-top">
+                    <h3>🧘‍♂️ คูลดาวน์ & เซฟข้อต่อหลังซ้อม (5 นาที)</h3>
+                    <button class="btn-work-timer" onclick="startWorkTimer(30, 'ยืดค้างไว้ 30วิ')">⏱️ จับเวลา 30 วิ</button>
+                </div>
+                <p style="margin-bottom: 8px;">แตะเช็คท่าที่ยืดเสร็จแล้ว เพื่อลดอาการปวดตึงและป้องกันเอ็นอักเสบจากแบดมินตัน:</p>
+                <div class="warmup-chips">
+                    <div class="w-chip" onclick="this.classList.toggle('done')">🦵 ยืดน่อง & เอ็นร้อยหวาย (30วิ)</div>
+                    <div class="w-chip" onclick="this.classList.toggle('done')">🍑 ยืดก้น & สะโพกหลัง Lunge (30วิ)</div>
+                    <div class="w-chip" onclick="this.classList.toggle('done')">💪 ยืดหัวไหล่ & หน้าอก (30วิ)</div>
+                    <div class="w-chip" onclick="this.classList.toggle('done')">🏸 ยืดข้อมือ & แขนท่อนล่าง (30วิ)</div>
                 </div>
             </div>
 
@@ -1591,12 +2727,14 @@
                     <span id="timer-text">พร้อมพัก</span>
                 </div>
                 <div class="timer-btns">
+                    <button class="t-btn" onclick="startRestTimer(20)">20วิ</button>
                     <button class="t-btn" onclick="startRestTimer(30)">30วิ</button>
                     <button class="t-btn" onclick="startRestTimer(60)">60วิ</button>
                     <button class="t-btn" onclick="startRestTimer(90)">90วิ</button>
                     <button class="t-btn" onclick="addTimerSeconds(15)">+15วิ</button>
                     <button class="t-btn stop" onclick="stopRestTimer()">หยุด</button>
                 </div>
+                <div class="timer-progress-line" id="timer-progress-line"></div>
             </div>
         </div>
 
@@ -1622,7 +2760,6 @@
     </div>
     
     <script>
-        // สัดส่วนน้ำหนักมาตรฐานตามวิทยาศาสตร์การกีฬา (mult2 สำหรับท่าถือดัมเบล 2 ข้างในการคิด Volume)
         const weightMultipliers = {
             rdl:    { mult: 0.35, unit: " กก. (รวมบาร์)", hands: 1 },
             bench:  { mult: 0.15, unit: " กก./ข้าง", hands: 2 },
@@ -1635,25 +2772,529 @@
             lat:    { mult: 0.06, unit: " กก./ข้าง", hands: 2 }
         };
 
+        const DEFAULT_WEEKLY_SCHEDULE = [
+            { dayIndex: 1, dayName: "จันทร์", plan: "⚡ Agility + 🏋️‍♂️ Program A" },
+            { dayIndex: 2, dayName: "อังคาร", plan: "🏸 ซ้อมคอร์ทแบด / พักฟื้น" },
+            { dayIndex: 3, dayName: "พุธ", plan: "⚡ Agility + 🏋️‍♂️ Program B" },
+            { dayIndex: 4, dayName: "พฤหัสบดี", plan: "🏸 ซ้อมคอร์ทแบด / พักฟื้น" },
+            { dayIndex: 5, dayName: "ศุกร์", plan: "⚡ Agility + 🏋️‍♂️ Program A/B" },
+            { dayIndex: 6, dayName: "เสาร์", plan: "🏸 ลงคอร์ทตีแบด (Skill Play)" },
+            { dayIndex: 0, dayName: "อาทิตย์", plan: "🛌 พักผ่อนเต็มที่ (Total Rest)" }
+        ];
+
+        const AI_INJURY_PROTOCOLS = {
+            none: {
+                badge: "พร้อมลุย 100%",
+                summary: "",
+                weightFactor: {},
+                cardSwaps: {}
+            },
+            knee: {
+                badge: "🛡️ โหมดเซฟเข่า",
+                summary: "🤖 <b>AI Coach วิเคราะห์ (อาการปวดเข่า / Patellar Tendon):</b> ระบบได้ปรับลดน้ำหนักท่าขาลง <b>-25%</b> อัตโนมัติ และแนะนำให้แปลงท่ากระแทกเข่าเป็นท่า <b>Isometric & Hip-Dominant</b> เพื่อกระตุ้นการสมานเอ็นสะบ้าโดยไม่เสียความฟิตครับ!",
+                weightFactor: { bss: 0.75, goblet: 0.75, lunge: 0.75 },
+                cardSwaps: {
+                    "agi-1": "🛡️ <b>AI ปรับท่าเซฟเข่า:</b> เปลี่ยนจากการก้าว Lunge ลึกสุดตัว เป็น <b>ก้าวสั้นเน้นความไวปลายเท้า (Short-Step Split-Step)</b> ไม่ย่อเข่าต่ำกว่า 45 องศา",
+                    "agi-3": "🛡️ <b>AI ปรับท่าเซฟเข่า:</b> งดกระโดดกระแทกเปลี่ยนเป็น <b>Low-Impact Quick Feet (ซอยเท้าไวสลับเส้น)</b> เพื่อลดแรงกดลูกสะบ้า",
+                    "pa-4": "🛡️ <b>AI Rehab Swap (แทน Bulgarian Split Squat):</b> แนะนำทำ <b>Isometric Wall Sit (นั่งพิงกำแพงค้างไว้ 45 วินาที x 3 เซต)</b> ช่วยลดปวดเอ็นสะบ้าเข่าของนักแบดได้ดีที่สุด หรือถ้าย่อปกติให้ลดน้ำหนักลง 25%",
+                    "pb-1": "🛡️ <b>AI ปรับท่าเซฟเข่า (Goblet Squat):</b> ย่อลงแค่ระดับ <b>Half Squat (ครึ่งทาง)</b> เน้นดันสะโพกไปข้างหลัง หรือทำ <b>Glute Bridge ยกก้น</b> แทน",
+                    "pb-3": "🛡️ <b>AI ปรับท่าเซฟเข่า:</b> ห้ามทำ Walking Lunge เด็ดขาด! ให้ทำเฉพาะ <b>Short-Range Reverse Lunge (ก้าวถอยหลังสั้นๆ)</b> หน้าแข้งตั้งฉากพื้น"
+                }
+            },
+            shoulder: {
+                badge: "🛡️ โหมดเซฟไหล่",
+                summary: "🤖 <b>AI Coach วิเคราะห์ (อาการปวดไหล่ / Rotator Cuff):</b> ระบบปรับลดน้ำหนักท่าดันไหล่และอกลง <b>-25%</b> พร้อมแนะนำปรับมุมจับดัมเบลเป็นแบบ <b>Neutral Grip (หันฝ่ามือเข้าหากัน)</b> เพื่อลดการเสียดสีของเอ็นหัวไหล่ครับ!",
+                weightFactor: { bench: 0.75, press: 0.75, tricep: 0.8, lat: 0.75 },
+                cardSwaps: {
+                    "pa-1": "🛡️ <b>AI ปรับท่าเซฟไหล่ (Pull-Ups):</b> หากโหนสุดแขนแล้วแปล๊บไหล่ ให้เปลี่ยนเป็น <b>Scapular Pulls (เกร็งสะบักดึงตัวสั้นๆ)</b> หรือดึงยางยืดระดับอกแทน",
+                    "pa-3": "🛡️ <b>AI ปรับท่าเซฟไหล่ (DB Bench Press):</b> บิดดัมเบลหันฝ่ามือเข้าหากัน (Neutral Grip) หรือนอนดันบนพื้น <b>(Floor Press)</b> เพื่อจำกัดระยะศอกไม่ให้ลงลึกเกินแนวไหล่",
+                    "pb-4": "🛡️ <b>AI Rehab Swap (Seated DB Press):</b> หันฝ่ามือเข้าหากันเวลาดันขึ้น หรือสลับไปทำท่าหมุนหัวไหล่ด้านนอก <b>(Side-Lying External Rotation 15 ครั้ง/ข้าง)</b> เพื่อฟื้นฟูเอ็นไหล่ที่ใช้ตบลูก",
+                    "pb-5": "🛡️ <b>AI ปรับท่าเซฟไหล่ (Lateral Raises):</b> ยกดัมเบลทำมุมเฉียงไปด้านหน้า 30 องศา <b>(Scaption Plane)</b> และยกไม่เกินระดับราวนม"
+                }
+            },
+            back: {
+                badge: "🛡️ โหมดเซฟหลังล่าง",
+                summary: "🤖 <b>AI Coach วิเคราะห์ (อาการตึงหลังล่าง / Lower Back):</b> ระบบปรับลดน้ำหนักท่าพับสะโพก (RDL / Squat) ลง <b>-30%</b> เพื่อตัดแรงกดกระดูกสันหลัง และเน้นใช้ก้นกับแกนกลางลำตัวประคองแทนครับ!",
+                weightFactor: { rdl: 0.7, goblet: 0.8, row: 0.85 },
+                cardSwaps: {
+                    "pa-2": "🛡️ <b>AI Rehab Swap (แทน Barbell RDL):</b> แนะนำเปลี่ยนเป็นท่า <b>Dumbbell Glute Bridge / Hip Thrust (นอนหงายวางดัมเบลบนตักแล้วดันก้นขึ้น)</b> ได้พลังก้นและแฮมสตริงเต็มๆ โดยไม่กดทับหลังล่าง!",
+                    "pb-1": "🛡️ <b>AI ปรับท่าเซฟหลังล่าง:</b> เกร็งหน้าท้อง (Bracing) รอบเอว 360 องศาก่อนย่อ หลังตรงตั้งฉาก ไม่ก้มตัวไปข้างหน้า",
+                    "pb-2": "🛡️ <b>AI ปรับท่าเซฟหลังล่าง:</b> ใช้มือและเข่าค้ำบนม้านั่งให้มั่นคง 100% ห้ามบิดกระชากเอวช่วยเด็ดขาด",
+                    "pb-6": "🛡️ <b>AI ปรับท่าเซฟหลังล่าง (Lying Leg Lifts):</b> งอเข่า 90 องศาเวลาลดขาลง <b>(Bent-Knee Tap)</b> หรือทำท่า <b>Deadbug</b> เพื่อล็อกหลังล่างให้ติดพื้นสนิท"
+                }
+            },
+            ankle: {
+                badge: "🛡️ โหมดเซฟข้อเท้า/น่อง",
+                summary: "🤖 <b>AI Coach วิเคราะห์ (ตึงน่อง / เอ็นร้อยหวาย):</b> งดการกระโดดกระแทกปลายเท้าซ้ำๆ ชั่วคราว และเปลี่ยนเป็นท่าเกร็งค้างเพื่อฟื้นฟูความยืดหยุ่นของเอ็นร้อยหวายครับ!",
+                weightFactor: { bss: 0.85, lunge: 0.85 },
+                cardSwaps: {
+                    "agi-1": "🛡️ <b>AI ปรับท่าเซฟข้อเท้า:</b> เคลื่อนที่ด้วยการก้าวสไลด์นุ่มนวล (Smooth Footwork) งดการกระโดดลงน้ำหนักแรงๆ",
+                    "agi-3": "🛡️ <b>AI Rehab Swap (แทน Line Hops):</b> เปลี่ยนเป็นท่า <b>Isometric Calf Raise Hold (เขย่งปลายเท้าสองข้างค้างไว้ 30 วินาที x 3 เซต)</b> ช่วยซ่อมแซมเอ็นร้อยหวายได้ดีเยี่ยม"
+                }
+            }
+        };
+
+        let currentSorenessMode = 'none';
+        let customScheduleData = [];
+        let dragSrcIndex = null;
+
         let timerInterval = null;
         let remainingSeconds = 0;
+        let totalTimerSeconds = 0;
         let currentComputedWeights = {};
 
-        // ตัวแปรสำหรับ 6-Corner Shadow Badminton Coach
+        let reflexState = 'idle';
+        let reflexTimeout = null;
+        let reflexStartTime = 0;
+
         let coachInterval = null;
         let coachTimerInterval = null;
         let coachRemainingMs = 30000;
         const cornerNames = ["หน้าซ้าย", "หน้าขวา", "ข้างซ้าย", "ข้างขวา", "หลังซ้าย", "หลังขวา"];
 
+        let tempoTimeouts = [];
+        let isTempoRunning = false;
+        let dailyReadinessMult = 1.0;
+
         document.addEventListener('DOMContentLoaded', () => {
+            initThemeAndAnimation();
             initTodaySchedule();
             loadSavedState();
+            initSorenessMode();
             updateProgressBar();
             renderHistoryLog();
+            loadBestReflex();
             requestWakeLock();
         });
 
-        // ป้องกันหน้าจอดับขณะซ้อม (Screen Wake Lock API)
+        /* ================= THEME, DYNAMIC LOGO & FAVICON ENGINE ================= */
+        function initThemeAndAnimation() {
+            const savedTheme = localStorage.getItem('athleteTheme') || 'crimson';
+            const animOff = localStorage.getItem('athleteAnimOff') === 'true';
+            setAppTheme(savedTheme, false);
+            applyAnimationState(animOff);
+        }
+
+        function syncDynamicFavicon(themeName) {
+            const palettes = {
+                crimson: {
+                    bg1: '#38060e', bg2: '#08080a', primary: '#ff1e38', dark: '#7a0012', accent: '#ffd000', light: '#fff6b8'
+                },
+                mercury: {
+                    bg1: '#1e3a5f', bg2: '#050914', primary: '#38bdf8', dark: '#1e3a8a', accent: '#e2e8f0', light: '#bae6fd'
+                },
+                y2k: {
+                    bg1: '#334155', bg2: '#06080b', primary: '#cbd5e1', dark: '#1e293b', accent: '#ffffff', light: '#f8fafc'
+                },
+                lavender: {
+                    bg1: '#2e235c', bg2: '#0b091b', primary: '#818cf8', dark: '#3730a3', accent: '#f4b8e4', light: '#fce7f3'
+                }
+            };
+            const p = palettes[themeName] || palettes.crimson;
+
+            const metaTheme = document.getElementById('meta-theme-color');
+            if (metaTheme) metaTheme.setAttribute('content', p.bg2);
+
+            const svgContent = `<svg width="512" height="512" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="120" rx="26" fill="${p.bg1}"/>
+                <rect x="4" y="4" width="112" height="112" rx="22" stroke="${p.accent}" stroke-width="3"/>
+                <circle cx="60" cy="60" r="44" stroke="${p.primary}" stroke-width="2.5" stroke-dasharray="16 7"/>
+                <g transform="translate(60, 60) scale(-1, 1) rotate(-24) translate(-60, -60)">
+                    <path d="M30 65 L16 22 L41 35 L60 14 L79 35 L104 22 L90 65 Z" fill="${p.primary}" fill-opacity="0.22" stroke="#ffffff" stroke-width="4.8" stroke-linejoin="round"/>
+                    <path d="M32 67 C32 90 44 104 60 104 C76 104 88 90 88 67 C88 63 75 61 60 61 C45 61 32 63 32 67 Z" fill="${p.accent}" stroke="#ffffff" stroke-width="2"/>
+                    <path d="M32.5 72 C45 80 75 80 87.5 72" stroke="${p.primary}" stroke-width="7.5" stroke-linecap="round"/>
+                    <path d="M68 8 L35 54 H61 L47 100 L89 46 H62 L68 8 Z" fill="${p.light}" stroke="${p.bg2}" stroke-width="3.2" stroke-linejoin="round"/>
+                </g>
+            </svg>`;
+
+            const faviconEl = document.getElementById('app-favicon');
+            if (faviconEl) {
+                faviconEl.href = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent);
+            }
+        }
+
+        function setAppTheme(themeName, showNotification = true) {
+            document.body.setAttribute('data-theme', themeName);
+            localStorage.setItem('athleteTheme', themeName);
+
+            document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.themeBtn === themeName);
+            });
+
+            const subTitleEl = document.getElementById('app-main-subtitle');
+            if (subTitleEl) {
+                if (themeName === 'mercury') {
+                    subTitleEl.innerText = "MERCURY • BEYOND THE STARS";
+                } else if (themeName === 'y2k') {
+                    subTitleEl.innerText = "MERCURY • Y2K LIQUID CHROME";
+                } else if (themeName === 'lavender') {
+                    subTitleEl.innerText = "BLUE LAVENDER • ROSE EDITION";
+                } else {
+                    subTitleEl.innerText = "ATHLETE BLUEPRINT V5.0";
+                }
+            }
+
+            syncDynamicFavicon(themeName);
+
+            if (showNotification) {
+                const names = {
+                    crimson: "🔥 ธีม Crimson Gold (ดำ-แดง-ทอง ดั้งเดิม)",
+                    mercury: "✦ ธีม Mercury Cosmic Star (ดวงดาวและวงแหวนอวกาศ)",
+                    y2k: "🪩 ธีม Y2K Liquid Chrome (คลื่นโลหะโครเมียมไหลพริ้ว)",
+                    lavender: "🌹 ธีม Blue Lavender Rose (กุหลาบสีคราม-ลาเวนเดอร์)"
+                };
+                showToast(`เปลี่ยนเป็น ${names[themeName] || themeName} แล้ว!`);
+            }
+        }
+
+        function toggleAnimationMode() {
+            const isCurrentlyOff = document.body.classList.contains('no-anim');
+            const nextOffState = !isCurrentlyOff;
+            localStorage.setItem('athleteAnimOff', String(nextOffState));
+            applyAnimationState(nextOffState);
+            if (nextOffState) {
+                showToast("🔋 เปิดโหมดประหยัดแบตเตอรี่: หยุดแอนิเมชันพื้นหลังทั้งหมด");
+            } else {
+                showToast("✨ เปิดแอนิเมชันเอฟเฟกต์เต็มรูปแบบ!");
+            }
+        }
+
+        function applyAnimationState(isOff) {
+            document.body.classList.toggle('no-anim', isOff);
+            const btn = document.getElementById('btn-anim-toggle');
+            if (btn) {
+                if (isOff) {
+                    btn.classList.add('eco-on');
+                    btn.innerText = "🔋 ประหยัดแบต: ปิด";
+                } else {
+                    btn.classList.remove('eco-on');
+                    btn.innerText = "✨ แอนิเมชัน: เปิด";
+                }
+            }
+        }
+
+        /* ================= SORENESS TRACKER & AI INJURY ADAPTATION ================= */
+        function initSorenessMode() {
+            const savedSore = localStorage.getItem('athleteSorenessMode') || 'none';
+            setSorenessMode(savedSore, false);
+        }
+
+        function setSorenessMode(mode, notify = true) {
+            currentSorenessMode = AI_INJURY_PROTOCOLS[mode] ? mode : 'none';
+            localStorage.setItem('athleteSorenessMode', currentSorenessMode);
+
+            document.querySelectorAll('.sore-pill').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.sore === currentSorenessMode);
+            });
+
+            const proto = AI_INJURY_PROTOCOLS[currentSorenessMode];
+            const badgeEl = document.getElementById('soreness-active-badge');
+            const diagEl = document.getElementById('ai-coach-diagnostic');
+
+            if (badgeEl) badgeEl.innerText = proto.badge;
+
+            if (diagEl) {
+                if (proto.summary) {
+                    diagEl.innerHTML = proto.summary;
+                    diagEl.classList.add('show');
+                } else {
+                    diagEl.innerHTML = "";
+                    diagEl.classList.remove('show');
+                }
+            }
+
+            document.querySelectorAll('.card[data-card-id]').forEach(card => {
+                const cid = card.dataset.cardId;
+                let banner = card.querySelector('.ai-swap-banner');
+                if (!banner) {
+                    banner = document.createElement('div');
+                    banner.className = 'ai-swap-banner';
+                    const descP = card.querySelector('p');
+                    if (descP) {
+                        card.insertBefore(banner, descP);
+                    } else {
+                        card.appendChild(banner);
+                    }
+                }
+
+                const swapText = proto.cardSwaps[cid];
+                if (swapText) {
+                    card.classList.add('ai-modified');
+                    banner.innerHTML = swapText;
+                    banner.classList.add('show');
+                } else {
+                    card.classList.remove('ai-modified');
+                    banner.innerHTML = "";
+                    banner.classList.remove('show');
+                }
+            });
+
+            updateWorkoutWeights();
+            calculateDashboardMetrics();
+
+            if (notify) {
+                if (currentSorenessMode === 'none') {
+                    showToast("✅ ร่างกายปกติ 100%: คืนค่าน้ำหนักและท่าซ้อมมาตรฐาน");
+                } else {
+                    showToast(`${proto.badge}: AI ปรับลดน้ำหนักและแนะนำท่าทดแทนให้แล้ว!`);
+                }
+            }
+        }
+
+        /* ================= DRAG & DROP CUSTOM SCHEDULE ================= */
+        function loadCustomSchedule() {
+            const raw = localStorage.getItem('athleteCustomSchedule');
+            if (raw) {
+                try {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length === 7) {
+                        customScheduleData = parsed;
+                        return;
+                    }
+                } catch (e) {}
+            }
+            customScheduleData = JSON.parse(JSON.stringify(DEFAULT_WEEKLY_SCHEDULE));
+        }
+
+        function saveCustomSchedule() {
+            localStorage.setItem('athleteCustomSchedule', JSON.stringify(customScheduleData));
+            renderCustomSchedule();
+            updateTodayBannerFromSchedule();
+        }
+
+        function updateTodayBannerFromSchedule() {
+            const todayDay = new Date().getDay();
+            const found = customScheduleData.find(item => item.dayIndex === todayDay);
+            const bannerEl = document.getElementById('today-plan-text');
+            if (found && bannerEl) {
+                bannerEl.innerText = `วัน${found.dayName} — ${found.plan}`;
+            }
+        }
+
+        function renderCustomSchedule() {
+            const container = document.getElementById('custom-schedule-list');
+            if (!container) return;
+            const todayDay = new Date().getDay();
+
+            container.innerHTML = customScheduleData.map((item, idx) => {
+                const isToday = item.dayIndex === todayDay;
+                return `
+                    <div class="schedule-row ${isToday ? 'today-highlight' : ''}"
+                         draggable="true"
+                         data-sched-idx="${idx}"
+                         ondragstart="handleSchedDragStart(event, ${idx})"
+                         ondragover="handleSchedDragOver(event)"
+                         ondragleave="handleSchedDragLeave(event)"
+                         ondrop="handleSchedDrop(event, ${idx})"
+                         ondragend="handleSchedDragEnd(event)">
+                        <div class="sched-left">
+                            <span class="drag-handle" title="ลากเพื่อสลับวัน">⠿</span>
+                            <span>${item.dayName}${isToday ? ' (วันนี้)' : ''}</span>
+                        </div>
+                        <span style="flex:1; text-align:right; padding-right:8px; font-size:0.76rem;">${item.plan}</span>
+                        <div class="sched-controls">
+                            <button type="button" class="btn-sched-move" title="สลับขึ้น" onclick="moveSchedulePlan(${idx}, -1)">⬆️</button>
+                            <button type="button" class="btn-sched-move" title="สลับลง" onclick="moveSchedulePlan(${idx}, 1)">⬇️</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function swapSchedulePlans(idxA, idxB) {
+            if (idxA === idxB || idxA < 0 || idxB < 0 || idxA >= customScheduleData.length || idxB >= customScheduleData.length) return;
+            const tempPlan = customScheduleData[idxA].plan;
+            customScheduleData[idxA].plan = customScheduleData[idxB].plan;
+            customScheduleData[idxB].plan = tempPlan;
+            saveCustomSchedule();
+            showToast(`🔄 สลับตารางวัน${customScheduleData[idxA].dayName} กับ วัน${customScheduleData[idxB].dayName} เรียบร้อย!`);
+        }
+
+        function moveSchedulePlan(idx, direction) {
+            const targetIdx = (idx + direction + customScheduleData.length) % customScheduleData.length;
+            swapSchedulePlans(idx, targetIdx);
+        }
+
+        function handleSchedDragStart(e, idx) {
+            dragSrcIndex = idx;
+            e.currentTarget.classList.add('dragging');
+            if (e.dataTransfer) {
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', String(idx));
+            }
+        }
+
+        function handleSchedDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleSchedDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleSchedDrop(e, dropIdx) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            if (dragSrcIndex !== null && dragSrcIndex !== dropIdx) {
+                swapSchedulePlans(dragSrcIndex, dropIdx);
+            }
+            dragSrcIndex = null;
+        }
+
+        function handleSchedDragEnd(e) {
+            e.currentTarget.classList.remove('dragging');
+            document.querySelectorAll('.schedule-row').forEach(r => r.classList.remove('drag-over', 'dragging'));
+        }
+
+        function resetScheduleToDefault() {
+            customScheduleData = JSON.parse(JSON.stringify(DEFAULT_WEEKLY_SCHEDULE));
+            localStorage.removeItem('athleteCustomSchedule');
+            renderCustomSchedule();
+            updateTodayBannerFromSchedule();
+            showToast("🔄 คืนค่าตารางฝึกเริ่มต้น (Default Schedule) เรียบร้อยแล้ว!");
+        }
+
+        /* ================= WORKOUT & TIMER FUNCTIONS ================= */
+        function changeReadinessMode(val) {
+            dailyReadinessMult = parseFloat(val) || 1.0;
+            updateWorkoutWeights();
+            calculateDashboardMetrics();
+            if (dailyReadinessMult < 1.0) {
+                showToast("🏸 โหมดเซฟความล้า: ปรับลดน้ำหนักเป้าหมายลง 10% เน้นความเร็วและฟอร์มที่คมกริบ!");
+            } else if (dailyReadinessMult > 1.0) {
+                showToast("⚡ โหมดฟิตจัด: เพิ่มน้ำหนักเป้าหมาย +5% ลุยให้เต็มสปีด!");
+            } else {
+                showToast("🔥 โหมดมาตรฐาน 100%: คำนวณน้ำหนักตามตารางหลัก");
+            }
+        }
+
+        function toggleTempoPacer() {
+            if (isTempoRunning) {
+                stopTempoPacer();
+                return;
+            }
+            isTempoRunning = true;
+            const btn = document.getElementById('btn-tempo-pacer');
+            const counterEl = document.getElementById('tempo-rep-counter');
+            btn.classList.add('active');
+            btn.innerText = "⏹️ หยุดจังหวะ";
+
+            const totalReps = 10;
+            let delay = 0;
+
+            counterEl.innerText = "เตรียมตัว...";
+            playBeep([600]);
+
+            for (let r = 1; r <= totalReps; r++) {
+                tempoTimeouts.push(setTimeout(() => {
+                    if (!isTempoRunning) return;
+                    counterEl.innerText = `ครั้งที่ ${r}/${totalReps}: ⚡ ระเบิดขึ้น!`;
+                    playBeep([1050, 1300]);
+                }, delay + 1500));
+
+                for (let downSec = 1; downSec <= 3; downSec++) {
+                    tempoTimeouts.push(setTimeout(() => {
+                        if (!isTempoRunning) return;
+                        counterEl.innerText = `ครั้งที่ ${r}/${totalReps}: คุมลง... (${4 - downSec})`;
+                        playBeep([480]);
+                    }, delay + 1500 + (downSec * 950)));
+                }
+
+                delay += 4000;
+            }
+
+            tempoTimeouts.push(setTimeout(() => {
+                if (!isTempoRunning) return;
+                playBeep([880, 1100, 1320]);
+                showToast("✅ ครบ 10 ครั้งตามจังหวะ Explosive Tempo!");
+                stopTempoPacer();
+            }, delay + 1800));
+        }
+
+        function stopTempoPacer() {
+            isTempoRunning = false;
+            tempoTimeouts.forEach(t => clearTimeout(t));
+            tempoTimeouts = [];
+            const btn = document.getElementById('btn-tempo-pacer');
+            const counterEl = document.getElementById('tempo-rep-counter');
+            if (btn) {
+                btn.classList.remove('active');
+                btn.innerText = "▶️ เริ่มเคาะจังหวะ (10 ครั้ง)";
+            }
+            if (counterEl) {
+                counterEl.innerText = "ขึ้น 1วิ / ลง 3วิ";
+            }
+        }
+
+        function toggleWarmupDrawer() {
+            const body = document.getElementById('warmup-body');
+            if (body) body.classList.toggle('open');
+        }
+
+        function toggleWarmupChip(chip) {
+            chip.classList.toggle('done');
+            const total = document.querySelectorAll('#warmup-body .w-chip').length;
+            const done = document.querySelectorAll('#warmup-body .w-chip.done').length;
+            const statusEl = document.getElementById('warmup-status-text');
+            if (done === total) {
+                statusEl.innerText = "✅ วอร์มครบพร้อมลุย!";
+                playBeep([880, 1100]);
+            } else {
+                statusEl.innerText = `วอร์มแล้ว ${done}/${total} ท่า ▾`;
+            }
+        }
+
+        function loadBestReflex() {
+            const best = localStorage.getItem('athleteBestReflex');
+            const badge = document.getElementById('best-reflex-badge');
+            if (best && badge) {
+                badge.innerText = `สถิติสูงสุด: ${best} ms`;
+            }
+        }
+
+        function handleReflexTap() {
+            const pad = document.getElementById('reflex-pad');
+            if (!pad) return;
+
+            if (reflexState === 'idle') {
+                reflexState = 'waiting';
+                pad.className = 'reflex-pad waiting';
+                pad.innerText = '👀 ย่อเข่ารอสัญญาณไฟสว่าง... (อย่าเพิ่งกด!)';
+                const randomDelay = 1500 + Math.random() * 2500;
+                reflexTimeout = setTimeout(() => {
+                    reflexState = 'go';
+                    pad.className = 'reflex-pad go';
+                    pad.innerText = '⚡ พุ่งตัว! แตะเดี๋ยวนี้! ⚡';
+                    reflexStartTime = performance.now();
+                    playBeep([1050]);
+                }, randomDelay);
+            } else if (reflexState === 'waiting') {
+                clearTimeout(reflexTimeout);
+                reflexState = 'idle';
+                pad.className = 'reflex-pad';
+                pad.innerText = '⚠️ ฟาวล์! คุณออกตัวก่อนไฟเปลี่ยนสี (แตะเพื่อเริ่มใหม่)';
+                playBeep([300]);
+            } else if (reflexState === 'go') {
+                const reactionMs = Math.round(performance.now() - reflexStartTime);
+                reflexState = 'idle';
+                pad.className = 'reflex-pad';
+
+                let grade = "ความไวมาตรฐาน";
+                if (reactionMs < 210) grade = "🔥 ระดับโลก (Loh Kean Yew Speed!)";
+                else if (reactionMs < 260) grade = "⚡ ไวมาก! ระบบประสาทตื่นตัวสุดๆ";
+
+                pad.innerHTML = `⏱️ ความไวของคุณ: <b style="color:var(--accent-gold);">${reactionMs} ms</b> — ${grade}<br><span style="font-size:0.72rem;">(แตะเพื่อทดสอบอีกครั้ง)</span>`;
+
+                const prevBest = parseInt(localStorage.getItem('athleteBestReflex') || '9999');
+                if (reactionMs < prevBest) {
+                    localStorage.setItem('athleteBestReflex', reactionMs);
+                    loadBestReflex();
+                    showToast(`⚡ สถิติความไวใหม่! ${reactionMs} ms`);
+                }
+            }
+        }
+
         async function requestWakeLock() {
             if ('wakeLock' in navigator) {
                 try { await navigator.wakeLock.request('screen'); } catch (e) {}
@@ -1661,25 +3302,14 @@
         }
 
         function initTodaySchedule() {
-            const day = new Date().getDay();
-            const plans = {
-                1: "วันจันทร์ — Agility + Program A 💪",
-                2: "วันอังคาร — ซ้อมคอร์ทแบด / พักฟื้น 🏸",
-                3: "วันพุธ — Agility + Program B 🔥",
-                4: "วันพฤหัสบดี — ซ้อมคอร์ทแบด / พักฟื้น 🏸",
-                5: "วันศุกร์ — Agility + Program A/B ⚡",
-                6: "วันเสาร์ — ลงคอร์ทตีแบด (Skill Play) 🏆",
-                0: "วันอาทิตย์ — พักผ่อนเต็มที่ (Total Rest) 🛌"
-            };
-            document.getElementById('today-plan-text').innerText = plans[day];
-
-            const row = document.querySelector(`.schedule-row[data-day="${day}"]`);
-            if (row) row.classList.add('today-highlight');
+            loadCustomSchedule();
+            renderCustomSchedule();
+            updateTodayBannerFromSchedule();
         }
 
         function loadSavedState() {
             const savedWeight = localStorage.getItem('athleteWeight');
-            const savedHeight = localStorage.getItem('athleteHeight') || "168";
+            const savedHeight = localStorage.getItem('athleteHeight') || "160";
             const savedLevel = localStorage.getItem('athleteLevel') || "1.0";
             const workoutCount = localStorage.getItem('athleteWorkoutCount') || "0";
 
@@ -1695,6 +3325,9 @@
                 updateWorkoutWeights();
                 updateNutritionAndBMI(parseFloat(savedWeight), parseFloat(savedHeight));
             } else {
+                // Default initial calculation for 50kg / 160cm while allowing setup modal
+                updateWorkoutWeights();
+                updateNutritionAndBMI(50, 160);
                 openSetupModal();
             }
 
@@ -1719,10 +3352,10 @@
 
         function openSetupModal() {
             document.getElementById('setupModal').classList.add('active');
-            const savedW = localStorage.getItem('athleteWeight');
-            const savedH = localStorage.getItem('athleteHeight') || "168";
-            if (savedW) document.getElementById('userWeightInput').value = savedW;
-            if (savedH) document.getElementById('userHeightInput').value = savedH;
+            const savedW = localStorage.getItem('athleteWeight') || "50";
+            const savedH = localStorage.getItem('athleteHeight') || "160";
+            document.getElementById('userWeightInput').value = savedW;
+            document.getElementById('userHeightInput').value = savedH;
         }
 
         function showToast(msg) {
@@ -1735,7 +3368,7 @@
 
         function saveProfile() {
             const bw = parseFloat(document.getElementById('userWeightInput').value);
-            const bh = parseFloat(document.getElementById('userHeightInput').value) || 168;
+            const bh = parseFloat(document.getElementById('userHeightInput').value) || 160;
             if (!bw || bw < 25 || bw > 180) {
                 showToast("⚠️ กรุณากรอกน้ำหนักตัวให้ถูกต้อง (25-180 กก.)");
                 return;
@@ -1756,7 +3389,6 @@
             showToast("✅ บันทึกข้อมูลและคำนวณตารางซ้อมแล้ว!");
         }
 
-        // คำนวณโภชนาการและดัชนีหุ่นนักแบดจากน้ำหนัก + ส่วนสูง
         function updateNutritionAndBMI(bw, bh) {
             const heightM = bh / 100;
             const bmi = bw / (heightM * heightM);
@@ -1767,7 +3399,6 @@
 
             document.getElementById('stat-bmi-status').innerText = status;
 
-            // คำนวณพลังงานวันซ้อม (Mifflin-St Jeor ประมาณการสำหรับนักกีฬา)
             const bmr = (10 * bw) + (6.25 * bh) - (5 * 22) + 5;
             const tdee = Math.round(bmr * 1.65);
             const protein = Math.round(bw * 1.8);
@@ -1788,9 +3419,11 @@
             const bw = parseFloat(localStorage.getItem('athleteWeight')) || 50;
             const lvl = parseFloat(localStorage.getItem('athleteLevel')) || 1.0;
             const offsets = JSON.parse(localStorage.getItem('athleteWeightOffsets') || '{}');
+            const proto = AI_INJURY_PROTOCOLS[currentSorenessMode] || AI_INJURY_PROTOCOLS.none;
 
             for (const key in weightMultipliers) {
-                const base = roundWeight(bw * weightMultipliers[key].mult * lvl);
+                const injuryMult = (proto.weightFactor && proto.weightFactor[key]) ? proto.weightFactor[key] : 1.0;
+                const base = roundWeight(bw * weightMultipliers[key].mult * lvl * dailyReadinessMult * injuryMult);
                 const offset = offsets[key] || 0;
                 const finalW = Math.max(1, base + offset);
                 currentComputedWeights[key] = finalW;
@@ -1798,7 +3431,22 @@
                 const el = document.getElementById('weight-' + key);
                 if (el) {
                     const sign = offset > 0 ? ` (+${offset})` : (offset < 0 ? ` (${offset})` : '');
-                    el.innerText = finalW + weightMultipliers[key].unit + sign;
+                    const rehabTag = injuryMult < 1.0 ? ` [เซฟข้อต่อ]` : '';
+                    el.innerText = finalW + weightMultipliers[key].unit + sign + rehabTag;
+                }
+
+                const hintEl = document.getElementById('hint-' + key);
+                if (hintEl) {
+                    if (offset < 0) {
+                        const extraReps = Math.min(4, Math.ceil(Math.abs(offset) * 2));
+                        hintEl.innerHTML = `💡 <b>โหมดไม่เปลี่ยนแผ่นเหล็ก (${offset} กก.):</b> ชดเชยด้วยการระเบิดจังหวะขึ้นให้พุ่งไวกว่าเดิม และทำเพิ่มเป็น <b>+${extraReps} ครั้ง/เซต</b> ครับ!`;
+                        hintEl.classList.add('show');
+                    } else if (offset > 0) {
+                        hintEl.innerHTML = `🔥 <b>อัปเกรดน้ำหนัก (+${offset} กก.):</b> โฟกัสฟอร์มให้นิ่ง หากเริ่มยกช้าลงให้ระวังอย่าฝืนจนเสียจังหวะระเบิดพลัง`;
+                        hintEl.classList.add('show');
+                    } else {
+                        hintEl.classList.remove('show');
+                    }
                 }
             }
         }
@@ -1816,6 +3464,7 @@
             updateWorkoutWeights();
             calculateDashboardMetrics();
             document.getElementById('setupModal').classList.remove('active');
+            showToast("🔄 รีเซ็ตค่าบวกลบน้ำหนักรายท่าเรียบร้อย!");
         }
 
         function toggleCue(btn) {
@@ -1823,7 +3472,6 @@
             box.classList.toggle('open');
         }
 
-        // ระบบนับเซต + คำนวณน้ำหนักรวม (Volume) + จับเวลาพักอัตโนมัติ
         function toggleSet(btn) {
             btn.classList.toggle('done');
             const card = btn.closest('.card');
@@ -1853,7 +3501,6 @@
             localStorage.setItem('athleteSetsState', JSON.stringify(state));
         }
 
-        // คำนวณ Total Volume (น้ำหนักเหล็กรวมที่ยกไปวันนี้)
         function calculateDashboardMetrics() {
             const bw = parseFloat(localStorage.getItem('athleteWeight')) || 50;
             let totalVolume = 0;
@@ -1915,7 +3562,6 @@
             const levelNames = { "0.85": "เริ่มต้น", "1.0": "มาตรฐาน", "1.15": "โปร" };
             const levelText = levelNames[lvl] || "มาตรฐาน";
 
-            // รวบรวมรายละเอียดท่าฝึกจากหน้าปัจจุบัน (และรวมท่า Agility หากมีการกดเซตไว้ด้วย)
             const targetCards = [];
             if (activeTab && activeTab.id !== 'tab-agility') {
                 document.querySelectorAll('#tab-agility .card[data-card-id]').forEach(c => {
@@ -1969,7 +3615,6 @@
                 }
             });
 
-            // หากผู้ใช้กดบันทึกโดยยังไม่ได้ติ๊กเซตเลย ให้บันทึกค่าเริ่มต้นของโปรแกรมนั้น
             if (exercisesDetail.length === 0 && activeTab) {
                 activeTab.querySelectorAll('.card[data-card-id]').forEach(card => {
                     const exName = card.querySelector('h3')?.innerText || 'ท่าฝึก';
@@ -2033,6 +3678,8 @@
             const container = document.getElementById('history-list');
             const clearAllBtn = document.getElementById('btn-clear-all-history');
 
+            renderVolumeChart(history);
+
             if (!history.length) {
                 if (clearAllBtn) clearAllBtn.style.display = 'none';
                 container.innerHTML = `<p style="font-size: 0.8rem; color: var(--text-sub);">ยังไม่มีประวัติการซ้อม กดปุ่ม "บันทึกจบการซ้อม" เมื่อเล่นจบโปรแกรม</p>`;
@@ -2084,7 +3731,6 @@
 
         function deleteHistoryItem(index, btnEl) {
             if (btnEl && !btnEl.classList.contains('confirm-mode')) {
-                // รีเซ็ตปุ่มลบรายการอื่นที่อาจค้างสถานะยืนยันอยู่
                 document.querySelectorAll('.btn-del-history.confirm-mode').forEach(b => {
                     b.classList.remove('confirm-mode');
                     b.innerText = "🗑️ ลบ";
@@ -2150,7 +3796,99 @@
             showToast("🗑️ ล้างประวัติการซ้อมทั้งหมดเรียบร้อยแล้ว");
         }
 
-        // โค้ชสุ่มเป้า 6 มุมคอร์ทอัตโนมัติ (6-Corner Shadow Badminton Virtual Coach)
+        function renderVolumeChart(history) {
+            const chartBars = document.getElementById('volume-chart-bars');
+            if (!chartBars) return;
+
+            if (!history || history.length === 0) {
+                chartBars.innerHTML = `<div style="margin:auto; font-size:0.75rem; color:var(--text-sub); padding-bottom:18px;">ยังไม่มีข้อมูลกราฟ (เริ่มบันทึกการซ้อมครั้งแรกเพื่อดูกราฟ)</div>`;
+                return;
+            }
+
+            const recent = history.slice(0, 7).reverse();
+            const volumes = recent.map(item => {
+                const num = parseInt(String(item.vol || '0').replace(/[^0-9]/g, ''), 10);
+                return isNaN(num) ? 0 : num;
+            });
+            const maxVol = Math.max(...volumes, 500);
+
+            chartBars.innerHTML = recent.map((item, i) => {
+                const v = volumes[i];
+                const heightPct = v > 0 ? Math.max(12, Math.round((v / maxVol) * 68)) : 8;
+                const shortProg = item.prog.replace('Program ', 'Prog ').replace('Agility & Reaction', 'Agility');
+                return `
+                    <div class="chart-col">
+                        <div class="chart-val-top">${v > 0 ? v.toLocaleString() : '-'}</div>
+                        <div class="chart-bar-fill" style="height: ${heightPct}px;"></div>
+                        <div class="chart-lbl-bot">${shortProg}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function exportBackupCode() {
+            const payload = {
+                w: localStorage.getItem('athleteWeight'),
+                h: localStorage.getItem('athleteHeight'),
+                l: localStorage.getItem('athleteLevel'),
+                c: localStorage.getItem('athleteWorkoutCount'),
+                o: localStorage.getItem('athleteWeightOffsets'),
+                r: localStorage.getItem('athleteBestReflex'),
+                hist: localStorage.getItem('athleteHistoryLog'),
+                thm: localStorage.getItem('athleteTheme'),
+                anim: localStorage.getItem('athleteAnimOff'),
+                sore: localStorage.getItem('athleteSorenessMode'),
+                sched: localStorage.getItem('athleteCustomSchedule')
+            };
+            const code = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+            const tempInput = document.createElement('textarea');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("📋 คัดลอกโค้ดสำรองข้อมูลแล้ว! นำไปวางเก็บไว้ในโน้ตหรือแชทได้เลย");
+        }
+
+        function toggleImportBox() {
+            const wrap = document.getElementById('importBoxWrap');
+            if (wrap) wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function importBackupCode() {
+            const raw = document.getElementById('importCodeInput').value.trim();
+            if (!raw) {
+                showToast("⚠️ กรุณาวางโค้ดสำรองข้อมูลก่อนครับ");
+                return;
+            }
+            try {
+                const decoded = JSON.parse(decodeURIComponent(escape(atob(raw))));
+                if (decoded.w) localStorage.setItem('athleteWeight', decoded.w);
+                if (decoded.h) localStorage.setItem('athleteHeight', decoded.h);
+                if (decoded.l) localStorage.setItem('athleteLevel', decoded.l);
+                if (decoded.c) localStorage.setItem('athleteWorkoutCount', decoded.c);
+                if (decoded.o) localStorage.setItem('athleteWeightOffsets', decoded.o);
+                if (decoded.r) localStorage.setItem('athleteBestReflex', decoded.r);
+                if (decoded.hist) localStorage.setItem('athleteHistoryLog', decoded.hist);
+                if (decoded.thm) localStorage.setItem('athleteTheme', decoded.thm);
+                if (decoded.anim) localStorage.setItem('athleteAnimOff', decoded.anim);
+                if (decoded.sore) localStorage.setItem('athleteSorenessMode', decoded.sore);
+                if (decoded.sched) localStorage.setItem('athleteCustomSchedule', decoded.sched);
+
+                document.getElementById('importBoxWrap').style.display = 'none';
+                document.getElementById('setupModal').classList.remove('active');
+                initThemeAndAnimation();
+                initTodaySchedule();
+                loadSavedState();
+                initSorenessMode();
+                renderHistoryLog();
+                loadBestReflex();
+                showToast("✅ กู้คืนข้อมูลและสถิติทั้งหมดสำเร็จแล้ว!");
+            } catch (e) {
+                showToast("❌ โค้ดสำรองข้อมูลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง");
+            }
+        }
+
         function toggleCourtCoach() {
             const btn = document.getElementById('btn-coach-run');
             if (coachInterval) {
@@ -2203,17 +3941,19 @@
             document.getElementById('coach-timer-badge').innerText = "30.0 วิ";
         }
 
-        // ระบบนาฬิกาจับเวลาพักและจับเวลาฝึก
         function startRestTimer(seconds) {
             clearInterval(timerInterval);
             remainingSeconds = seconds;
+            totalTimerSeconds = seconds;
             const bar = document.getElementById('timer-bar');
             bar.classList.remove('work-mode');
             bar.classList.add('running');
             renderTimerText("พัก");
+            updateTimerProgressLine();
 
             timerInterval = setInterval(() => {
                 remainingSeconds--;
+                updateTimerProgressLine();
                 if (remainingSeconds <= 0) {
                     clearInterval(timerInterval);
                     bar.classList.remove('running');
@@ -2229,13 +3969,16 @@
         function startWorkTimer(seconds, label) {
             clearInterval(timerInterval);
             remainingSeconds = seconds;
+            totalTimerSeconds = seconds;
             const bar = document.getElementById('timer-bar');
             bar.classList.remove('running');
             bar.classList.add('work-mode');
             renderTimerText(label);
+            updateTimerProgressLine();
 
             timerInterval = setInterval(() => {
                 remainingSeconds--;
+                updateTimerProgressLine();
                 if (remainingSeconds <= 0) {
                     clearInterval(timerInterval);
                     bar.classList.remove('work-mode');
@@ -2251,7 +3994,9 @@
         function addTimerSeconds(sec) {
             if (remainingSeconds > 0) {
                 remainingSeconds += sec;
+                totalTimerSeconds = Math.max(totalTimerSeconds, remainingSeconds);
                 renderTimerText("พัก");
+                updateTimerProgressLine();
             } else {
                 startRestTimer(sec);
             }
@@ -2260,9 +4005,22 @@
         function stopRestTimer() {
             clearInterval(timerInterval);
             remainingSeconds = 0;
+            totalTimerSeconds = 0;
             const bar = document.getElementById('timer-bar');
             bar.classList.remove('running', 'work-mode');
             document.getElementById('timer-text').innerText = "พร้อมพัก";
+            updateTimerProgressLine();
+        }
+
+        function updateTimerProgressLine() {
+            const line = document.getElementById('timer-progress-line');
+            if (!line) return;
+            if (totalTimerSeconds <= 0 || remainingSeconds <= 0) {
+                line.style.width = '0%';
+                return;
+            }
+            const pct = Math.max(0, Math.min(100, (remainingSeconds / totalTimerSeconds) * 100));
+            line.style.width = pct + '%';
         }
 
         function renderTimerText(prefix) {
