@@ -1,101 +1,101 @@
 <svg width="512" height="512" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <!-- พื้นหลังดำสนิทไล่เฟดแดงคริมสันเข้ม (ไม่ปนส้ม) -->
+        <!-- พื้นหลังดำสนิทไล่เฟดเทาเงินเข้ม -->
         <radialGradient id="bgCrimsonFade" cx="50%" cy="35%" r="75%" fx="30%" fy="25%">
-            <stop offset="0%" stop-color="#38060e"/>
-            <stop offset="55%" stop-color="#140407"/>
+            <stop offset="0%" stop-color="#2b303c"/>
+            <stop offset="55%" stop-color="#111318"/>
             <stop offset="100%" stop-color="#08080a"/>
         </radialGradient>
 
-        <!-- แสงออร่าสีแดงสดด้านหลังลูกแบด -->
+        <!-- แสงออร่าสีขาวสว่างด้านหลังลูกแบด -->
         <radialGradient id="crimsonGlow" cx="50%" cy="50%" r="48%">
-            <stop offset="0%" stop-color="#ff1e38" stop-opacity="0.55"/>
-            <stop offset="60%" stop-color="#8a0014" stop-opacity="0.22"/>
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+            <stop offset="60%" stop-color="#cbd5e1" stop-opacity="0.22"/>
             <stop offset="100%" stop-color="#08080a" stop-opacity="0"/>
         </radialGradient>
 
-        <!-- กรอบขอบไอคอนสีทองตัดแดงเข้ม -->
+        <!-- กรอบขอบไอคอนสีขาวตัดเงินเมทัลลิก -->
         <linearGradient id="frameGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#fff4b8"/>
-            <stop offset="35%" stop-color="#ffd000"/>
-            <stop offset="70%" stop-color="#7a0012"/>
-            <stop offset="100%" stop-color="#ff1e38"/>
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="35%" stop-color="#e2e8f0"/>
+            <stop offset="70%" stop-color="#475569"/>
+            <stop offset="100%" stop-color="#ffffff"/>
         </linearGradient>
 
-        <!-- วงแหวนความเร็ว (Speed Orbit) -->
+        <!-- วงแหวนความเร็ว (Speed Orbit สีขาว-เงิน) -->
         <linearGradient id="orbitGrad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ff1e38"/>
-            <stop offset="50%" stop-color="#66000f"/>
-            <stop offset="100%" stop-color="#ffd000"/>
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="50%" stop-color="#64748b"/>
+            <stop offset="100%" stop-color="#f8fafc"/>
         </linearGradient>
 
-        <!-- ขนลูกแบด 3 มิติ (ขาวสว่างไล่เฉดชมพูแดงจางๆ) -->
+        <!-- ขนลูกแบด 3 มิติ (ขาวสว่างไล่เฉดซิลเวอร์) -->
         <linearGradient id="featherLight" x1="20" y1="15" x2="95" y2="75" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="70%" stop-color="#ffeef0"/>
-            <stop offset="100%" stop-color="#ff99a8"/>
+            <stop offset="70%" stop-color="#f8fafc"/>
+            <stop offset="100%" stop-color="#cbd5e1"/>
         </linearGradient>
 
-        <!-- หัวไม้ก๊อกลูกแบดสีทองบริสุทธิ์ -->
+        <!-- หัวไม้ก๊อกลูกแบดสีขาวมุก-ซิลเวอร์ -->
         <linearGradient id="corkGold" x1="35" y1="70" x2="85" y2="110" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#fff8c4"/>
-            <stop offset="45%" stop-color="#ffd000"/>
-            <stop offset="100%" stop-color="#a68200"/>
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="45%" stop-color="#e2e8f0"/>
+            <stop offset="100%" stop-color="#94a3b8"/>
         </linearGradient>
 
-        <!-- แถบคาดลูกแบดสีแดงสดเฟดแดงเข้ม -->
+        <!-- แถบคาดลูกแบดสีขาวเงินเฟดเทาเข้ม -->
         <linearGradient id="bandCrimson" x1="30" y1="68" x2="90" y2="78" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ff1e38"/>
-            <stop offset="55%" stop-color="#c4001d"/>
-            <stop offset="100%" stop-color="#5e000d"/>
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="55%" stop-color="#94a3b8"/>
+            <stop offset="100%" stop-color="#334155"/>
         </linearGradient>
 
-        <!-- สายฟ้าสีทองสว่างตัดขอบแดงคริมสัน (แยกชั้นไม่ให้ปนสีส้ม) -->
+        <!-- สายฟ้าสีขาวบริสุทธิ์สว่างพุ่งทะยาน -->
         <linearGradient id="boltGold" x1="42" y1="8" x2="72" y2="100" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="55%" stop-color="#ffd000"/>
-            <stop offset="100%" stop-color="#cca300"/>
+            <stop offset="55%" stop-color="#f8fafc"/>
+            <stop offset="100%" stop-color="#cbd5e1"/>
         </linearGradient>
     </defs>
 
     <!-- พื้นหลังไอคอนแอปทรงสี่เหลี่ยมขอบมน -->
     <rect width="120" height="120" rx="26" fill="url(#bgCrimsonFade)"/>
     
-    <!-- แสงออร่าสีแดงตรงกลาง -->
+    <!-- แสงออร่าสีขาวตรงกลาง -->
     <circle cx="60" cy="60" r="52" fill="url(#crimsonGlow)"/>
 
-    <!-- กรอบทอง-แดงด้านใน -->
+    <!-- กรอบขาว-ซิลเวอร์ด้านใน -->
     <rect x="3.5" y="3.5" width="113" height="113" rx="23" stroke="url(#frameGrad)" stroke-width="2.5" opacity="0.9"/>
 
     <!-- วงแหวนพลังงานรอบลูกแบด -->
-    <circle cx="60" cy="60" r="44" stroke="url(#orbitGrad)" stroke-width="2" stroke-dasharray="16 7" opacity="0.8"/>
+    <circle cx="60" cy="60" r="44" stroke="url(#orbitGrad)" stroke-width="2" stroke-dasharray="16 7" opacity="0.85"/>
 
     <!-- กลุ่มลูกแบด + สายฟ้า เอียงทำมุมพุ่งทะยานแบบต้นฉบับ -->
     <g transform="translate(60, 60) scale(-1, 1) rotate(-24) translate(-60, -60)">
         <!-- โครงขนลูกแบดด้านหลัง -->
-        <path d="M30 65 L16 22 L41 35 L60 14 L79 35 L104 22 L90 65 Z" fill="#ff1e38" fill-opacity="0.18" stroke="url(#featherLight)" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30 65 L16 22 L41 35 L60 14 L79 35 L104 22 L90 65 Z" fill="#ffffff" fill-opacity="0.18" stroke="url(#featherLight)" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/>
         
         <!-- เส้นก้านขนลูกแบด -->
         <line x1="44" y1="65" x2="37" y2="30" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
         <line x1="60" y1="65" x2="60" y2="18" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
         <line x1="76" y1="65" x2="83" y2="30" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
 
-        <!-- เส้นเชือกถักคาดก้านขนสีทอง -->
-        <path d="M25 46 Q60 54 95 46" stroke="#ffd000" stroke-width="3" stroke-linecap="round"/>
+        <!-- เส้นเชือกถักคาดก้านขนสีขาวสว่าง -->
+        <path d="M25 46 Q60 54 95 46" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
 
         <!-- หัวไม้ก๊อกลูกแบด (Cork Base) -->
         <path d="M32 67 C32 90 44 104 60 104 C76 104 88 90 88 67 C88 63 75 61 60 61 C45 61 32 63 32 67 Z" fill="url(#corkGold)" stroke="#ffffff" stroke-width="2"/>
 
-        <!-- แถบคาดสีแดงแรงระเบิด (Pure Crimson Fade) -->
+        <!-- แถบคาดสีเงินเมทัลลิก -->
         <path d="M32.5 72 C45 80 75 80 87.5 72" stroke="url(#bandCrimson)" stroke-width="7.5" stroke-linecap="round"/>
 
-        <!-- เงาสายฟ้าสีแดงสดด้านหลังเพื่อให้สายฟ้าพุ่งออกมาโดยไม่ปนสีส้ม -->
-        <path d="M68 8 L35 54 H61 L47 100 L89 46 H62 L68 8 Z" fill="#ff1e38" stroke="#ff1e38" stroke-width="6" stroke-linejoin="round" opacity="0.65"/>
+        <!-- เงาออร่าสายฟ้าสีขาวด้านหลังเพื่อให้สายฟ้าดูเรืองแสงพุ่งออกมา -->
+        <path d="M68 8 L35 54 H61 L47 100 L89 46 H62 L68 8 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="6" stroke-linejoin="round" opacity="0.55"/>
 
-        <!-- สายฟ้าฟาดทะลุแกนกลางสีทองบริสุทธิ์ตัดขอบดำ -->
+        <!-- สายฟ้าฟาดทะลุแกนกลางสีขาวบริสุทธิ์ตัดขอบดำ -->
         <path d="M68 8 L35 54 H61 L47 100 L89 46 H62 L68 8 Z" fill="url(#boltGold)" stroke="#08080a" stroke-width="3.2" stroke-linejoin="round"/>
         
         <!-- ไฮไลท์แสงขาวกลางสายฟ้า -->
-        <path d="M65 15 L41 51 H61 L51 87 L82 49 H61 L65 15 Z" fill="#ffffff" opacity="0.55"/>
+        <path d="M65 15 L41 51 H61 L51 87 L82 49 H61 L65 15 Z" fill="#ffffff" opacity="0.85"/>
     </g>
 </svg>
